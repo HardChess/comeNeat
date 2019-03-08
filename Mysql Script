@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `bitirme_proje`.`user` (
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `city` VARCHAR(45) NOT NULL,
-  `photo`  NULL DEFAULT NULL,
+  `photo` LONGBLOB NULL DEFAULT NULL,
   `avgPoint` DOUBLE NULL DEFAULT NULL,
   `location` GEOMETRY NULL DEFAULT NULL,
   PRIMARY KEY (`idUser`),
