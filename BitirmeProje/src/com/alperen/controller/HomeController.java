@@ -3,6 +3,8 @@ package com.alperen.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +22,12 @@ public class HomeController {
 	public String showIndex() {
 		return "index"; 
 	}
-	@RequestMapping("/signup")
-	public String showSingup() {
+	@GetMapping("/signup")
+	public String showSignup(Model theModel) {
+		
+		User theUser = new User();
+		theModel.addAttribute("user", theUser);
+		
 		return "signup"; 
 	}
 	
