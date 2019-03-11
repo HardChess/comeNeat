@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class TestDB extends HttpServlet{
 
 	/**
-	 * 
+	 * a
 	 */
 	private static final long serialVersionUID = 1L;
 	
