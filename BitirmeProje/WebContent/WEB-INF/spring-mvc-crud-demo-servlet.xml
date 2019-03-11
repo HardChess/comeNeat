@@ -32,8 +32,8 @@
     <!-- Step 1: Define Database DataSource / connection pool -->
 	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
-        <property name="driverClass" value="com.mysql.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/ogrenci_schema?useSSL=false" />
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/bitirme_proje?useSSL=false&amp;useUnicode=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Turkey" />
         <property name="user" value="root" />
         <property name="password" value="root" /> 
 
