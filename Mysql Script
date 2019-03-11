@@ -21,7 +21,7 @@ USE `bitirme_proje` ;
 -- Table `bitirme_proje`.`user`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bitirme_proje`.`user` (
-  `idUser` (11) NOT NULL,
+  `idUser` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(20) NOT NULL,
   `surname` VARCHAR(20) NOT NULL,
   `address` VARCHAR(100) NOT NULL,
@@ -43,8 +43,8 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `bitirme_proje`.`advert`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bitirme_proje`.`advert` (
-  `idAdvert` (11) NOT NULL,
-  `idUser` (11) NOT NULL,
+  `idAdvert` INT NOT NULL AUTO_INCREMENT,
+  `idUser` INT NOT NULL,
   `foodName` VARCHAR(45) NOT NULL,
   `cost` DOUBLE NOT NULL,
   `portion` INT NOT NULL,
@@ -65,9 +65,9 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `bitirme_proje`.`order`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bitirme_proje`.`order` (
-  `idOrder` (11) NOT NULL,
-  `idAdvert` (11) NOT NULL,
-  `idUser` (11) NOT NULL,
+  `idOrder` INT NOT NULL AUTO_INCREMENT,
+  `idAdvert` INT NOT NULL,
+  `idUser` INT NOT NULL,
   `point` INT NULL DEFAULT NULL,
   `portion` INT NULL DEFAULT NULL,
   PRIMARY KEY (`idOrder`),
@@ -92,3 +92,4 @@ DEFAULT CHARACTER SET = utf8;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
