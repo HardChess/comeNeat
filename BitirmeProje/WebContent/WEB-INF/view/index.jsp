@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -139,6 +140,16 @@
    
       <h1>Sign Up</h1>
       <p>Please fill in this form to create an account.</p>
+      
+      <label for="name"><b>Name</b></label>
+      <input type="text" placeholder="Enter Complete Name" name="name" required>
+      
+      <label for="email"><b>username</b></label>
+      <input type="text" placeholder="Enter Username" name="username" required>
+     
+      
+      <label for="address"><b>Address</b></label>
+      <input type="text" placeholder="Enter Address" name="address" required>
       
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Enter Email" name="email" required>
