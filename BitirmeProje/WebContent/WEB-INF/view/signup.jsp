@@ -15,49 +15,68 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
 <body>
   
-    <div class="jumbotron">    
-      <h1>Add New User</h1>    
-    </div>
-    
-      <form:form class="form-horizantal" modelAttribute="user" action="saveUser" method="POST">
-      
-      
-        
-        <div class="form-group">
-          <label for="adi" class="col-sm-10 control-label">First Name</label>
-          <div>
-            <form:input type="text" class="form-control" id="name" placeholder="Enter your first name" path="firstName"></form:input>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label for="soyadi" class="col-sm-10 control-label">Last Name</label>
-          <div>
-            <form:input type="text" class="form-control" id="lastName" placeholder="Enter your last name" path="lastName"></form:input>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label for="soyadi" class="col-sm-10 control-label">Last Name</label>
-        	<div>
-            	<form:input type="text" class="form-control" id="username" placeholder="Enter your username" path="username"></form:input>
-        	</div>
-        </div>
-          
-        <div class="form-group">
-          <label for="soyadi" class="col-sm-10 control-label">Last Name</label>
-          <div>
-            <form:input type="text" class="form-control" id="password" placeholder="Enter your password" path="password"></form:input>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <div>
-            <button type="submit" class="btn btn-primary">Kaydet</button>
-          </div>
-        </div>
-      
-      </form:form>
+  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<html>
+
+<head>
+	<title>Customer Registration Form</title>
+	
+	<style>
+		.error {color:red}
+	</style>
+</head>
+<body>
+
+<i>Fill out the form. Asterisk (*) means required.</i>
+<br><br>
+
+	<form:form action="saveUser" modelAttribute="user" method="POST">
+	
+		First name: <form:input path="name" />
+		
+		<br><br>
+		
+		Last name (*): <form:input path="surname" />
+		<form:errors path="surname" cssClass="error" />
+		
+		<br><br>
+		
+		Address: <form:input path="address" />
+		
+		<br><br>
+		
+		Username: <form:input path="username" />
+		
+		<br><br>
+		
+		Password: <form:input path="name" type="password"/>
+		
+		<br><br>
+		
+		City: <form:input path="city" />
+		
+		<br><br>
+
+		<input type="button" value="save" class="save" />
+		
+				
+	</form:form>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
 
 
 </body>
