@@ -34,7 +34,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 	<form:form action="saveUser" modelAttribute="user" method="POST">
 	
 		First name: <form:input path="name" />
-		
+		<form:errors path="name" cssClass="error"/>
 		<br><br>
 		
 		Last name (*): <form:input path="surname" />
@@ -43,25 +43,27 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 		<br><br>
 		
 		Address: <form:input path="address" />
-		
+		<form:errors path="address" cssClass="error"/>
 		<br><br>
 		
 		Username: <form:input path="username" />
-		
+		<form:errors path="username" cssClass="error"/>
 		<br><br>
 		
-		Password: <form:input path="name" type="password"/>
-		
+		Password: <form:input path="password" type="password"/>
+		<form:errors path="password" cssClass="error"/>
 		<br><br>
 		
 		City: <form:input path="city" />
-		
+		<form:errors path="city" cssClass="error"/>
 		<br><br>
 
-		<input type="button" value="save" class="save" />
+		<input type="submit" value="save" class="save" />
 		
 				
 	</form:form>
+	
+	
 
 </body>
 

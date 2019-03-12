@@ -20,27 +20,27 @@ public class User {
 	private int idUser;
 	
 	@Column(name="name")
-	@Size(min=1, max=20, message="1-20 arasý karakter girin.")
+	@Size(min=1, max=20, message="1-20 arasï¿½ karakter girin.")
 	@NotNull(message="bos olamaz.")
 	private String name;
 
 	@Column(name="surname")
-	@Size(min=1, max=20, message="1-20 arasý karakter girin.")
+	@Size(min=1, message="1-20 aras karakter girin.")
 	@NotNull(message="bos olamaz.")
 	private String surname;
 	
 	@Column(name="address")
-	@Size(min=1, max=100, message="1-100 arasý karakter girin.")
+	@Size(min=1, max=100, message="1-100 arasï¿½ karakter girin.")
 	@NotNull(message="bos olamaz.")
 	private String address;
 	
 	@Column(name="username")
-	@Size(min=1, max=45, message="1-45 arasý karakter girin.")
+	@Size(min=1, max=45, message="1-45 arasï¿½ karakter girin.")
 	@NotNull(message="bos olamaz.")
 	private String username;
 	
 	@Column(name="password")
-	@Size(min=1, max=45, message="1-45 arasý karakter girin.")
+	@Size(min=1, max=45, message="1-45 arasï¿½ karakter girin.")
 	@NotNull(message="bos olamaz.")
 	private String password;
 	

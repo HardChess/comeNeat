@@ -18,9 +18,9 @@ public class UserDAOImpl implements UserDAO {
 
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		//User ekleme ve güncelleme
+		//User ekleme ve gï¿½ncelleme
 		currentSession.saveOrUpdate(theUser);
 		
-	}
+	} 
 
 }

@@ -126,7 +126,7 @@
 					<div class="home-content">
 						<h1 class="white-text">Welcome To ComeNeat</h1>
 						<h4 class="white-text lead">The ultimate way to order home made food online</h4>
-						<button onclick = "document.getElementById('id01').style.display='block'"class="main-button" id="showpopup">Sign up now!</button>
+						<button onclick = "location.href='${pageContext.request.contextPath}/signup'"class="main-button" id="showpopup">Sign up now!</button>
 					
 					</div>
 				</div>
