@@ -69,35 +69,9 @@
 
 				
 				
-				<li><a onclick="document.getElementById('id02').style.display='block'"><i class="fa fa-user"></i></a></li>
+				<li><a onclick = "location.href='${pageContext.request.contextPath}/login'"><i class="fa fa-user"></i></a></li>
 				<!-- login form -->
-				<div id="id02" class="modal">
-  
-  <form class="modal-content animate" action="/action_page.php">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      
-    </div>
-
-    <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-        
-      <button class="btn" type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-  </form>
-</div>
+			
 <!-- end login form -->
 					
 				</ul>
@@ -126,7 +100,7 @@
 					<div class="home-content">
 						<h1 class="white-text">Welcome To ComeNeat</h1>
 						<h4 class="white-text lead">The ultimate way to order home made food online</h4>
-						<button onclick = "location.href='${pageContext.request.contextPath}/signup'"class="main-button" id="showpopup">Sign up now!</button>
+						<button onclick = "location.href='${pageContext.request.contextPath}/register'"class="main-button" id="showpopup">Sign up now!</button>
 					
 					</div>
 				</div>
