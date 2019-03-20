@@ -63,7 +63,7 @@
 				
 				<!-- social links -->
 				<ul class="social-nav">
-				<a href = "${pageContext.request.contextPath}/eat/choice"class="a-l">After logging</a> 
+				<a href = "${pageContext.request.contextPath}/login"class="a-l">Login to Your Account</a> 
 				
 				<!-- After logging Popup -->
 

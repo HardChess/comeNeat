@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -45,7 +47,7 @@
 
 				<!-- logo -->
 				<div class="logo">
-					<a href="${pageContext.request.contextPath}/eat/choice"><img src="${pageContext.request.contextPath}/resources/img/logo.jpeg" alt="logo"></a>
+					<a href="${pageContext.request.contextPath}/choice"><img src="${pageContext.request.contextPath}/resources/img/logo.jpeg" alt="logo"></a>
 				</div>
 				<!-- logo -->
 
@@ -58,6 +60,9 @@
 				<!-- social links -->
 				<ul class="social-nav">
 				<li><a onclick = "location.href='${pageContext.request.contextPath}/account/profile'"><i class="fa fa-user"></i></a></li>
+				<li>Merhaba ${cookie.name.value}</li>
+				<a onclick = "location.href='${pageContext.request.contextPath}/logout'">Logout</a>
+				
 				<!-- login form -->
 				
 <!-- end login form -->
