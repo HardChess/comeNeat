@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.protobuf.Int64Value;
 import com.infotech.model.Student;
 import com.infotech.model.StudentCredential;
 import com.infotech.service.StudentService;
@@ -30,6 +31,7 @@ public class MyController {
 	
 	@Autowired
 	private StudentService studentService;
+
 
 	public void setStudentService(StudentService studentService) {
 		this.studentService = studentService;
@@ -41,18 +43,36 @@ public class MyController {
 	
 	@RequestMapping(value ="/")
 	public String homePage(){
+		
 		return "index";
 	}
+	
 	@RequestMapping(value ="/login" ,method=RequestMethod.GET)
-	public String loginPage(Model model){
-		model.addAttribute("studentCredential", new StudentCredential());
-		return "login";
+	public String loginPage(Model model, HttpServletRequest request){
+		
+		if(isLogged(request)) {
+			return "redirect:/choice";
+		}
+		else {
+
+			model.addAttribute("studentCredential", new StudentCredential());
+			return "login";
+			
+		}
 	}
 
 	@RequestMapping(value ="/register" ,method=RequestMethod.GET)
-	public String registerPage(Model model){
-		model.addAttribute("student", new Student());
-		return "register";
+	public String registerPage(Model model, HttpServletRequest request){
+		
+		if(isLogged(request)) {
+			
+			return "redirect:/choice";
+			
+		}
+		else {
+			model.addAttribute("student", new Student());
+			return "register";
+		}
 	}
 
 	@RequestMapping(value ="/registerSuccess" ,method=RequestMethod.POST)
@@ -61,14 +81,16 @@ public class MyController {
 			return new ModelAndView("register");
 		}
 		getStudentService().registerStudent(student);
-		ModelAndView modelAndView = new ModelAndView("welcome");
+		ModelAndView modelAndView = new ModelAndView("redirect:/");
 		modelAndView.addObject("student", student);
 		return modelAndView;
 	}
 	@RequestMapping(value ="/loginSuccess" ,method=RequestMethod.POST)
 	public ModelAndView loginSuccess(@Valid @ModelAttribute("studentCredential") StudentCredential studentCredential,
-			BindingResult bindingResult,@CookieValue(value = "name", defaultValue = "anonymous") String name,
+			BindingResult bindingResult,
+			@CookieValue(value = "name", defaultValue = "anonymous") String name,
 			HttpServletResponse response){
+		
 		if(bindingResult.hasErrors()){
 			return new ModelAndView("login");
 		}
@@ -86,10 +108,10 @@ public class MyController {
 			//Setting cookie value and maxage
 			cookie.setPath("/BitirmeProje");
 			cookie.setValue(student.getName());
-			cookie.setMaxAge(9999999);
+			cookie.setMaxAge(60 * 60 * 24 * 30);
+			
 
 			response.addCookie(cookie);
-			
 			
 			
 			return modelAndView;
@@ -98,41 +120,51 @@ public class MyController {
 		}
 		return modelAndView;
 	}
+
 	
-	@GetMapping("/choice")
-	public String showChoice(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		
-		//Can't see this page if user didnt login.
+		if(isLogged(request)) {
+
+			killCookies(request, response);
+			
+			return "redirect:/";
+			
+		}else return "redirect:/login";
+		//Killing all cookies when logout
+		
+	}
+
+
+	//Method created by Alperen 
+	private boolean isLogged(HttpServletRequest request) {
+
 		Cookie[] cookies = request.getCookies();
         for(int i = 0; i< cookies.length ; ++i){
             if(cookies[i].getName().equals("name")){
             	
-        		return "choice";
+        		return true;
             }
         }
-        return "redirect:/login";
-		
+        return false;
+	}
+	
+	//Method created by Alperen 
+	private void killCookies(HttpServletRequest request, HttpServletResponse response) {
+			
+			Cookie[] cookies = request.getCookies();
+			for (Cookie cookie : cookies) {
+	
+			cookie.setPath("/BitirmeProje");
+			cookie.setMaxAge(0);
+			cookie.setValue(null);
+			response.addCookie(cookie);
+			}
+			
 	}
 	
 
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpServletRequest request, HttpServletResponse response) {
-		
-		//Killing all cookies when logout
-		Cookie[] cookies = request.getCookies();
-		for (Cookie cookie : cookies) {
-
-		cookie.setPath("/BitirmeProje");
-		cookie.setMaxAge(0);
-		cookie.setValue(null);
-		response.addCookie(cookie);
-		}
-		
-		return "redirect:/";
-		
-	}
-	
-	
 	@ModelAttribute
 	public void headerMessage(Model model){
 		model.addAttribute("headerMessage", "Welcome to ComeNeat");
@@ -153,4 +185,5 @@ public class MyController {
 		model.addAttribute("technologyList", techList);
 		model.addAttribute("citesList", citesList);
 	}
+
 }

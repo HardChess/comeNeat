@@ -24,6 +24,7 @@
 
 		<!-- Font Awesome Icon -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
+		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 		<!-- Custom stlylesheet -->
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css"/>
@@ -59,13 +60,16 @@
 
 				<!-- social links -->
 				<ul class="social-nav">
-				<li><a onclick = "location.href='${pageContext.request.contextPath}/account/profile'"><i class="fa fa-user"></i></a></li>
+				<li><a onclick = "location.href='${pageContext.request.contextPath}/profile'"><i class="fa fa-user"></i></a></li>
 				<li>Merhaba ${cookie.name.value}</li>
 				<a onclick = "location.href='${pageContext.request.contextPath}/logout'">Logout</a>
 				
 				<!-- login form -->
 				
 <!-- end login form -->
+				<a href="${pageContext.request.contextPath}/logout">
+				          <span class="glyphicon glyphicon-log-out"></span>
+				        </a>
 					
 				</ul>
 				<!-- /social links -->
@@ -97,8 +101,8 @@
 				<div class="col-md-10 col-md-offset-1 text-center">
 					<div class="home-content">
 						<h1 class="white-text">Are you going to buy a meal, or sell it ? make your choice!</h1>
-						<button onclick = "location.href='${pageContext.request.contextPath}/eat/buyFood'" class = "button_line">Buy a meal</button>
-						<button onclick = "location.href='${pageContext.request.contextPath}/eat/sellFood'" class = "button_line">Sell a meal</button>
+						<button onclick = "location.href='${pageContext.request.contextPath}/buyFood'" class = "button_line">Buy a meal</button>
+						<button onclick = "location.href='${pageContext.request.contextPath}/sellFood'" class = "button_line">Sell a meal</button>
 					
 					</div>
 				</div>

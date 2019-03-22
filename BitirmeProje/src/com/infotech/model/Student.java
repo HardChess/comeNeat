@@ -25,9 +25,15 @@ public class Student {
 	
 	@NotEmpty
 	@Pattern(regexp="[^0-9]+")
-	@Size(min=6,max=20)
+	@Size(min=6,max=40)
 	@Column(name = "name")
 	private String name;
+	
+	
+	@NotEmpty
+	@Size(min=3)
+	@Column(name = "username")
+	private String username;
 	
 	@NotEmpty
 	@Email
@@ -51,15 +57,19 @@ public class Student {
 	@Column(name = "gender")
 	private String gender;
 	
-	
-	
-	
-	
 	@NotNull
 	@Min(value = 1000000000)
 	@Column(name = "phone")
 	private Long phone;
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -115,4 +125,13 @@ public class Student {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 }

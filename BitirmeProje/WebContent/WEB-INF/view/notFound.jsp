@@ -9,6 +9,6 @@
 <body>
 <h2>Student details not found with given credential..</h2>
 <br>
-Login here again:<a href="/SpringMVCFormValidation/login">Login</a>
+Login here again:<a href="/BitirmeProje/login">Login</a>
 </body>
 </html>
