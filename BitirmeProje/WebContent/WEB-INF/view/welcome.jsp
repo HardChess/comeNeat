@@ -13,33 +13,33 @@
 	<table align="center" border="5px">
 	
 			<tr>
-			<td>Student email:</td>
-			<td>${student.email}</td>
+			<td>User email:</td>
+			<td>${user.email}</td>
 		</tr>
 	
 		<tr>
-			<td>Student Name:</td>
-			<td>${student.name}</td>
+			<td>User Name:</td>
+			<td>${user.name}</td>
 		</tr>
 		
 		<tr>
-			<td>Student Phone:</td>
-			<td>${student.phone}</td>
+			<td>User Phone:</td>
+			<td>${user.phone}</td>
 		</tr>
 
 		<tr>
-			<td>Student Gender</td>
-			<td>${student.gender}</td>
+			<td>User Gender</td>
+			<td>${user.gender}</td>
 		</tr>
 
 		<tr>
 			<td>Selected Technology:</td>
-			<td>${student.address}</td>
+			<td>${user.address}</td>
 		</tr>
 
 		<tr>
 			<td>City</td>
-			<td>${student.city}</td>
+			<td>${user.city}</td>
 		</tr>
 
 	</table>

@@ -1,9 +1,9 @@
-package com.infotech.model;
+package com.comeneat.model;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class StudentCredential {
+public class UserCredential {
 
 	@NotEmpty
 	@Email

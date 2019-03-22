@@ -15,7 +15,7 @@
 <body>
 	<h3 align="center">${headerMessage}</h3>
 	<form:form action="/BitirmeProje/registerSuccess"
-		method="post" modelAttribute="student">
+		method="post" modelAttribute="user">
 		<table align="center">
 		<caption align="top">Student registration form</caption>
 			<tr>

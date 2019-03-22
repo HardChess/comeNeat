@@ -15,7 +15,7 @@ color:red;
 </head>
 <body>
 <h3 align="center">${headerMessage}</h3>
-	<form:form action="/BitirmeProje/loginSuccess" method="post" modelAttribute="studentCredential">
+	<form:form action="/BitirmeProje/loginSuccess" method="post" modelAttribute="userCredential">
 
 		<table>
 			<tr>

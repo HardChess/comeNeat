@@ -1,4 +1,4 @@
-package com.infotech.controller;
+package com.comeneat.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,22 +21,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.infotech.model.Student;
-import com.infotech.model.StudentCredential;
-import com.infotech.service.StudentService;
+import com.comeneat.model.User;
+import com.comeneat.model.UserCredential;
+import com.comeneat.service.UserService;
 
 @Controller
 public class MyController {
 	
 	@Autowired
-	private StudentService studentService;
+	private UserService userService;
 
-	public void setStudentService(StudentService studentService) {
-		this.studentService = studentService;
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 	
-	public StudentService getStudentService() {
-		return studentService;
+	public UserService getUserService() {
+		return userService;
 	}
 	
 	@RequestMapping(value ="/")
@@ -45,28 +45,28 @@ public class MyController {
 	}
 	@RequestMapping(value ="/login" ,method=RequestMethod.GET)
 	public String loginPage(Model model){
-		model.addAttribute("studentCredential", new StudentCredential());
+		model.addAttribute("userCredential", new UserCredential());
 		return "login";
 	}
 
 	@RequestMapping(value ="/register" ,method=RequestMethod.GET)
 	public String registerPage(Model model){
-		model.addAttribute("student", new Student());
+		model.addAttribute("user", new User());
 		return "register";
 	}
 
 	@RequestMapping(value ="/registerSuccess" ,method=RequestMethod.POST)
-	public ModelAndView registerSuccess(@Valid @ModelAttribute("student") Student student,BindingResult bindingResult){
+	public ModelAndView registerSuccess(@Valid @ModelAttribute("user") User user,BindingResult bindingResult){
 		if(bindingResult.hasErrors()){
 			return new ModelAndView("register");
 		}
-		getStudentService().registerStudent(student);
+		getUserService().registerUser(user);
 		ModelAndView modelAndView = new ModelAndView("welcome");
-		modelAndView.addObject("student", student);
+		modelAndView.addObject("user", user);
 		return modelAndView;
 	}
 	@RequestMapping(value ="/loginSuccess" ,method=RequestMethod.POST)
-	public ModelAndView loginSuccess(@Valid @ModelAttribute("studentCredential") StudentCredential studentCredential,
+	public ModelAndView loginSuccess(@Valid @ModelAttribute("userCredential") UserCredential userCredential,
 			BindingResult bindingResult,@CookieValue(value = "name", defaultValue = "anonymous") String name,
 			HttpServletResponse response){
 		if(bindingResult.hasErrors()){
@@ -78,14 +78,14 @@ public class MyController {
 		
 		
 		ModelAndView modelAndView = new ModelAndView("redirect:/choice");
-		Student student = getStudentService().validateStudentCredential(studentCredential.getEmail(), studentCredential.getPassword());
-		if(student!= null){
+		User user = getUserService().validateUserCredential(userCredential.getEmail(), userCredential.getPassword());
+		if(user!= null){
 			
-			modelAndView.addObject("student", student);
+			modelAndView.addObject("user", user);
 			
 			//Setting cookie value and maxage
 			cookie.setPath("/BitirmeProje");
-			cookie.setValue(student.getName());
+			cookie.setValue(user.getName());
 			cookie.setMaxAge(9999999);
 
 			response.addCookie(cookie);

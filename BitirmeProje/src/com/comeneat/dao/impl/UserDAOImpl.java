@@ -1,4 +1,4 @@
-package com.infotech.dao.impl;
+package com.comeneat.dao.impl;
 
 import java.util.List;
 
@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.infotech.dao.StudentDAO;
-import com.infotech.model.Student;
+import com.comeneat.dao.UserDAO;
+import com.comeneat.model.User;
 
-@Repository("studentDAO")
-public class StudentDAOImpl implements StudentDAO {
+@Repository("userDAO")
+public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
@@ -24,19 +24,19 @@ public class StudentDAOImpl implements StudentDAO {
 		return hibernateTemplate;
 	}
 	@Override
-	public boolean saveStudent(Student student) {
-		int id = (Integer)hibernateTemplate.save(student);
+	public boolean saveUser(User user) {
+		int id = (Integer)hibernateTemplate.save(user);
 		if(id>0)
 			return true;
 		return false;
 	}
 	@SuppressWarnings("unchecked")
 	@Override
-	public Student getStudentDetailsByEmailAndPassword(String email,String password){
-		DetachedCriteria detachedCriteria =  DetachedCriteria.forClass(Student.class);
+	public User getUserDetailsByEmailAndPassword(String email,String password){
+		DetachedCriteria detachedCriteria =  DetachedCriteria.forClass(User.class);
 		detachedCriteria.add(Restrictions.eq("email", email));
 		detachedCriteria.add(Restrictions.eq("password", password));
-		List<Student> findByCriteria = (List<Student>) hibernateTemplate.findByCriteria(detachedCriteria);
+		List<User> findByCriteria = (List<User>) hibernateTemplate.findByCriteria(detachedCriteria);
 		if(findByCriteria !=null && findByCriteria.size()>0)
 		return findByCriteria.get(0);
 		else
