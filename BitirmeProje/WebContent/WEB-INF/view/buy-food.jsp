@@ -45,7 +45,7 @@
 
 				<!-- logo -->
 				<div class="logo">
-					<a href="${pageContext.request.contextPath}/eat/choice"><img src="${pageContext.request.contextPath}/resources/img/logo.jpeg" alt="logo"></a>
+					<a href="${pageContext.request.contextPath}/choice"><img src="${pageContext.request.contextPath}/resources/img/logo.jpeg" alt="logo"></a>
 				</div>
 				<!-- logo -->
 
@@ -57,12 +57,13 @@
 				
 				<!-- social links -->
 				<ul class="social-nav">
-			<a class="nav-link" href="#">Hello, Hamza! <span class="sr-only">(current)</span></a>
-				<li><a onclick = "location.href='${pageContext.request.contextPath}/account/profile'"><i class="fa fa-user"></i></a></li>
+				<li><a onclick = "location.href='${pageContext.request.contextPath}/profile'"><i class="fa fa-user"></i></a></li>
+				<li>Merhaba ${cookie.name.value}</li>
+				<a onclick = "location.href='${pageContext.request.contextPath}/logout'">Logout</a>
 				<!-- login form -->
 				
 <!-- end login form -->
-					<a href="#">
+					<a href="${pageContext.request.contextPath}/logout">
           <span class="glyphicon glyphicon-log-out"></span>
         </a>
 				</ul>

@@ -30,9 +30,15 @@
 			</tr>
 
 			<tr>
-				<td>Enter your Name:</td>
+				<td>Enter your Full Name:</td>
 				<td><form:input path="name"/></td>
 				<td><form:errors path="name" cssClass="error"/></td>
+			</tr>
+			
+			<tr>
+				<td>Enter your Username:</td>
+				<td><form:input path="username"/></td>
+				<td><form:errors path="username" cssClass="error"/></td>
 			</tr>
 
 			<tr>
