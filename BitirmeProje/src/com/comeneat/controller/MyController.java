@@ -1,4 +1,4 @@
-package com.infotech.controller;
+package com.comeneat.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.protobuf.Int64Value;
+import com.comeneat.model.Advert;
 import com.comeneat.model.User;
 import com.comeneat.model.UserCredential;
+import com.comeneat.service.AdvertService;
 import com.comeneat.service.UserService;
 
 @Controller
@@ -31,7 +33,6 @@ public class MyController {
 	
 	@Autowired
 	private UserService userService;
-
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;
@@ -89,15 +90,17 @@ public class MyController {
 	public ModelAndView loginSuccess(@Valid @ModelAttribute("userCredential") UserCredential userCredential,
 			BindingResult bindingResult,
 			@CookieValue(value = "name", defaultValue = "anonymous") String name,
+			@CookieValue(value = "idUser", defaultValue = "id") String idUser,
 			HttpServletResponse response){
 		
 		if(bindingResult.hasErrors()){
 			return new ModelAndView("login");
 		}
 
-		//Adding cookie with name 
+		//Adding cookie 
 		Cookie cookie = new Cookie("name", name);
-		
+		Cookie cookieID = new Cookie("idUser", idUser);
+
 		
 		ModelAndView modelAndView = new ModelAndView("redirect:/choice");
 		User user = getUserService().validateUserCredential(userCredential.getEmail(), userCredential.getPassword());
@@ -109,10 +112,17 @@ public class MyController {
 			cookie.setPath("/BitirmeProje");
 			cookie.setValue(user.getName());
 			cookie.setMaxAge(60 * 60 * 24 * 30);
-			
+
+			cookieID.setPath("/BitirmeProje");
+			cookieID.setValue(Integer.toString(user.getIdUser()));
+			cookieID.setMaxAge(60 * 60 * 24 * 30);
 
 			response.addCookie(cookie);
+			response.addCookie(cookieID);
 			
+			
+			System.out.println("login id:" + cookieID.getValue());
+			System.out.println("login name:" + cookie.getValue());
 			
 			return modelAndView;
 		}else{
@@ -163,6 +173,7 @@ public class MyController {
 			}
 			
 	}
+	
 	
 
 	@ModelAttribute

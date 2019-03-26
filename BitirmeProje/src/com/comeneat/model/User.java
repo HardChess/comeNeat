@@ -1,16 +1,23 @@
 package com.comeneat.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -21,7 +28,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idUser")
-	private int id;
+	private int idUser;
 	
 	@NotEmpty
 	@Pattern(regexp="[^0-9]+")
@@ -61,13 +68,19 @@ public class User {
 	@Min(value = 1000000000)
 	@Column(name = "phone")
 	private Long phone;
+	
+	@OneToMany( mappedBy = "user")
+	private List<Advert> adverts;
 
-	public int getId() {
-		return id;
+	@OneToMany( mappedBy = "user")
+	private List<Order> orders;
+
+	public int getIdUser() {
+		return idUser;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
 	}
 	
 	public String getName() {
@@ -133,5 +146,25 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+	public List<Advert> getAdverts() {
+		return adverts;
+	}
+
+	public void setAdverts(List<Advert> adverts) {
+		this.adverts = adverts;
+	}
+
+	
+
+
 
 }
