@@ -1,5 +1,7 @@
 package com.comeneat.dao;
 
+import java.util.List;
+
 import com.comeneat.model.User;
 
 public interface UserDAO {

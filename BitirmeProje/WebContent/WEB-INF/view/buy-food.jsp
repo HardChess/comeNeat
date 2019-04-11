@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -107,6 +108,62 @@
    <div class="header">Available meals
    <h3 style="width:25% ;text-decoration:underline">Add some filters</h3>
    </div>
+   
+   
+   <div>
+			<table class="table table-striped">
+				<tr>
+					<th>Advert Owner</th>
+					<th>Food Name</th>
+					<th>Cost</th>
+					<th>Available Portions</th>
+					<th></th>
+				</tr>
+				<c:forEach var="tempAdvert" items="${adverts}">
+					<tr>
+						<td>--</td>
+						<td>${tempAdvert.foodName}</td>
+						<td>${tempAdvert.cost} TL</td>
+						<td>${tempAdvert.portion}</td>
+						<td>
+							<a class="btn btn-danger" href="${pageContext.request.contextPath}/orderIt?advertID=${tempAdvert.idAdvert}"
+							 onclick="if(!(confirm('Bir porsiyon siparis vermek üzeresiniz?'))) return false;">Siparis Ver</a>
+							
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+		
+   <div class="header">Your Orders
+   </div>
+   
+   <div>
+			<table class="table table-striped">
+				<tr>
+					<th>Advert Owner</th>
+					<th>Food Name</th>
+					<th>Point</th>
+					<th>Portions</th>
+					<th></th>
+				</tr>
+				
+				<c:forEach var="tempOrder" items="${orders}">
+					<tr>
+						<td>--</td>
+						<td>--</td>
+						<td>${tempOrder.point}</td>
+						<td>${tempOrder.portion}</td>
+						<td>
+							<a class="btn btn-danger" href="${pageContext.request.contextPath}/setPoint?orderID=${tempOrder.idOrder}"
+							 onclick="if(!(confirm('Bir porsiyon siparis vermek üzeresiniz?'))) return false;">Puan Ver</a>
+							
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+   
    
    <table cellspacing="0">
       <tr>

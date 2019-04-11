@@ -19,10 +19,7 @@ public class AdvertServiceImpl implements AdvertService {
 	
 	@Override
 	@Transactional
-	public List<Advert> getAdvertList() {
-
-
-		return advertDAO.getAdverts();
-	}
-
-}
+	public List<Advert> getAdverts(String idUser) {
+		// TODO Auto-generated method stub
+		return advertDAO.getAdverts(idUser);
+	}}

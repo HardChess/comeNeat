@@ -69,11 +69,11 @@ public class User {
 	@Column(name = "phone")
 	private Long phone;
 	
-	@OneToMany( mappedBy = "user")
-	private List<Advert> adverts;
-
-	@OneToMany( mappedBy = "user")
-	private List<Order> orders;
+//	@OneToMany( mappedBy = "user")
+//	private List<Advert> adverts;
+//
+//	@OneToMany( mappedBy = "user")
+//	private List<Order> orders;
 
 	public int getIdUser() {
 		return idUser;
@@ -147,21 +147,21 @@ public class User {
 		this.username = username;
 	}
 
-	public List<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
-
-	public List<Advert> getAdverts() {
-		return adverts;
-	}
-
-	public void setAdverts(List<Advert> adverts) {
-		this.adverts = adverts;
-	}
+//	public List<Order> getOrders() {
+//		return orders;
+//	}
+//
+//	public void setOrders(List<Order> orders) {
+//		this.orders = orders;
+//	}
+//
+//	public List<Advert> getAdverts() {
+//		return adverts;
+//	}
+//
+//	public void setAdverts(List<Advert> adverts) {
+//		this.adverts = adverts;
+//	}
 
 	
 

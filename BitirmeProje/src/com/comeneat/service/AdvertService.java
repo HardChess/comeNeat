@@ -5,7 +5,7 @@ import java.util.List;
 import com.comeneat.model.Advert;
 
 public interface AdvertService {
-	
-	public List<Advert> getAdvertList();
+
+	public List<Advert> getAdverts(String idUser);
 
 }

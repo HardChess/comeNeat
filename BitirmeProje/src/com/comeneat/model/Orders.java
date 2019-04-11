@@ -11,8 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "order")
-public class Order {
+@Table(name = "orders")
+public class Orders {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,13 +25,11 @@ public class Order {
 	@Column(name = "portion")
 	private int portion;
 	
-	@ManyToOne(targetEntity = User.class)
-	@JoinColumn(name = "idUser")
-	private User user;
+	@Column(name = "idUser")
+	private int idUser;
 	
-	@ManyToOne(targetEntity = Advert.class)
-	@JoinColumn(name = "idAdvert")
-	private Advert advert;
+	@Column(name = "idAdvert")
+	private int idAdvert;
 
 	public int getIdOrder() {
 		return idOrder;
@@ -57,21 +55,37 @@ public class Order {
 		this.portion = portion;
 	}
 
-	public User getUser() {
-		return user;
+	public int getIdUser() {
+		return idUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
 	}
 
-	public Advert getAdvert() {
-		return advert;
+	public int getIdAdvert() {
+		return idAdvert;
 	}
 
-	public void setAdvert(Advert advert) {
-		this.advert = advert;
+	public void setIdAdvert(int idAdvert) {
+		this.idAdvert = idAdvert;
 	}
+
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
+//
+//	public Advert getAdvert() {
+//		return advert;
+//	}
+//
+//	public void setAdvert(Advert advert) {
+//		this.advert = advert;
+//	}
 
 
 }

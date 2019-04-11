@@ -64,7 +64,7 @@
 				
 				<value>com.comeneat.model.Advert</value>
 				
-				<value>com.comeneat.model.Order</value>
+				<value>com.comeneat.model.Orders</value>
 			</array>
 			
 		</property>

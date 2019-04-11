@@ -8,27 +8,27 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.comeneat.dao.AdvertDAO;
-import com.comeneat.model.Advert;
+import com.comeneat.dao.OrderDAO;
+import com.comeneat.model.Orders;
 
-@Repository("advertDAO")
-public class AdvertDAOImpl implements AdvertDAO {
+@Repository("orderDAO")
+public class OrderDAOImpl implements OrderDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	@Override
-	public List<Advert> getAdverts(String idUser) {
-		
+	public List<Orders> getUserOrders(String idUser) {
+
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Advert> theQuery = currentSession.createQuery("from Advert where idUser!=:userID and portion>0", Advert.class);
+		Query<Orders> theQuery = currentSession.createQuery("from Orders where idUser=:userID", Orders.class);
 		
 		theQuery.setParameter("userID", Integer.parseInt(idUser));
 		
-		List<Advert> adverts = theQuery.getResultList();
+		List<Orders> orders = theQuery.getResultList();
 		
-		return adverts;
+		return orders;
 	}
 
 }

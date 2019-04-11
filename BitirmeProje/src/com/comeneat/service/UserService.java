@@ -1,5 +1,7 @@
 package com.comeneat.service;
 
+import java.util.List;
+
 import com.comeneat.model.User;
 
 public interface UserService {

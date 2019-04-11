@@ -32,12 +32,11 @@ public class Advert {
 	@Column(name = "portion")
 	private int portion;
 	
-	@ManyToOne(targetEntity = User.class)
-	@JoinColumn(name = "idUser")
-	private User user;
+	@Column(name = "idUser")
+	private int idUser;
 	
-	@OneToMany(mappedBy = "advert")
-	private List<Order> orders;
+//	@OneToMany(mappedBy = "advert")
+//	private List<Order> orders;
 
 	public int getIdAdvert() {
 		return idAdvert;
@@ -71,21 +70,29 @@ public class Advert {
 		this.portion = portion;
 	}
 
-	public User getUser() {
-		return user;
+	public int getIdUser() {
+		return idUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
 	}
 
-	public List<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
+//
+//	public List<Order> getOrders() {
+//		return orders;
+//	}
+//
+//	public void setOrders(List<Order> orders) {
+//		this.orders = orders;
+//	}
 
 
 }

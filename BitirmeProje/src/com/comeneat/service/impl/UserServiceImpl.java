@@ -1,11 +1,16 @@
 package com.comeneat.service.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.comeneat.dao.UserDAO;
+import com.comeneat.model.Advert;
 import com.comeneat.model.User;
 import com.comeneat.service.UserService;
 
@@ -37,4 +42,6 @@ public class UserServiceImpl implements UserService {
 		User user = getUserDAO().getUserDetailsByEmailAndPassword(email, password);
 		return user;
 	}
+
+	
 }
