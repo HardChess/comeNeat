@@ -1,3 +1,5 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -110,37 +112,62 @@
    <div class="header">ADD YOUR MEAL!
    
    </div>
-   
+    <form:form action="saveAdvert" modelAttribute="advert" method="POST">
    <table cellspacing="0">
    
       <tr>
-         <th>Add a picture</th>
          <th>Write a name for the meal</th>
          <th>Available portions</th>
          <th>Set Price</th>
       </tr>
 
       <tr>
+       
+         
+         
+         <td><form:input path="foodName"/></td>
+         <td><form:input path="cost"/></td>
+        <td><form:input path="portion"/></td>
          <td>
-         <form action="/action_page.php">
-  				<input type="file" name="pic" accept="image/*">
- 			 	<input type="submit">
-				</form>
-		</td>
-         <td><input type="text" name="MealName" value="Spanish Tortilla"></td>
-         <td><input type="text" name="AvailablePortions" value="5"></td>
-         <td><input type="text" name="Price" value="4€"></td>
-        
-         <td><button>Submit order!</button></td>
+         <input type="submit" value="Sell">
+         </td>	
       </tr>
  
    </table>
+</form:form>
 </div>
  
-		
+		<div id="contain">
+ 	
+ 		<div id="content">
+ 		<!-- add button -->
+ 		
+ 		<!-- add out html table -->
+ 		
+ 		
+ 		<table id="table-sell">
+ 			<tr>
+ 			<th>Food Name</th>
+ 			<th>Cost</th>
+ 			<th>Portion</th>
+ 			</tr> 
+ 			
+ 			<!-- loop over and print adverts -->
+ 			<c:forEach var="tempAdvert" items="${adverts}">
+ 			
+ 				<tr>
+   					<td>${tempAdvert.foodName}</td>
+ 					<td>${tempAdvert.cost}</td>
+ 					<td>${tempAdvert.portion}</td>
+ 				</tr>
+ 			</c:forEach>
+ 			
+ 		</table>
+ 		
+ 		</div>
+ 	</div>
 	
-		<!-- Reservation -->
-		<div id="reservation" class="section">
+	
 
 			
 

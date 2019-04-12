@@ -14,7 +14,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Registration Page</title>
 </head>
-<body>
+<body style="background-image:url(${pageContext.request.contextPath}/resources/img/register.jpeg); background-size:cover">
 	<h3 align="center">${headerMessage}</h3>
 	<form:form action="/BitirmeProje/registerSuccess"
 		method="post" modelAttribute="user">
@@ -44,7 +44,6 @@
 			<label>
 				<p class="label-txt">ENTER YOUR FULL NAME</p>
 				<form:input type="text" class="input" path="name" />
-				<form:errors path="name" cssClass="error"/>
 				<div class="line-box">
       <div class="line"></div>
     </div>
@@ -76,8 +75,8 @@
 <table>
 			<tr>
 				<td>Gender:</td>
-				<td><form:radiobutton path="gender" value="Male" label="Male" />
-					<form:radiobutton path="gender" value="Female" label="Female" /></td>
+				<td><form:radiobutton path="gender" value="Male" label="Male" /></td>
+					<td><form:radiobutton path="gender" value="Female" label="Female" /></td>
 				<td><form:errors path="gender" cssClass="error" /></td>
 
 			</tr>
@@ -102,7 +101,11 @@
 			<tr>
 				<td><input type="submit" value="Register"></td>
 			</tr>
-		
+			<tr>
+				<td><form:errors path="name" cssClass="error"/></td>
+			</tr>
+			
+		</table>
 	
 	</form:form>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/register.js"></script>

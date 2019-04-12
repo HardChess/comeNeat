@@ -18,7 +18,7 @@ public class AdvertDAOImpl implements AdvertDAO {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<Advert> getAdverts(String idUser) {
+	public List<Advert> getAdvertsBuy(String idUser) {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
@@ -30,5 +30,24 @@ public class AdvertDAOImpl implements AdvertDAO {
 		
 		return adverts;
 	}
-
+	@Override
+	public List<Advert> getAdvertsSell(String idUser) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query<Advert> theQuery = currentSession.createQuery("from Advert where idUser=:userID and portion>0", Advert.class);
+		
+		theQuery.setParameter("userID", Integer.parseInt(idUser));
+		
+		List<Advert> adverts = theQuery.getResultList();
+		
+		return adverts;
+	}
+	@Override
+	public void saveAdvert(Advert advert) {
+		//get current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		//save the advert .. 
+		currentSession.save(advert);
+	}
 }

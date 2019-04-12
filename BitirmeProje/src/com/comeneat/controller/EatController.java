@@ -5,13 +5,15 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.comeneat.model.Advert;
 import com.comeneat.model.Orders;
@@ -51,7 +53,7 @@ public class EatController {
 			
 
 			
-			List<Advert> theAdvert = advertService.getAdverts(idUser);
+			List<Advert> theAdvert = advertService.getAdverts1(idUser);
 			theModel.addAttribute("adverts", theAdvert);
 			
 			List<Orders> theOrder = orderService.getUserOrders(idUser);
@@ -65,17 +67,26 @@ public class EatController {
 	}
 	
 	@GetMapping("/sellFood")
-	public String showSellFood(HttpServletRequest request) {
+	public String showSellFood(HttpServletRequest request, HttpServletResponse response, Model theModel,
+			@CookieValue(value = "idUser") String idUser) {
 		
 		if(isLogged(request)) {
-			
-			//Bu k�s�mda i�lemler yap�lacak
-			
-			
+			//get adverts from the dao
+			List<Advert> theAdverts = advertService.getAdverts2(idUser);
+			Advert advert = new Advert();
+			//Add adverts to the model
+			theModel.addAttribute("adverts", theAdverts);
+			theModel.addAttribute("advert", advert); 
 			return "sell-food";
 			
 		}else return "redirect:/login";
 		
+	}
+	@PostMapping("/saveAdvert")
+	public String saveAdvert(@ModelAttribute("advert") Advert theAdvert) {
+		//save the customer using our service 
+		advertService.saveAdvert(theAdvert);
+		return "redirect:/sellFood";
 	}
 
 	

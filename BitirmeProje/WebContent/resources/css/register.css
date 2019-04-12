@@ -1,8 +1,25 @@
 
-
-body {
-  background: #f36700;
+h3{
+	font-family : 'Dancing Script', cursive;
+	color : #f36700;
 }
+body {
+  
+}
+
+td{
+	vertical-align:top;
+	padding-bottom:20px;
+}
+input[type=submit] {
+    padding:5px 15px; 
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
+
 form {
   width: 60%;
   margin: 60px auto;
@@ -54,7 +71,7 @@ label {
   top: 0px;
   left: 50%;
   transform: translateX(-50%);
-  background: #8BC34A;
+  background: #f36700;
   transition: ease .6s;
 }
 

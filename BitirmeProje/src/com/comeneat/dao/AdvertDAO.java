@@ -6,6 +6,8 @@ import com.comeneat.model.Advert;
 
 public interface AdvertDAO {
 
-	List<Advert> getAdverts(String idUser);
-
+	List<Advert> getAdvertsBuy(String idUser);
+	List<Advert> getAdvertsSell(String idUser);
+	
+	public void saveAdvert(Advert advert);
 }
