@@ -42,4 +42,9 @@ public class AdvertServiceImpl implements AdvertService {
 	public Advert getAdverts(int theId) {
 			return advertDAO.getAdvertsSell(theId);
 	}
+	@Override
+	@Transactional
+	public void deleteAdvert(int theId) {
+		advertDAO.deleteAdvert(theId);
+	}
 }

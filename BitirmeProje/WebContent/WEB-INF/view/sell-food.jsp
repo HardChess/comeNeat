@@ -157,9 +157,11 @@
  			
  			<!-- loop over and print adverts -->
  			<c:forEach var="tempAdvert" items="${adverts}">
- 			
- 				<!-- construct an update -->
- 				
+ 			  
+ 				<!-- construct a delete link -->
+ 				<c:url var="deleteLink" value ="/delete">
+ 				<c:param name="idAdvert" value="${tempAdvert.idAdvert}"/>
+ 				</c:url>
  				<tr>
    					<td>${tempAdvert.foodName}</td>
  					<td>${tempAdvert.cost}</td>
@@ -168,6 +170,9 @@
  					<td>
  					<!-- display the update link -->
  					<a href="${pageContext.request.contextPath}/showFormForUpdate?idAdvert=${tempAdvert.idAdvert}">Update</a>
+ 					|
+ 					<a href="${deleteLink}"
+ 					onclick="if(!(confirm('Are you sure you want to delete this advert ?'))) return false">Delete</a>
  					</td>
  				</tr>
  			</c:forEach>

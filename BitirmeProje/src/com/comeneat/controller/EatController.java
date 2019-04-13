@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.comeneat.model.Advert;
@@ -102,6 +103,14 @@ public class EatController {
 			//send over to our form
 			return "sell-food";
 		}
+	
+	@GetMapping("/delete")
+	public String deleteCustomer(@RequestParam("idAdvert") int theId) {
+		//delete the advert
+		advertService.deleteAdvert(theId);
+		//
+		return "redirect:/sellFood";
+	}
 	
 	//Method created by Alperen 
 	private boolean isLogged(HttpServletRequest request) {

@@ -65,4 +65,17 @@ public class AdvertDAOImpl implements AdvertDAO {
 		return theAdvert;
 		
 	}
+	@Override
+	public void deleteAdvert(int theId) {
+		//get the current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		//delete object with primary key
+		Query theQuery = 
+				currentSession.createQuery("delete from Advert where idAdvert=:theAdvertId");
+		
+		theQuery.setParameter("theAdvertId", theId);
+		
+		theQuery.executeUpdate();
+		
+	}
 }
