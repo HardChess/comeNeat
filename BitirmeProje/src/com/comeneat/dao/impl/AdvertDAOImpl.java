@@ -44,10 +44,25 @@ public class AdvertDAOImpl implements AdvertDAO {
 		return adverts;
 	}
 	@Override
-	public void saveAdvert(Advert advert) {
+	public void saveAdvert(Advert advert, String idUser) {
 		//get current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
-		//save the advert .. 
+		//save the advert ..
+		int id = Integer.parseInt(idUser);
+		advert.setIdUser(id);
+		
 		currentSession.save(advert);
+		
+	}
+	@Override
+	public Advert getAdvertsSell(int theId) {
+		//get the current hibernate seesion
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		//retrieve the object from the databse using the primary key
+		Advert theAdvert = currentSession.get(Advert.class, theId);
+		
+		return theAdvert;
+		
 	}
 }

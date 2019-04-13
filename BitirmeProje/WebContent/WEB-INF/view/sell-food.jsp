@@ -113,6 +113,7 @@
    
    </div>
     <form:form action="saveAdvert" modelAttribute="advert" method="POST">
+    <form:hidden path="idUser" value="${cookieID.idUser.value}"/>
    <table cellspacing="0">
    
       <tr>
@@ -150,15 +151,25 @@
  			<th>Food Name</th>
  			<th>Cost</th>
  			<th>Portion</th>
+ 			<th>Action</th>
  			</tr> 
  			
  			<!-- loop over and print adverts -->
  			<c:forEach var="tempAdvert" items="${adverts}">
  			
+ 				<!-- construct an update -->
+ 				<c:url var="updateLink" value="/sellFood/showFormForUpdate">
+ 				<c:param name="idAdvert" value="${tempAdvert.idAdvert}"></c:param>
+ 				</c:url>
  				<tr>
    					<td>${tempAdvert.foodName}</td>
  					<td>${tempAdvert.cost}</td>
  					<td>${tempAdvert.portion}</td>
+ 					
+ 					<td>
+ 					<!-- display the update link -->
+ 					<a href="${updateLink}">Update</a>
+ 					</td>
  				</tr>
  			</c:forEach>
  			

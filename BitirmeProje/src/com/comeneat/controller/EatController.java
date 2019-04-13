@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.comeneat.model.Advert;
 import com.comeneat.model.Orders;
@@ -82,13 +83,25 @@ public class EatController {
 		}else return "redirect:/login";
 		
 	}
+	
 	@PostMapping("/saveAdvert")
-	public String saveAdvert(@ModelAttribute("advert") Advert theAdvert) {
+	public String saveAdvert(@ModelAttribute("advert") Advert theAdvert,@CookieValue(value = "idUser") String idUser ) {
 		//save the customer using our service 
-		advertService.saveAdvert(theAdvert);
+		advertService.saveAdvert(theAdvert, idUser);
 		return "redirect:/sellFood";
 	}
-
+	
+	@GetMapping("/showFormForUpdate")
+		public String showFormForUpdate(@RequestParam("idAdvert") int theId,
+				Model theModel) {
+			
+			//get the advert from the service 
+			Advert theAdvert = advertService.getAdverts(theId);
+			//set advert as a model attribute to pre-populate the form
+			theModel.addAttribute("advert", theAdvert);
+			//send over to our form
+			return "sell-food";
+		}
 	
 	//Method created by Alperen 
 	private boolean isLogged(HttpServletRequest request) {

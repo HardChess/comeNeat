@@ -9,5 +9,6 @@ public interface AdvertDAO {
 	List<Advert> getAdvertsBuy(String idUser);
 	List<Advert> getAdvertsSell(String idUser);
 	
-	public void saveAdvert(Advert advert);
+	public void saveAdvert(Advert advert, String idUser);
+	Advert getAdvertsSell(int theId);
 }
