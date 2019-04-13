@@ -114,6 +114,7 @@
    </div>
     <form:form action="saveAdvert" modelAttribute="advert" method="POST">
     <form:hidden path="idUser" value="${cookieID.idUser.value}"/>
+    <form:hidden path="idAdvert"/>
    <table cellspacing="0">
    
       <tr>
@@ -158,9 +159,7 @@
  			<c:forEach var="tempAdvert" items="${adverts}">
  			
  				<!-- construct an update -->
- 				<c:url var="updateLink" value="/sellFood/showFormForUpdate">
- 				<c:param name="idAdvert" value="${tempAdvert.idAdvert}"></c:param>
- 				</c:url>
+ 				
  				<tr>
    					<td>${tempAdvert.foodName}</td>
  					<td>${tempAdvert.cost}</td>
@@ -168,7 +167,7 @@
  					
  					<td>
  					<!-- display the update link -->
- 					<a href="${updateLink}">Update</a>
+ 					<a href="${pageContext.request.contextPath}/showFormForUpdate?idAdvert=${tempAdvert.idAdvert}">Update</a>
  					</td>
  				</tr>
  			</c:forEach>

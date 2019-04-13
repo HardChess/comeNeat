@@ -51,7 +51,7 @@ public class AdvertDAOImpl implements AdvertDAO {
 		int id = Integer.parseInt(idUser);
 		advert.setIdUser(id);
 		
-		currentSession.save(advert);
+		currentSession.saveOrUpdate(advert);
 		
 	}
 	@Override
