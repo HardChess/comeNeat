@@ -47,6 +47,53 @@ public class EatController {
 		
 	}
 	
+	
+	
+	@GetMapping("/sellFood")
+	public String showSellFood(HttpServletRequest request, HttpServletResponse response, Model theModel,
+			@CookieValue(value = "idUser") String idUser) {
+		
+		if(isLogged(request)) {
+			//get adverts from the dao
+			List<Advert> theAdverts = advertService.getAdverts2(idUser);
+			Advert advert = new Advert();
+			//Add adverts to the model
+			theModel.addAttribute("adverts", theAdverts);
+			theModel.addAttribute("advert", advert); 
+			return "sell-food";
+			
+		}else return "redirect:/login";
+		
+	}
+	
+	@PostMapping("/saveAdvert")
+	public String saveAdvert(@ModelAttribute("advert") Advert theAdvert,@CookieValue(value = "idUser") String idUser,
+			@CookieValue(value = "name") String name) {
+		//save the customer using our service 
+		advertService.saveAdvert(theAdvert, idUser ,name);
+		return "redirect:/sellFood";
+	}
+	
+	@GetMapping("/showFormForUpdate")
+		public String showFormForUpdate(@RequestParam("idAdvert") int theId,
+				Model theModel) {
+			
+			//get the advert from the service 
+			Advert theAdvert = advertService.getAdverts(theId);
+			//set advert as a model attribute to pre-populate the form
+			theModel.addAttribute("advert", theAdvert);
+			//send over to our form
+			return "sell-food";
+		}
+	
+	@GetMapping("/delete")
+	public String deleteAdvert(@RequestParam("idAdvert") int theId) {
+		//delete the advert
+		advertService.deleteAdvert(theId);
+		//
+		return "redirect:/sellFood";
+	}
+	
 	@GetMapping("/buyFood")
 	public String showBuyFood(HttpServletRequest request, HttpServletResponse response, Model theModel,
 			@CookieValue(value = "idUser") String idUser) {
@@ -68,48 +115,14 @@ public class EatController {
 		
 	}
 	
-	@GetMapping("/sellFood")
-	public String showSellFood(HttpServletRequest request, HttpServletResponse response, Model theModel,
-			@CookieValue(value = "idUser") String idUser) {
+	@GetMapping("/orderIt")
+	public String orderIt(@RequestParam("idAdvert") int idAdvert, @ModelAttribute("order") Orders theOrder,
+			@CookieValue(value = "idUser") String idUser, @RequestParam("foodName") String foodName,
+			@CookieValue(value = "name") String orderOwner, @RequestParam("advertOwner") String advertOwner) {
 		
-		if(isLogged(request)) {
-			//get adverts from the dao
-			List<Advert> theAdverts = advertService.getAdverts2(idUser);
-			Advert advert = new Advert();
-			//Add adverts to the model
-			theModel.addAttribute("adverts", theAdverts);
-			theModel.addAttribute("advert", advert); 
-			return "sell-food";
-			
-		}else return "redirect:/login";
+		orderService.setNewOrder(idAdvert, theOrder, idUser, foodName, orderOwner, advertOwner);
 		
-	}
-	
-	@PostMapping("/saveAdvert")
-	public String saveAdvert(@ModelAttribute("advert") Advert theAdvert,@CookieValue(value = "idUser") String idUser ) {
-		//save the customer using our service 
-		advertService.saveAdvert(theAdvert, idUser);
-		return "redirect:/sellFood";
-	}
-	
-	@GetMapping("/showFormForUpdate")
-		public String showFormForUpdate(@RequestParam("idAdvert") int theId,
-				Model theModel) {
-			
-			//get the advert from the service 
-			Advert theAdvert = advertService.getAdverts(theId);
-			//set advert as a model attribute to pre-populate the form
-			theModel.addAttribute("advert", theAdvert);
-			//send over to our form
-			return "sell-food";
-		}
-	
-	@GetMapping("/delete")
-	public String deleteCustomer(@RequestParam("idAdvert") int theId) {
-		//delete the advert
-		advertService.deleteAdvert(theId);
-		//
-		return "redirect:/sellFood";
+		return "redirect:/buyFood";
 	}
 	
 	//Method created by Alperen 

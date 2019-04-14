@@ -35,6 +35,9 @@ public class Advert {
 	@Column(name = "idUser")
 	private int idUser;
 	
+	@Column(name = "name")
+	private String name;
+	
 //	@OneToMany(mappedBy = "advert")
 //	private List<Order> orders;
 
@@ -76,6 +79,14 @@ public class Advert {
 
 	public void setIdUser(int idUser) {
 		this.idUser = idUser;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 //	public User getUser() {

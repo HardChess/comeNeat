@@ -8,7 +8,7 @@ public interface AdvertService {
 
 	public List<Advert> getAdverts1(String idUser);
 	public List<Advert> getAdverts2(String idUser);
-	public void saveAdvert(Advert advert, String idUser);
+	public void saveAdvert(Advert advert, String idUser, String name);
 	public Advert getAdverts(int theId);
 	public void deleteAdvert(int theId);
 }

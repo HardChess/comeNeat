@@ -31,12 +31,6 @@ public class AdvertServiceImpl implements AdvertService {
 	}
 	
 	
-	@Transactional
-	@Override
-	public void saveAdvert(Advert advert, String idUser) {
-		advertDAO.saveAdvert(advert, idUser); 
-		
-	}
 	@Override
 	@Transactional
 	public Advert getAdverts(int theId) {
@@ -46,5 +40,12 @@ public class AdvertServiceImpl implements AdvertService {
 	@Transactional
 	public void deleteAdvert(int theId) {
 		advertDAO.deleteAdvert(theId);
+	}
+	@Override
+	@Transactional
+	public void saveAdvert(Advert advert, String idUser, String name) {
+
+		advertDAO.saveAdvert(advert, idUser, name); 
+		
 	}
 }

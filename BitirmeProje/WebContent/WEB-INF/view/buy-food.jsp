@@ -104,7 +104,7 @@
 	<br>
 				
 
-			<div class="table-users">
+<div class="table-users">
    <div class="header">Available meals
    <h3 style="width:25% ;text-decoration:underline">Add some filters</h3>
    </div>
@@ -121,12 +121,12 @@
 				</tr>
 				<c:forEach var="tempAdvert" items="${adverts}">
 					<tr>
-						<td>--</td>
+						<td>${tempAdvert.name}</td>
 						<td>${tempAdvert.foodName}</td>
 						<td>${tempAdvert.cost} TL</td>
 						<td>${tempAdvert.portion}</td>
 						<td>
-							<a class="btn btn-danger" href="${pageContext.request.contextPath}/orderIt?advertID=${tempAdvert.idAdvert}"
+							<a class="btn btn-warning" href="${pageContext.request.contextPath}/orderIt?idAdvert=${tempAdvert.idAdvert}&foodName=${tempAdvert.foodName}&advertOwner=${tempAdvert.name}"
 							 onclick="if(!(confirm('Bir porsiyon siparis vermek üzeresiniz?'))) return false;">Siparis Ver</a>
 							
 						</td>
@@ -150,22 +150,22 @@
 				
 				<c:forEach var="tempOrder" items="${orders}">
 					<tr>
-						<td>--</td>
-						<td>--</td>
+						<td>${tempOrder.advertOwner}</td>
+						<td>${tempOrder.foodName}</td>
 						<td>${tempOrder.point}</td>
 						<td>${tempOrder.portion}</td>
 						<td>
-							<a class="btn btn-danger" href="${pageContext.request.contextPath}/setPoint?orderID=${tempOrder.idOrder}"
-							 onclick="if(!(confirm('Bir porsiyon siparis vermek üzeresiniz?'))) return false;">Puan Ver</a>
-							
+							<a class="btn btn-warning" href="${pageContext.request.contextPath}/setPoint?orderID=${tempOrder.idOrder}"
+							 onclick="if(!(confirm('Bir porsiyon siparis vermek üzeresiniz?'))) return false;">Puanla</a>
+							 <a class="btn btn-info" href="#">İletişim</a>
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
 		</div>
+   </div>
    
-   
-   <table cellspacing="0">
+<%--    <table cellspacing="0">
       <tr>
          <th>Picture</th>
          <th>Name</th>
@@ -246,13 +246,11 @@
 
 				<!-- row -->
 				<div class="row">
-
+ --%>
 				
 
 		
-		
-
-		<!-- Footer -->
+<!-- Footer -->
 		<footer id="footer">
 
 			<!-- container -->
@@ -264,7 +262,7 @@
 					<!-- copyright -->
 					<div class="col-md-6">
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						<span class="copyright">ComeNeat @2019 All rights reserved </span>
+						<span class="copyright">ComeNeat @2019 All rights reserved |</span>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</div>
 					<!-- /copyright -->
@@ -290,7 +288,6 @@
 			<!-- /container -->
 
 		</footer>
-		<!-- /Footer -->
 
 		<!-- Preloader -->
 		<div id="preloader">

@@ -30,6 +30,15 @@ public class Orders {
 	
 	@Column(name = "idAdvert")
 	private int idAdvert;
+	
+	@Column(name = "foodName")
+	private String foodName;
+	
+	@Column(name = "advertOwner")
+	private String advertOwner;
+	
+	@Column(name = "orderOwner")
+	private String orderOwner;
 
 	public int getIdOrder() {
 		return idOrder;
@@ -69,6 +78,30 @@ public class Orders {
 
 	public void setIdAdvert(int idAdvert) {
 		this.idAdvert = idAdvert;
+	}
+
+	public String getFoodName() {
+		return foodName;
+	}
+
+	public void setFoodName(String foodName) {
+		this.foodName = foodName;
+	}
+
+	public String getAdvertOwner() {
+		return advertOwner;
+	}
+
+	public void setAdvertOwner(String advertOwner) {
+		this.advertOwner = advertOwner;
+	}
+
+	public String getOrderOwner() {
+		return orderOwner;
+	}
+
+	public void setOrderOwner(String orderOwner) {
+		this.orderOwner = orderOwner;
 	}
 
 //	public User getUser() {

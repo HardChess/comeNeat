@@ -9,7 +9,7 @@ public interface AdvertDAO {
 	List<Advert> getAdvertsBuy(String idUser);
 	List<Advert> getAdvertsSell(String idUser);
 	
-	public void saveAdvert(Advert advert, String idUser);
+	public void saveAdvert(Advert advert, String idUser, String name);
 	Advert getAdvertsSell(int theId);
 	void deleteAdvert(int theId);
 }

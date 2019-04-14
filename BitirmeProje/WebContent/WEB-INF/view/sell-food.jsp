@@ -108,19 +108,23 @@
 	<br>
 				
 
-<div class="table-users2">
-   <div class="header">ADD YOUR MEAL!
-   
-   </div>
+<div class="table-users">
+   <div class="header">Sell Your Meal
+</div>
+
+<div>
     <form:form action="saveAdvert" modelAttribute="advert" method="POST">
     <form:hidden path="idUser" value="${cookieID.idUser.value}"/>
     <form:hidden path="idAdvert"/>
-   <table cellspacing="0">
+
+   <table class="table table-striped">
    
       <tr>
          <th>Write a name for the meal</th>
          <th>Available portions</th>
          <th>Set Price</th>
+         <th></th>
+         
       </tr>
 
       <tr>
@@ -128,30 +132,28 @@
          
          
          <td><form:input path="foodName"/></td>
-         <td><form:input path="cost"/></td>
-        <td><form:input path="portion"/></td>
+         <td><form:input path="portion"/></td>
+        <td><form:input path="cost"/></td>
          <td>
-         <input type="submit" value="Sell">
+         <input class="btn btn-warning" type="submit" value="Sell">
          </td>	
       </tr>
  
    </table>
 </form:form>
 </div>
- 
-		<div id="contain">
- 	
- 		<div id="content">
- 		<!-- add button -->
- 		
- 		<!-- add out html table -->
- 		
- 		
- 		<table id="table-sell">
+
+
+<div class="header">Your Adverts
+</div>
+   
+<div>
+ 		<table class="table table-striped">
  			<tr>
  			<th>Food Name</th>
  			<th>Cost</th>
  			<th>Portion</th>
+ 			<th>Orders</th>
  			<th>Action</th>
  			</tr> 
  			
@@ -169,31 +171,24 @@
  					
  					<td>
  					<!-- display the update link -->
- 					<a href="${pageContext.request.contextPath}/showFormForUpdate?idAdvert=${tempAdvert.idAdvert}">Update</a>
- 					|
- 					<a href="${deleteLink}"
+ 					<a class="btn btn-info" href="#">Show</a>
+ 					
+ 					</td>
+ 					<td>
+ 					<a class="btn btn-warning" href="${pageContext.request.contextPath}/showFormForUpdate?idAdvert=${tempAdvert.idAdvert}">Update</a>
+ 					
+ 					<a class="btn btn-danger" href="${deleteLink}"
  					onclick="if(!(confirm('Are you sure you want to delete this advert ?'))) return false">Delete</a>
  					</td>
  				</tr>
  			</c:forEach>
  			
  		</table>
- 		
- 		</div>
  	</div>
+</div>
 	
 	
-
-			
-
-			
-
-				
-
-		
-		
-
-		<!-- Footer -->
+<!-- Footer -->
 		<footer id="footer">
 
 			<!-- container -->
@@ -205,11 +200,24 @@
 					<!-- copyright -->
 					<div class="col-md-6">
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						<span class="copyright">ComeNeat @2019 All rights reserved |  <i class="fa fa-heart-o" aria-hidden="true"></i> </span>
+						<span class="copyright">ComeNeat @2019 All rights reserved |</span>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</div>
 					<!-- /copyright -->
 
+					<!-- footer nav -->
+					<div class="col-md-6">
+						<nav class="footer-nav">
+							<a href="#">Home</a>
+							<a href="#">About</a>
+							<a href="#">Menu</a>
+							<a href="#">Reservation</a>
+							<a href="#">Galery</a>
+							<a href="#">Events</a>
+							<a href="#">Contact</a>
+						</nav>
+					</div>
+					<!-- /footer nav -->
 
 				</div>
 				<!-- /row -->
