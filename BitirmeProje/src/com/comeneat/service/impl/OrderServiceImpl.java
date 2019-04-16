@@ -45,4 +45,12 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.getOrderById(idOrder);
 	}
 
+
+	@Override
+	@Transactional
+	public List<Orders> getAdvertOrders(int idAdvert) {
+
+		return orderDAO.getAdvertOrders(idAdvert);
+	}
+
 }

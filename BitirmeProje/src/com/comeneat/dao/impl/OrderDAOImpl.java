@@ -70,6 +70,20 @@ public class OrderDAOImpl implements OrderDAO {
 		return theOrder;
 	}
 
+	@Override
+	public List<Orders> getAdvertOrders(int idAdvert) {
+
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query<Orders> theQuery = currentSession.createQuery("from Orders where idAdvert=:idAdvert", Orders.class);
+		
+		theQuery.setParameter("idAdvert", idAdvert);
+		
+		List<Orders> orders = theQuery.getResultList();
+		
+		return orders;
+	}
+
 	
 	
 }
