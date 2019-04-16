@@ -27,12 +27,7 @@
 		<!-- Custom stlylesheet -->
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css"/>
 
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+		
 		<style>
 		#myDIV {
 		}
@@ -114,7 +109,7 @@
 
 <div class="table-users">
    <div class="header">Available meals
-   <h3 style="width:25% ;text-decoration:underline">Add some filters</h3>
+ 
    </div>
    
    
@@ -167,17 +162,19 @@
 						<td>
 							<a class="btn btn-warning" href="${pageContext.request.contextPath}/setPoint?orderID=${tempOrder.idOrder}"
 							 onclick="if(!(confirm('Bir porsiyon siparis vermek üzeresiniz?'))) return false;">Puanla&nbsp;</a>
-							 <a class="btn btn-info" href="${pageContext.request.contextPath}/contact?idOrder=${tempOrder.idOrder}">İletişim</a>
+							 <a class="btn btn-info" onclick="openForm()" href="${pageContext.request.contextPath}/contact?idOrder=${tempOrder.idOrder}">İletişim</a>
 							 
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
-			<div  id="myDIV">
+			
 		
-		   <div class="header">Contact Information
+		   
+   	<div class="form-popup" id="myForm">
+   		<div class="header">Contact Information
    		</div>
-		<table class="table table-striped">
+   		<table class="table table-striped" >
 				<tr>
 					<th>Advert Owner</th>
 					<td>${user.name }</td>
@@ -197,134 +194,19 @@
 					<th>Address</th>
 					<td>${user.address }</td>
 				</tr>
-			</table>	
-			</div>
+			</table>
+			<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+   		</div>
+			
+			
 			
    </div>
    
-<%--    <table cellspacing="0">
-      <tr>
-         <th>Picture</th>
-         <th>Name</th>
-         <th>Available portions</th>
-         <th>Price</th>
-         <th>Distance</th>
-         <th>Chef/Grade</th>
-         <th>Order</th>
-      </tr>
-
-      <tr>
-         <td><img src="${pageContext.request.contextPath}/resources/img/tortilla.jpg" alt="" /></td>
-         <td>Spanish Tortilla</td>
-         <td>5</td>
-         <td>4€</td>
-         <td>300m</td>
-         <td>
-         <div class="popups" onclick="myFunction()">Hamza
-  <span class="popuptext" id="myPopups">Point : 7.8/10 - until now sold 20 meals.</span>
-</div></td>
-         <td><button>Add portion</button></td>
-      </tr>
-
-      <tr>
-         <td><img src="${pageContext.request.contextPath}/resources/img/butter chicken.jpg" alt="" /></td>
-         <td>Butter chicken</td>
-         <td>2</td>
-         <td>10€</td>
-         <td>50m</td>
-         <td>Amitap/9.2</td>
-         <td><button>Add portion</button></td>
-      </tr>
-
-      <tr>
-         <td><img src="${pageContext.request.contextPath}/resources/img/schnitzel.jpeg" alt="" /></td>
-         <td>Schnitzel with potatoes</td>
-         <td>1</td>
-         <td>7€</td>
-         <td>200m</td>
-         <td> Jana/6.7</td>
-         <td><button>Add portion</button></td>
-      </tr>
-      
-      <tr>
-         <td><img src="${pageContext.request.contextPath}/resources/img/carbonara.jpg" alt="" /></td>
-         <td>Spaguetti alla carbonara</td>
-         <td>1</td>
-         <td>6.5€</td>
-         <td>1km</td>
-         <td>Federica/8.5</td>
-         <td><button>Add portion</button></td>
-      </tr>
-   </table>
-</div>
-<br>
-<h3 id="add-filter">You have chosen 4 portions of spanish tortilla, do you confirm the order?</h3>
 		
-		<!-- /Home -->
-
-		<!-- About -->
-		
-		<!-- /About -->
-
-
-		<!-- Menu -->
-
-		<!-- /Menu -->
-
-		<!-- Reservation -->
-		<div id="reservation" class="section">
-
-			<!-- Backgound Image -->
-			<div class="bg-image" style="background-image:url(./img/background03.jpg)"></div>
-			<!-- /Backgound Image -->
-
-			<!-- container -->
-			<div class="container">
-
-				<!-- row -->
-				<div class="row">
- --%>
-				
 
 		
 <!-- Footer -->
-		<footer id="footer">
-
-			<!-- container -->
-			<div class="container">
-
-				<!-- row -->
-				<div class="row">
-
-					<!-- copyright -->
-					<div class="col-md-6">
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						<span class="copyright">ComeNeat @2019 All rights reserved |</span>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</div>
-					<!-- /copyright -->
-
-					<!-- footer nav -->
-					<div class="col-md-6">
-						<nav class="footer-nav">
-							<a href="#">Home</a>
-							<a href="#">About</a>
-							<a href="#">Menu</a>
-							<a href="#">Reservation</a>
-							<a href="#">Galery</a>
-							<a href="#">Events</a>
-							<a href="#">Contact</a>
-						</nav>
-					</div>
-					<!-- /footer nav -->
-
-				</div>
-				<!-- /row -->
-
-			</div>
-			<!-- /container -->
-
-		</footer>
+		<%@ include file="footer.jsp" %>  
 
 		<!-- Preloader -->
 		<div id="preloader">
@@ -345,7 +227,15 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/google-map.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 		
-		
+	<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>	
 		
 	</body>
 </html>
