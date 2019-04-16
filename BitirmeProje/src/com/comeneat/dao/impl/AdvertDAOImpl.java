@@ -81,4 +81,13 @@ public class AdvertDAOImpl implements AdvertDAO {
 				currentSession.saveOrUpdate(advert);
 		
 	}
+	@Override
+	public Advert getAdvertById(int idAdvert) {
+
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Advert theAdvert = currentSession.get(Advert.class, idAdvert);
+		
+		return theAdvert;
+	}
 }

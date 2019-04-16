@@ -48,4 +48,10 @@ public class AdvertServiceImpl implements AdvertService {
 		advertDAO.saveAdvert(advert, idUser, name); 
 		
 	}
+	@Override
+	@Transactional
+	public Advert getAdvertById(int idAdvert) {
+
+		return advertDAO.getAdvertById(idAdvert);
+	}
 }

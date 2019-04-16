@@ -11,4 +11,6 @@ public interface OrderDAO {
 
 	Object setNewOrder(int idAdvert, Orders theOrder, String idUser, String foodName, String orderOwner, String advertOwner);
 
+	Orders getOrderById(int idOrder);
+
 }

@@ -36,4 +36,13 @@ public class OrderServiceImpl implements OrderService {
 		
 	}
 
+
+	@Override
+	@Transactional
+	public Orders getOrderById(int idOrder) {
+
+		
+		return orderDAO.getOrderById(idOrder);
+	}
+
 }

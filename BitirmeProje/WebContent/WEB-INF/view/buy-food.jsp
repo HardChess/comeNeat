@@ -33,6 +33,14 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+		<style>
+		#myDIV {
+		}
+		
+		p.ex1 {
+		  margin-left: 30px;
+		}
+		</style>
 
     </head>
 	<body>
@@ -137,7 +145,7 @@
 		
    <div class="header">Your Orders
    </div>
-   
+
    <div>
 			<table class="table table-striped">
 				<tr>
@@ -145,6 +153,7 @@
 					<th>Food Name</th>
 					<th>Point</th>
 					<th>Portions</th>
+					<th>Distance</th>
 					<th></th>
 				</tr>
 				
@@ -154,15 +163,43 @@
 						<td>${tempOrder.foodName}</td>
 						<td>${tempOrder.point}</td>
 						<td>${tempOrder.portion}</td>
+						<td>???</td>
 						<td>
 							<a class="btn btn-warning" href="${pageContext.request.contextPath}/setPoint?orderID=${tempOrder.idOrder}"
-							 onclick="if(!(confirm('Bir porsiyon siparis vermek üzeresiniz?'))) return false;">Puanla</a>
-							 <a class="btn btn-info" href="#">İletişim</a>
+							 onclick="if(!(confirm('Bir porsiyon siparis vermek üzeresiniz?'))) return false;">Puanla&nbsp;</a>
+							 <a class="btn btn-info" href="${pageContext.request.contextPath}/contact?idOrder=${tempOrder.idOrder}">İletişim</a>
+							 
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
-		</div>
+			<div  id="myDIV">
+		
+		   <div class="header">Contact Information
+   		</div>
+		<table class="table table-striped">
+				<tr>
+					<th>Advert Owner</th>
+					<td>${user.name }</td>
+				</tr>
+				
+				<tr>
+					<th>Telephone</th>
+					<td>${user.phone }</td>
+				</tr>
+				
+				<tr>
+					<th>City</th>
+					<td>${user.city }</td>
+				</tr>
+				
+				<tr>
+					<th>Address</th>
+					<td>${user.address }</td>
+				</tr>
+			</table>	
+			</div>
+			
    </div>
    
 <%--    <table cellspacing="0">
@@ -307,6 +344,8 @@
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/google-map.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+		
+		
 		
 	</body>
 </html>

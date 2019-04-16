@@ -125,6 +125,31 @@ public class EatController {
 		return "redirect:/buyFood";
 	}
 	
+	@GetMapping("/contact")
+	public String contactBuyFood(@RequestParam("idOrder") int idOrder, Model theModel,
+			@CookieValue(value = "idUser") String idUser) {
+		
+		//We get advert from idOrder and get user from idAdvert
+		
+		Orders theOrder = orderService.getOrderById(idOrder);
+
+		int idAdvert = theOrder.getIdAdvert();
+		Advert theAdvert = advertService.getAdvertById(idAdvert);
+		
+		int idUser1 = theAdvert.getIdUser();
+		User theUser = userService.getUserById(idUser1);
+		theModel.addAttribute("user", theUser);
+		
+		
+		List<Advert> theAdverts = advertService.getAdverts1(idUser);
+		theModel.addAttribute("adverts", theAdverts);
+		
+		List<Orders> theOrders = orderService.getUserOrders(idUser);
+		theModel.addAttribute("orders", theOrders);
+			
+		return "buy-food";
+	}
+	
 	//Method created by Alperen 
 	private boolean isLogged(HttpServletRequest request) {
 

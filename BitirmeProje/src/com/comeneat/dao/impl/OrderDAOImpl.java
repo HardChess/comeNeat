@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 import com.comeneat.dao.OrderDAO;
 import com.comeneat.model.Advert;
 import com.comeneat.model.Orders;
@@ -57,5 +58,18 @@ public class OrderDAOImpl implements OrderDAO {
 		
 		return null;
 	}
+
+	@Override
+	public Orders getOrderById(int idOrder) {
+
+
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Orders theOrder = currentSession.get(Orders.class, idOrder);
+		
+		return theOrder;
+	}
+
+	
 	
 }

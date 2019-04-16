@@ -11,4 +11,5 @@ public interface AdvertService {
 	public void saveAdvert(Advert advert, String idUser, String name);
 	public Advert getAdverts(int theId);
 	public void deleteAdvert(int theId);
+	public Advert getAdvertById(int idAdvert);
 }

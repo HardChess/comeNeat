@@ -43,5 +43,12 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	@Override
+	@Transactional
+	public User getUserById(int idUser) {
+
+		return userDAO.getUserById(idUser);
+	}
+
 	
 }

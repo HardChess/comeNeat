@@ -12,4 +12,5 @@ public interface AdvertDAO {
 	public void saveAdvert(Advert advert, String idUser, String name);
 	Advert getAdvertsSell(int theId);
 	void deleteAdvert(int theId);
+	Advert getAdvertById(int idAdvert);
 }
