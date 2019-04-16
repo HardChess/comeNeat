@@ -171,7 +171,7 @@
  					
  					<td>
  					<!-- display the update link -->
- 					<a class="btn btn-info" href="#">Show</a>
+ 					<a class="btn btn-info" href="${pageContext.request.contextPath}/showAdvertOrders?idAdvert=${tempAdvert.idAdvert}">Show</a>
  					
  					</td>
  					<td>
@@ -180,6 +180,30 @@
  					<a class="btn btn-danger" href="${deleteLink}"
  					onclick="if(!(confirm('Are you sure you want to delete this advert ?'))) return false">Delete</a>
  					</td>
+ 				</tr>
+ 			</c:forEach>
+ 			
+ 		</table>
+ 	</div>
+ 	<div class="header">Your Advert's Orders
+</div>
+ 	
+ 	<div>
+ 		<table class="table table-striped">
+ 			<tr>
+ 			<th>Order Owner</th>
+ 			<th>Food Name</th>
+ 			<th>Portion</th>
+ 			<th>Point</th>
+ 			</tr> 
+ 			
+ 			<!-- loop over and print adverts -->
+ 			<c:forEach var="tempOrder" items="${orders}">
+ 				<tr>
+   					<td>${tempOrder.orderOwner}</td>
+ 					<td>${tempOrder.foodName}</td>
+ 					<td>${tempOrder.portion}</td>
+ 					<td>${tempOrder.point}</td>
  				</tr>
  			</c:forEach>
  			

@@ -94,6 +94,22 @@ public class EatController {
 		return "redirect:/sellFood";
 	}
 	
+	@GetMapping("/showAdvertOrders")
+	public String showAdvertOrders(@RequestParam("idAdvert") int idAdvert, Model model, @CookieValue(value = "idUser") String idUser) {
+		
+		List<Orders> orders = orderService.getAdvertOrders(idAdvert);	
+		model.addAttribute("orders", orders);
+		
+		List<Advert> theAdverts = advertService.getAdverts2(idUser);
+		Advert advert = new Advert();
+		//Add adverts to the model
+		model.addAttribute("adverts", theAdverts);
+		model.addAttribute("advert", advert); 
+
+		
+		return "sell-food";
+	}
+	
 	@GetMapping("/buyFood")
 	public String showBuyFood(HttpServletRequest request, HttpServletResponse response, Model theModel,
 			@CookieValue(value = "idUser") String idUser) {
