@@ -53,4 +53,13 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.getAdvertOrders(idAdvert);
 	}
 
+
+	@Override
+	@Transactional
+	public void setPoint(int selectedPoint, int idOrder) {
+
+		orderDAO.setPoint(selectedPoint, idOrder);
+		
+	}
+
 }

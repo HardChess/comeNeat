@@ -109,7 +109,7 @@
 	<br>
 	<br>			
 
-   <div class="table-users2">
+   <div class="table-users">
 <div>
 <div class="header">Your Adverts
 </div>

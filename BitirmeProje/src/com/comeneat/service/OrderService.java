@@ -15,4 +15,6 @@ public interface OrderService {
 
 	List<Orders> getAdvertOrders(int idAdvert);
 
+	void setPoint(int selectedPoint, int idOrder);
+
 }

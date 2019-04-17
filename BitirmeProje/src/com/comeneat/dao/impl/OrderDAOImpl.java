@@ -87,6 +87,21 @@ public class OrderDAOImpl implements OrderDAO {
 		return orders;
 	}
 
+	@Override
+	public Object setPoint(int selectedPoint, int idOrder) {
+
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query<Orders> theQuery = currentSession.createQuery("update from Orders set point=:selectedPoint where idOrder=:idOrder");
+		
+		theQuery.setParameter("idOrder", idOrder);
+		theQuery.setParameter("selectedPoint", selectedPoint);
+		
+		theQuery.executeUpdate();
+		
+		return null;
+	}
+
 	
 	
 }

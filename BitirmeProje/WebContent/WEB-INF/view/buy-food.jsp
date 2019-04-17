@@ -36,7 +36,13 @@
 		p.ex1 {
 		  margin-left: 30px;
 		}
+		
+		button.b1{
+			class: btn btn-info;
+			back-color: blue;
+		}
 		</style>
+		
 
     </head>
 	<body>
@@ -108,8 +114,49 @@
 	<br>
 				
 
-<div class="table-users2">
+<div class="table-users">
 
+<div class="header">Available meals
+  	 </div>
+  	
+			<table class="table table-striped">
+			
+				<tr>
+					<th>Advert Owner</th>
+					<th>Food Name</th>
+					<th>Cost</th>
+					<th>Available Portions</th>
+					<th>Choose Portions</th>
+				</tr>
+				<c:forEach var="tempAdvert" items="${adverts}">
+					<tr>
+						<td>${tempAdvert.name}</td>
+						<td>${tempAdvert.foodName}</td>
+						<td>${tempAdvert.cost} TL</td>
+						<td>${tempAdvert.portion}</td>
+						
+						<form:form action="${pageContext.request.contextPath}/orderIt?idAdvert=${tempAdvert.idAdvert}&foodName=${tempAdvert.foodName}&advertOwner=${tempAdvert.name}&portion=${tempAdvert.portion}">
+								
+						<td>
+							<select name="number">
+								  <option value="1">1</option>
+								  <option value="2">2</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+								  <option value="5">5</option>
+								  <option value="6">6</option>
+								  <option value="7">7</option>
+								  <option value="8">8</option>
+								  <option value="9">9</option>
+								  <option value="10">10</option>
+								</select>			
+								<button class="b1" onclick="if(!(confirm('Siparis vermek istediğinize emin misiniz?'))) return false;" type="submit">Siparis Ver</button>
+													
+						</td>
+						</form:form>
+					</tr>
+				</c:forEach>
+			</table>	 
 
    <div>
     <div class="header">Your Orders
@@ -122,6 +169,7 @@
 					<th>Point</th>
 					<th>Portions</th>
 					<th>Distance</th>
+					<th>Select Points</th>
 					<th></th>
 				</tr>
 				<tbody id="myTableBody">
@@ -132,12 +180,29 @@
 						<td>${tempOrder.point}</td>
 						<td>${tempOrder.portion}</td>
 						<td>???</td>
+						<td><form:form action="${pageContext.request.contextPath}/pointIt?idOrder=${tempOrder.idOrder}&point=${tempOrder.point}">
+								
+							<select name="points">
+								  <option value="0">0</option>
+								  <option value="1">1</option>
+								  <option value="2">2</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+								  <option value="5">5</option>
+								  <option value="6">6</option>
+								  <option value="7">7</option>
+								  <option value="8">8</option>
+								  <option value="9">9</option>
+								  <option value="10">10</option>
+								</select>						
+						
+								<button class="b1" type="submit">Puanla&nbsp;</button>
 						<td>
-							<a class="btn btn-warning" href="${pageContext.request.contextPath}/setPoint?orderID=${tempOrder.idOrder}"
-							 onclick="if(!(confirm('Bir porsiyon siparis vermek üzeresiniz?'))) return false;">Puanla&nbsp;</a>
-							 <a class="btn btn-info" onclick="openForm()" href="${pageContext.request.contextPath}/contact?idOrder=${tempOrder.idOrder}">İletişim</a>
-							 
+												
+							 	<a class="btn btn-info" onclick="openForm()" href="${pageContext.request.contextPath}/contact?idOrder=${tempOrder.idOrder}">İletişim</a>
+							 	
 						</td>
+						</form:form></td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -174,50 +239,7 @@
 			<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
    		</div>
 			
-		<div class="header">Available meals
-  	 </div>
-  	
-			<table class="table table-striped">
-			
-				<tr>
-					<th>Advert Owner</th>
-					<th>Food Name</th>
-					<th>Cost</th>
-					<th>Available Portions</th>
-					<th>Choose Portions</th>
-					<th></th>
-				</tr>
-				<c:forEach var="tempAdvert" items="${adverts}">
-					<tr>
-						<td>${tempAdvert.name}</td>
-						<td>${tempAdvert.foodName}</td>
-						<td>${tempAdvert.cost} TL</td>
-						<td>${tempAdvert.portion}</td>
-						
-						<form:form action="${pageContext.request.contextPath}/orderIt?idAdvert=${tempAdvert.idAdvert}&foodName=${tempAdvert.foodName}&advertOwner=${tempAdvert.name}&portion=${tempAdvert.portion}">
-								
-						<td>
-							<select name="number">
-								  <option value="1">1</option>
-								  <option value="2">2</option>
-								  <option value="3">3</option>
-								  <option value="4">4</option>
-								  <option value="5">5</option>
-								  <option value="6">6</option>
-								  <option value="7">7</option>
-								  <option value="8">8</option>
-								  <option value="9">9</option>
-								  <option value="10">10</option>
-								</select>						
-						</td>
-						<td>
-								<button class="btn btn-warning" onclick="if(!(confirm('Siparis vermek istediğinize emin misiniz?'))) return false;" type="submit">Siparis Ver</button>
-													
-						</td>
-						</form:form>
-					</tr>
-				</c:forEach>
-			</table>	 
+		
 			
    </div>
 </div>
@@ -235,7 +257,7 @@
 
 		
 <!-- Footer -->
-		<%@ include file="footer.jsp" %>  
+		 
 
 		<!-- Preloader -->
 		<div id="preloader">

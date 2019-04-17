@@ -180,6 +180,29 @@ public class EatController {
 		return "buy-food";
 	}
 	
+	@PostMapping
+	public String pointIt(Model theModel, @RequestParam("idOrder") int idOrder,
+			@RequestParam("point") int point, HttpServletRequest request) {
+
+		//puanlama islemi
+		String selectedP = request.getParameter("points"); 
+		int selectedPoint = Integer.parseInt(selectedP);
+		
+		if(point<0) {
+			
+			orderService.setPoint(selectedPoint, idOrder);
+			
+		}
+		else {
+			//hata döndürülecek.
+			System.out.println("puan zaten verilmistir.");
+		}
+		
+		
+		
+		return "redirect:/buyFood";
+	}
+	
 	//Method created by Alperen 
 	private boolean isLogged(HttpServletRequest request) {
 

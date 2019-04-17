@@ -15,4 +15,6 @@ public interface OrderDAO {
 
 	List<Orders> getAdvertOrders(int idAdvert);
 
+	Object setPoint(int selectedPoint, int idOrder);
+
 }
