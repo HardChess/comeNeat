@@ -22,7 +22,7 @@
 		<!-- Owl Carousel -->
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.carousel.css" />
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.theme.default.css" />
-
+		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.theme.default.css" />
 		<!-- Font Awesome Icon -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
 		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -106,48 +106,13 @@
 	
 	<br>
 	<br>
-				
+	<br>
+	<br>			
 
-<div class="table-users">
-   <div class="header">Sell Your Meal
-</div>
-
+   <div class="table-users2">
 <div>
-    <form:form action="saveAdvert" modelAttribute="advert" method="POST">
-    <form:hidden path="idUser" value="${cookieID.idUser.value}"/>
-    <form:hidden path="idAdvert"/>
-
-   <table class="table table-striped">
-   
-      <tr>
-         <th>Write a name for the meal</th>
-         <th>Available portions</th>
-         <th>Set Price</th>
-         <th></th>
-         
-      </tr>
-
-      <tr>
-       
-         
-         
-         <td><form:input path="foodName"/></td>
-         <td><form:input path="portion"/></td>
-        <td><form:input path="cost"/></td>
-         <td>
-         <input class="btn btn-warning" type="submit" value="Sell">
-         </td>	
-      </tr>
- 
-   </table>
-</form:form>
-</div>
-
-
 <div class="header">Your Adverts
 </div>
-   
-<div>
  		<table class="table table-striped">
  			<tr>
  			<th>Food Name</th>
@@ -185,11 +150,12 @@
  			
  		</table>
  	</div>
- 	<div class="header">Your Advert's Orders
+ 	
+ 		<div class="header">Your Advert's Orders
 </div>
  	
  	<div>
- 		<table class="table table-striped">
+ 		<table class="table table-striped" id="myTable">
  			<tr>
  			<th>Order Owner</th>
  			<th>Food Name</th>
@@ -198,6 +164,7 @@
  			</tr> 
  			
  			<!-- loop over and print adverts -->
+ 			<tbody id="myTableBody">
  			<c:forEach var="tempOrder" items="${orders}">
  				<tr>
    					<td>${tempOrder.orderOwner}</td>
@@ -205,11 +172,50 @@
  					<td>${tempOrder.portion}</td>
  					<td>${tempOrder.point}</td>
  				</tr>
+ 				
  			</c:forEach>
- 			
+ 			</tbody>
  		</table>
  	</div>
+ 	<div class="col-md-12 text-center">
+      <ul class="pagination pagination-lg pager" id="myPager"></ul>
+      </div>
+ 	   <div class="header">Sell Your Meal
 </div>
+
+<div>
+    <form:form action="saveAdvert" modelAttribute="advert" method="POST">
+    <form:hidden path="idUser" value="${cookieID.idUser.value}"/>
+    <form:hidden path="idAdvert"/>
+
+   <table class="table table-striped">
+   
+      <tr>
+         <th>Write a name for the meal</th>
+         <th>Available portions</th>
+         <th>Set Price</th>
+         <th></th>
+         
+      </tr>
+
+      <tr>
+       
+         
+         
+         <td><form:input path="foodName"/></td>
+         <td><form:input path="portion"/></td>
+        <td><form:input path="cost"/></td>
+         <td>
+         <input class="btn btn-warning" type="submit" value="Sell">
+         </td>	
+      </tr>
+ 
+   </table>
+</form:form>
+</div>
+ 	</div>
+
+ 
 	
 	
 <!-- Footer -->
@@ -268,6 +274,7 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/buy.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/google-map.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 		

@@ -35,14 +35,15 @@ public class OrderDAOImpl implements OrderDAO {
 
 	@Override
 	public Object setNewOrder(int idAdvert, Orders theOrder, String idUser, String foodName, String orderOwner,
-			String advertOwner) {
+			String advertOwner, int n) {
 
 
 		Session currentSession = sessionFactory.getCurrentSession();
 		
+		//set a new order
 		theOrder.setIdUser(Integer.parseInt(idUser));
 		theOrder.setIdAdvert(idAdvert);
-		theOrder.setPortion(1);
+		theOrder.setPortion(n);
 		theOrder.setPoint(-1);
 		theOrder.setFoodName(foodName);
 		theOrder.setAdvertOwner(advertOwner);
@@ -50,9 +51,11 @@ public class OrderDAOImpl implements OrderDAO {
 		
 		currentSession.save(theOrder);
 		
-		Query<Advert> theQuery = currentSession.createQuery("update from Advert set portion=portion-1 where idAdvert=:idAdvert");
+		//update advert portion
+		Query<Advert> theQuery = currentSession.createQuery("update from Advert set portion=portion-:n where idAdvert=:idAdvert");
 		
 		theQuery.setParameter("idAdvert", idAdvert);
+		theQuery.setParameter("n", n);
 		
 		theQuery.executeUpdate();
 		

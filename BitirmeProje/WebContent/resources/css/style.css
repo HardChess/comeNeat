@@ -367,11 +367,13 @@ $padding: 10px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 200px;
+  margin-bottom:100px;
   overflow: hidden;
   border: 10px solid darken($baseColor, 5%);
    border-radius: $borderRadius;
    box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
 }
+
 .table-users2 th{
 	width:100px; 
 	margin: 18px 18px 18px 18px;

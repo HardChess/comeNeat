@@ -30,9 +30,9 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	@Transactional
 	public void setNewOrder(int idAdvert, Orders theOrder, String idUser, String foodName, String orderOwner,
-			String advertOwner) {
+			String advertOwner, int n) {
 
-		orderDAO.setNewOrder(idAdvert, theOrder, idUser, foodName, orderOwner, advertOwner);
+		orderDAO.setNewOrder(idAdvert, theOrder, idUser, foodName, orderOwner, advertOwner, n);
 		
 	}
 

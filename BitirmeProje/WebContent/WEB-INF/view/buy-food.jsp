@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -16,7 +17,7 @@
 
 		<!-- Bootstrap -->
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"/>
-
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 		<!-- Owl Carousel -->
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.carousel.css" />
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.theme.default.css" />
@@ -107,42 +108,14 @@
 	<br>
 				
 
-<div class="table-users">
-   <div class="header">Available meals
- 
-   </div>
-   
-   
-   <div>
-			<table class="table table-striped">
-				<tr>
-					<th>Advert Owner</th>
-					<th>Food Name</th>
-					<th>Cost</th>
-					<th>Available Portions</th>
-					<th></th>
-				</tr>
-				<c:forEach var="tempAdvert" items="${adverts}">
-					<tr>
-						<td>${tempAdvert.name}</td>
-						<td>${tempAdvert.foodName}</td>
-						<td>${tempAdvert.cost} TL</td>
-						<td>${tempAdvert.portion}</td>
-						<td>
-							<a class="btn btn-warning" href="${pageContext.request.contextPath}/orderIt?idAdvert=${tempAdvert.idAdvert}&foodName=${tempAdvert.foodName}&advertOwner=${tempAdvert.name}"
-							 onclick="if(!(confirm('Bir porsiyon siparis vermek üzeresiniz?'))) return false;">Siparis Ver</a>
-							
-						</td>
-					</tr>
-				</c:forEach>
-			</table>
-		</div>
-		
-   <div class="header">Your Orders
-   </div>
+<div class="table-users2">
+
 
    <div>
-			<table class="table table-striped">
+    <div class="header">Your Orders
+   </div>
+   
+			<table class="table table-striped" id="myTable">
 				<tr>
 					<th>Advert Owner</th>
 					<th>Food Name</th>
@@ -151,7 +124,7 @@
 					<th>Distance</th>
 					<th></th>
 				</tr>
-				
+				<tbody id="myTableBody">
 				<c:forEach var="tempOrder" items="${orders}">
 					<tr>
 						<td>${tempOrder.advertOwner}</td>
@@ -167,9 +140,12 @@
 						</td>
 					</tr>
 				</c:forEach>
+				</tbody>
 			</table>
 			
-		
+		<div class="col-md-12 text-center">
+      <ul class="pagination pagination-lg pager" id="myPager"></ul>
+      </div>
 		   
    	<div class="form-popup" id="myForm">
    		<div class="header">Contact Information
@@ -198,10 +174,63 @@
 			<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
    		</div>
 			
+		<div class="header">Available meals
+  	 </div>
+  	
+			<table class="table table-striped">
 			
+				<tr>
+					<th>Advert Owner</th>
+					<th>Food Name</th>
+					<th>Cost</th>
+					<th>Available Portions</th>
+					<th>Choose Portions</th>
+					<th></th>
+				</tr>
+				<c:forEach var="tempAdvert" items="${adverts}">
+					<tr>
+						<td>${tempAdvert.name}</td>
+						<td>${tempAdvert.foodName}</td>
+						<td>${tempAdvert.cost} TL</td>
+						<td>${tempAdvert.portion}</td>
+						
+						<form:form action="${pageContext.request.contextPath}/orderIt?idAdvert=${tempAdvert.idAdvert}&foodName=${tempAdvert.foodName}&advertOwner=${tempAdvert.name}&portion=${tempAdvert.portion}">
+								
+						<td>
+							<select name="number">
+								  <option value="1">1</option>
+								  <option value="2">2</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+								  <option value="5">5</option>
+								  <option value="6">6</option>
+								  <option value="7">7</option>
+								  <option value="8">8</option>
+								  <option value="9">9</option>
+								  <option value="10">10</option>
+								</select>						
+						</td>
+						<td>
+								<button class="btn btn-warning" onclick="if(!(confirm('Siparis vermek istediğinize emin misiniz?'))) return false;" type="submit">Siparis Ver</button>
+													
+						</td>
+						</form:form>
+					</tr>
+				</c:forEach>
+			</table>	 
 			
    </div>
+</div>
+
    
+   
+   
+   
+  
+
+  
+
+       
 		
 
 		
@@ -226,16 +255,7 @@
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/google-map.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-		
-	<script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
-
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
-</script>	
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/buy.js"></script>
 		
 	</body>
 </html>
