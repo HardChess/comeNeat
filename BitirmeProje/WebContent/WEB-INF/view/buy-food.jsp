@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -125,6 +126,7 @@
 					<th>Food Name</th>
 					<th>Cost</th>
 					<th>Available Portions</th>
+					<th>Choose Portions</th>
 					<th></th>
 				</tr>
 				<c:forEach var="tempAdvert" items="${adverts}">
@@ -133,11 +135,28 @@
 						<td>${tempAdvert.foodName}</td>
 						<td>${tempAdvert.cost} TL</td>
 						<td>${tempAdvert.portion}</td>
+						
+						<form:form action="${pageContext.request.contextPath}/orderIt?idAdvert=${tempAdvert.idAdvert}&foodName=${tempAdvert.foodName}&advertOwner=${tempAdvert.name}&portion=${tempAdvert.portion}">
+								
 						<td>
-							<a class="btn btn-warning" href="${pageContext.request.contextPath}/orderIt?idAdvert=${tempAdvert.idAdvert}&foodName=${tempAdvert.foodName}&advertOwner=${tempAdvert.name}"
-							 onclick="if(!(confirm('Bir porsiyon siparis vermek üzeresiniz?'))) return false;">Siparis Ver</a>
-							
+							<select name="number">
+								  <option value="1">1</option>
+								  <option value="2">2</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+								  <option value="5">5</option>
+								  <option value="6">6</option>
+								  <option value="7">7</option>
+								  <option value="8">8</option>
+								  <option value="9">9</option>
+								  <option value="10">10</option>
+								</select>						
 						</td>
+						<td>
+								<button class="btn btn-warning" onclick="if(!(confirm('Siparis vermek istediğinize emin misiniz?'))) return false;" type="submit">Siparis Ver</button>
+													
+						</td>
+						</form:form>
 					</tr>
 				</c:forEach>
 			</table>

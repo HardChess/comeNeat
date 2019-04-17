@@ -131,12 +131,26 @@ public class EatController {
 		
 	}
 	
-	@GetMapping("/orderIt")
+	@PostMapping("/orderIt")
 	public String orderIt(@RequestParam("idAdvert") int idAdvert, @ModelAttribute("order") Orders theOrder,
 			@CookieValue(value = "idUser") String idUser, @RequestParam("foodName") String foodName,
-			@CookieValue(value = "name") String orderOwner, @RequestParam("advertOwner") String advertOwner) {
+			@CookieValue(value = "name") String orderOwner, @RequestParam("advertOwner") String advertOwner,
+			@RequestParam("portion") int portion, HttpServletRequest request) {
 		
-		orderService.setNewOrder(idAdvert, theOrder, idUser, foodName, orderOwner, advertOwner);
+		String number=request.getParameter("number");
+		int n = Integer.parseInt(number);
+		
+		if(portion>=n) {
+			
+			orderService.setNewOrder(idAdvert, theOrder, idUser, foodName, orderOwner, advertOwner, n);
+			
+		}
+		
+		else {
+			//Hata mesaji yazýlacak...
+			System.out.println("Yeteri kadar porsiyon bulunmuyor.");
+		}
+		
 		
 		return "redirect:/buyFood";
 	}
