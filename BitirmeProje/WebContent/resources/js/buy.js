@@ -103,7 +103,7 @@ $.fn.pageMe = function(opts){
 //call it!
 $(document).ready(function(){
     
-	  $('#myTableBody').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:2});
+	  $('#myTableBody').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:5});
 	    
 	});
 //open form close form

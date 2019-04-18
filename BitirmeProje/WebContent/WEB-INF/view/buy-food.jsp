@@ -114,20 +114,18 @@
 				
 
 <div class="table-users">
-   <div class="header">Available meals
-   <h3 style="width:25% ;text-decoration:underline">Add some filters</h3>
-   </div>
-   
-   
-   <div>
+
+<div class="header">Available meals
+  	 </div>
+  	
 			<table class="table table-striped">
+			
 				<tr>
 					<th>Advert Owner</th>
 					<th>Food Name</th>
 					<th>Cost</th>
 					<th>Available Portions</th>
 					<th>Choose Portions</th>
-					<th></th>
 				</tr>
 				<c:forEach var="tempAdvert" items="${adverts}">
 					<tr>
@@ -136,7 +134,7 @@
 						<td>${tempAdvert.cost} TL</td>
 						<td>${tempAdvert.portion}</td>
 						
-						<form:form action="${pageContext.request.contextPath}/orderIt?idAdvert=${tempAdvert.idAdvert}&foodName=${tempAdvert.foodName}&advertOwner=${tempAdvert.name}&portion=${tempAdvert.portion}">
+						<form:form method="POST" action="${pageContext.request.contextPath}/orderIt?idAdvert=${tempAdvert.idAdvert}&foodName=${tempAdvert.foodName}&advertOwner=${tempAdvert.name}&portion=${tempAdvert.portion}">
 								
 						<td>
 							<select name="number">
@@ -150,32 +148,30 @@
 								  <option value="8">8</option>
 								  <option value="9">9</option>
 								  <option value="10">10</option>
-								</select>						
-						</td>
-						<td>
-								<button class="btn btn-warning" onclick="if(!(confirm('Siparis vermek istediğinize emin misiniz?'))) return false;" type="submit">Siparis Ver</button>
+								</select>			
+								<button class="b1" onclick="if(!(confirm('Siparis vermek istediğinize emin misiniz?'))) return false;" type="submit">Siparis Ver</button>
 													
 						</td>
 						</form:form>
 					</tr>
 				</c:forEach>
-			</table>
-		</div>
-		
-   <div class="header">Your Orders
-   </div>
+			</table>	 
 
    <div>
-			<table class="table table-striped">
+    <div class="header">Your Orders
+   </div>
+   
+			<table class="table table-striped" id="myTable">
 				<tr>
 					<th>Advert Owner</th>
 					<th>Food Name</th>
 					<th>Point</th>
 					<th>Portions</th>
 					<th>Distance</th>
+					<th>Select Points</th>
 					<th></th>
 				</tr>
-				
+				<tbody id="myTableBody">
 				<c:forEach var="tempOrder" items="${orders}">
 					<tr>
 						<td>${tempOrder.advertOwner}</td>
@@ -183,20 +179,42 @@
 						<td>${tempOrder.point}</td>
 						<td>${tempOrder.portion}</td>
 						<td>???</td>
+						<td><form:form method="POST" action="${pageContext.request.contextPath}/pointOrders?idOrder=${tempOrder.idOrder}&point=${tempOrder.point}">
+								
+							<select name="points">
+								  <option value="0">0</option>
+								  <option value="1">1</option>
+								  <option value="2">2</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+								  <option value="5">5</option>
+								  <option value="6">6</option>
+								  <option value="7">7</option>
+								  <option value="8">8</option>
+								  <option value="9">9</option>
+								  <option value="10">10</option>
+								</select>						
+						
+								<button class="b1" type="submit">Puanla&nbsp;</button>
 						<td>
-							<a class="btn btn-warning" href="${pageContext.request.contextPath}/setPoint?orderID=${tempOrder.idOrder}"
-							 onclick="if(!(confirm('Bir porsiyon siparis vermek üzeresiniz?'))) return false;">Puanla&nbsp;</a>
-							 <a class="btn btn-info" href="${pageContext.request.contextPath}/contact?idOrder=${tempOrder.idOrder}">İletişim</a>
-							 
+												
+							 	<a class="btn btn-info" onclick="openForm()" href="${pageContext.request.contextPath}/contact?idOrder=${tempOrder.idOrder}">İletişim</a>
+							 	
 						</td>
+						</form:form></td>
 					</tr>
 				</c:forEach>
+				</tbody>
 			</table>
-			<div  id="myDIV">
-		
-		   <div class="header">Contact Information
+			
+		<div class="col-md-12 text-center">
+      <ul class="pagination pagination-lg pager" id="myPager"></ul>
+      </div>
+		   
+   	<div class="form-popup" id="myForm">
+   		<div class="header">Contact Information
    		</div>
-		<table class="table table-striped">
+   		<table class="table table-striped" >
 				<tr>
 					<th>Advert Owner</th>
 					<td>${user.name }</td>
@@ -216,10 +234,14 @@
 					<th>Address</th>
 					<td>${user.address }</td>
 				</tr>
-			</table>	
-			</div>
+			</table>
+			<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+   		</div>
+			
+		
 			
    </div>
+</div>
    
 <%--    <table cellspacing="0">
       <tr>
