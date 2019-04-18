@@ -180,28 +180,28 @@ public class EatController {
 		return "buy-food";
 	}
 	
-//	@PostMapping
-//	public String pointOrders(Model theModel, @RequestParam("idOrder") int idOrder,
-//			@RequestParam("point") int point, HttpServletRequest request2) {
-//
-//		//puanlama islemi
-//		String selectedP = request2.getParameter("points"); 
-//		int selectedPoint = Integer.parseInt(selectedP);
-//		
-//		if(point<0) {
-//			
-//			orderService.setPoint(selectedPoint, idOrder);
-//			
-//		}
-//		else {
-//			//hata döndürülecek.
-//			System.out.println("puan zaten verilmistir.");
-//		}
-//		
-//		
-//		
-//		return "redirect:/buyFood";
-//	}
+	@PostMapping
+	public String xxx(@RequestParam("idOrder") int idOrder,
+			@RequestParam("point") int point, HttpServletRequest request2) {
+
+		//puanlama islemi
+		String selectedP = request2.getParameter("points"); 
+		int selectedPoint = Integer.parseInt(selectedP);
+		
+		if(point<0) {
+			
+			orderService.setPoint(selectedPoint, idOrder);
+			
+		}
+		else {
+			//hata döndürülecek.
+			System.out.println("puan zaten verilmistir.");
+		}
+		
+		
+		
+		return "redirect:/buyFood";
+	}
 	
 	//Method created by Alperen 
 	private boolean isLogged(HttpServletRequest request) {

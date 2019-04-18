@@ -179,7 +179,7 @@
 						<td>${tempOrder.point}</td>
 						<td>${tempOrder.portion}</td>
 						<td>???</td>
-						<td><form:form method="POST" action="${pageContext.request.contextPath}/pointOrders?idOrder=${tempOrder.idOrder}&point=${tempOrder.point}">
+						<td><form:form method="POST" action="${pageContext.request.contextPath}/xxx?idOrder=${tempOrder.idOrder}&point=${tempOrder.point}">
 								
 							<select name="points">
 								  <option value="0">0</option>
