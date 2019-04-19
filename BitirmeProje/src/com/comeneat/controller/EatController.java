@@ -147,7 +147,7 @@ public class EatController {
 		}
 		
 		else {
-			//Hata mesaji yazýlacak...
+			//Hata mesaji yazï¿½lacak...
 			System.out.println("Yeteri kadar porsiyon bulunmuyor.");
 		}
 		
@@ -180,7 +180,7 @@ public class EatController {
 		return "buy-food";
 	}
 	
-	@PostMapping
+	@PostMapping("/pointIt")
 	public String pointIt(Model theModel, @RequestParam("idOrder") int idOrder,
 			@RequestParam("point") int point, HttpServletRequest request) {
 
@@ -194,7 +194,7 @@ public class EatController {
 			
 		}
 		else {
-			//hata döndürülecek.
+			//hata dï¿½ndï¿½rï¿½lecek.
 			System.out.println("puan zaten verilmistir.");
 		}
 		

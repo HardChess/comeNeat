@@ -113,7 +113,7 @@
 <div>
 <div class="header">Your Adverts
 </div>
- 		<table class="table table-striped">
+ 		<table class="table table-striped" id="myTable2">
  			<tr>
  			<th>Food Name</th>
  			<th>Cost</th>
@@ -123,6 +123,7 @@
  			</tr> 
  			
  			<!-- loop over and print adverts -->
+ 			<tbody id="myTableBody2">
  			<c:forEach var="tempAdvert" items="${adverts}">
  			  
  				<!-- construct a delete link -->
@@ -147,8 +148,11 @@
  					</td>
  				</tr>
  			</c:forEach>
- 			
+ 			</tbody>
  		</table>
+ 		<div class="col-md-12 text-center">
+      <ul class="pagination pagination-lg pager" id="myPager2"></ul>
+      </div>
  	</div>
  	
  		<div class="header">Your Advert's Orders

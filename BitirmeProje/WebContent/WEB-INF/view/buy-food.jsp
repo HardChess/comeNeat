@@ -119,7 +119,7 @@
 <div class="header">Available meals
   	 </div>
   	
-			<table class="table table-striped">
+			<table class="table table-striped" id="myTable2">
 			
 				<tr>
 					<th>Advert Owner</th>
@@ -128,6 +128,7 @@
 					<th>Available Portions</th>
 					<th>Choose Portions</th>
 				</tr>
+				<tbody id="myTableBody2">
 				<c:forEach var="tempAdvert" items="${adverts}">
 					<tr>
 						<td>${tempAdvert.name}</td>
@@ -156,8 +157,11 @@
 						</form:form>
 					</tr>
 				</c:forEach>
+				</tbody>
 			</table>	 
-
+<div class="col-md-12 text-center">
+      <ul class="pagination pagination-lg pager" id="myPager2"></ul>
+      </div>
    <div>
     <div class="header">Your Orders
    </div>
