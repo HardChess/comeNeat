@@ -3,18 +3,28 @@ package com.comeneat.controller;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.comeneat.model.User;
+import com.comeneat.service.UserService;
 
 @Controller
 public class AccountController {
+	@Autowired
+	private UserService userService;
+	
 	
 	@GetMapping("/profile")
-	public String showProfile(HttpServletRequest request) {
+	public String showProfile(HttpServletRequest request, Model theModel, @CookieValue(value="idUser")String idUser) {
 		
 		if(isLogged(request)) {
-			
-			//Bu k�s�mda i�lemler yap�lacak
+			int IDuser = Integer.parseInt(idUser);
+			User theUser = userService.getUserById(IDuser);
+			theModel.addAttribute("user", theUser);
 			
 			
 			return "profile";

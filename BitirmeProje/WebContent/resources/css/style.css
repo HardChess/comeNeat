@@ -1037,6 +1037,19 @@ $padding: 10px;
 	background-color: #FFF;
 }
 
+.boot-container{
+	margin-top : 30%;
+	
+}
+#map {
+margin:auto;
+   width: 50%;
+   height: 400px;
+   background-color : grey;
+ }
+.img-rounded{
+	width : 50px;
+}
 .menu-nav li + li {
 	-webkit-box-shadow:-1px 0px 0px 0px #ECECEC;
 	        box-shadow:-1px 0px 0px 0px #ECECEC;

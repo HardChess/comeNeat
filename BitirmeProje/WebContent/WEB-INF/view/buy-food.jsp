@@ -222,7 +222,7 @@
    		<table class="table table-striped" >
 				<tr>
 					<th>Advert Owner</th>
-					<td>${user.name }</td>
+					<td>${user.name}</td>
 				</tr>
 				
 				<tr>
@@ -260,7 +260,7 @@
 		
 
 		
-<!-- Footer -->
+
 		 
 
 		<!-- Preloader -->
@@ -271,6 +271,8 @@
 				<span></span>
 			</div>
 		</div>
+		<!-- Footer -->
+		<%@ include file="footer.jsp" %> 
 		<!-- /Preloader -->
 
 		<!-- jQuery Plugins -->
