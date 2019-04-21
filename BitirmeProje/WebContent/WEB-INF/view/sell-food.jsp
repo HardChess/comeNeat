@@ -208,7 +208,8 @@
          
          <td><form:input path="foodName"/></td>
          <td><form:input path="portion"/></td>
-        <td><form:input path="cost"/></td>
+        <td><form:input path="cost"/> ₺</td> 
+        
          <td>
          <input class="btn btn-warning" type="submit" value="Sell">
          </td>	

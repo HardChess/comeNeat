@@ -24,7 +24,7 @@ public class OrderDAOImpl implements OrderDAO {
 
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Orders> theQuery = currentSession.createQuery("from Orders where idUser=:userID", Orders.class);
+		Query<Orders> theQuery = currentSession.createQuery("from Orders where idUser=:userID order by idOrder desc", Orders.class);
 		
 		theQuery.setParameter("userID", Integer.parseInt(idUser));
 		

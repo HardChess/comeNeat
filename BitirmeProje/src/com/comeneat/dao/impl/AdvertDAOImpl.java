@@ -35,7 +35,7 @@ public class AdvertDAOImpl implements AdvertDAO {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Advert> theQuery = currentSession.createQuery("from Advert where idUser=:userID and portion>0", Advert.class);
+		Query<Advert> theQuery = currentSession.createQuery("from Advert where idUser=:userID and portion>0 order by idAdvert desc", Advert.class);
 		
 		theQuery.setParameter("userID", Integer.parseInt(idUser));
 		

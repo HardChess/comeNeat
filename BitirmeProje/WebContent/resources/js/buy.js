@@ -103,8 +103,8 @@ $.fn.pageMe = function(opts){
 //call it!
 $(document).ready(function(){
     
-	  $('#myTableBody').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:2});
-	  $('#myTableBody2').pageMe({pagerSelector:'#myPager2',showPrevNext:true,hidePageNumbers:false,perPage:2});
+	  $('#myTableBody').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:3});
+	  $('#myTableBody2').pageMe({pagerSelector:'#myPager2',showPrevNext:true,hidePageNumbers:false,perPage:3});
 	});
 //open form close form
 function openForm() {
