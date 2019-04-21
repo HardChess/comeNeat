@@ -8,6 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 import com.comeneat.model.User;
 import com.comeneat.service.UserService;
@@ -31,6 +35,16 @@ public class AccountController {
 			
 		}else return "redirect:/login";
 		
+	}
+	
+	@PostMapping("/updateUser")
+	public String updateUser(Model theModel, @CookieValue(value="idUser")String idUser, @ModelAttribute("user") User user) {
+		
+		int theId = Integer.parseInt(idUser);
+		
+		userService.updateUser(theId, user);
+		
+		return "redirect:/profile";
 	}
 	
 	//Method created by Alperen 

@@ -8,5 +8,6 @@ public interface UserService {
 	public abstract User validateUserCredential(String email,	String password);
 	public abstract boolean registerUser(User user);
 	public abstract User getUserById(int idUser);
+	public abstract void updateUser(int theId, User user);
 
 }

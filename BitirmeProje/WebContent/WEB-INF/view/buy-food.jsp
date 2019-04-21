@@ -110,9 +110,6 @@
 
 		<!-- Home -->
 	
-	<br>
-	<br>
-				
 
 <div class="table-users">
 

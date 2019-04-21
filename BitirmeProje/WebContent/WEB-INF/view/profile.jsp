@@ -3,9 +3,7 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<html>
 <!------ Include the above in your HEAD tag ---------->
 
 <head>
@@ -17,6 +15,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- Custom stlylesheet -->
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css"/>
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -38,17 +39,20 @@
 					<span></span>
 				</button>
 				<!-- Mobile toggle -->
-				
+
 				<!-- social links -->
 				<ul class="social-nav">
-				<li>Hello ${cookie.name.value},</li>
+				<li><a onclick = "location.href='${pageContext.request.contextPath}/profile'"><i class="fa fa-user"></i></a></li>
+				<li>Merhaba ${cookie.name.value}</li>
 				<a onclick = "location.href='${pageContext.request.contextPath}/logout'">Logout</a>
+				
 				<!-- login form -->
 				
 <!-- end login form -->
-					<a href="${pageContext.request.contextPath}/logout">
-          <span class="glyphicon glyphicon-log-out"></span>
-        </a>
+				<a href="${pageContext.request.contextPath}/logout">
+				          <span class="glyphicon glyphicon-log-out"></span>
+				        </a>
+					
 				</ul>
 				<!-- /social links -->
 
@@ -56,31 +60,13 @@
 			</div>
 			<!-- /Top nav -->
 
-			<!-- Bottom nav -->	
-			<div id="bottom-nav">
-				<div class="container">
-				<nav id="nav">
-
-					<h4>Contact the admin for any questions</h4>
-
-					
-					<!-- contact nav -->
-					<ul class="contact-nav nav navbar-nav">
-						<li><a href="#"><i class="fa fa-phone"></i> +905373541125</a></li>
-						<li><a href="#"><i class="fa fa-map-marker"></i> pestalozzistraße 39.</a></li>
-					</ul>
-					<!-- contact nav -->
-
-				</nav>
-				</div>
-			</div>
-			<!-- /Bottom nav -->
+			
 
 
 		</header>
-	<hr>
+		
+
 	<div class="boot-container">
-	     <div id="map"></div>
 	    <div class="row">
 	   
 	  		<div class="col-sm-3"><!--left col-->
@@ -111,37 +97,51 @@
 	          </div>
 	          
 	        </div><!--/col-3-->
+	        
+	        
+	        
 	    	<div class="col-sm-9">
+	    	
+	    	
 	            <ul class="nav nav-tabs">
-	                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+	                <li class="active"><a data-toggle="tab" href="#home">Kullanici Bilgileri</a></li>
 	                
 	              </ul>
 	
+	        
 	              
 	          <div class="tab-content">
 	            <div class="tab-pane active" id="home">
 	                <hr>
-	                  <form class="form" action="##" method="post" id="registrationForm">
+	                  <form:form action="updateUser" modelAttribute="user" method="POST">
+	                   <form:hidden path="idUser" value="${cookieID.idUser.value}"/>
 	                      <div class="form-group">
 	                          
 	                          <div class="col-xs-6">
-	                              <label for="first_name"><h4>First name</h4></label>
-	                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+	                              <label for="name"><h4>Isim</h4></label>
+	                              <form:input type="text" class="form-control" path="name"></form:input>
 	                          </div>
 	                      </div>
 	                      <div class="form-group">
 	                          
 	                          <div class="col-xs-6">
-	                            <label for="last_name"><h4>Last name</h4></label>
-	                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
+	                            <label for="phone"><h4>Telefon</h4></label>
+	                              <form:input type="text" class="form-control" path="phone"></form:input>
 	                          </div>
 	                      </div>
-	          
+	          	                     
+	          	          <div class="form-group">
+	                          
+	                          <div class="col-xs-6">
+	                            <label for="email"><h4>E-mail</h4></label>
+	                              <form:input type="text" class="form-control" path="email"></form:input>
+	                          </div>
+	                      </div>
 	                      <div class="form-group">
 	                          
 	                          <div class="col-xs-6">
-	                              <label for="phone"><h4>Phone</h4></label>
-	                              <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
+	                              <label for="phone"><h4>City</h4></label>
+	                              <form:input type="text" class="form-control" path="city"></form:input>
 	                          </div>
 	                      </div>
 	          
@@ -149,46 +149,26 @@
 	                      <div class="form-group">
 	                          
 	                          <div class="col-xs-6">
-	                              <label for="email"><h4>Email</h4></label>
-	                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+	                              <label for="address"><h4>Adres</h4></label>
+	                              <form:input type="text" class="form-control" path="address"></form:input>
 	                          </div>
 	                      </div>
+
 	                      <div class="form-group">
 	                          
 	                          <div class="col-xs-6">
-	                              <label for="email"><h4>City</h4></label>
-	                              <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
+	                              <label for="password"><h4>Sifre</h4></label>
+	                              <form:input type="text" class="form-control" path="password"></form:input>
 	                          </div>
 	                      </div>
-	                       <div class="form-group">
-	                          
-	                          <div class="col-xs-6">
-	                              <label for="email"><h4>Address</h4></label>
-	                              <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-	                          </div>
-	                      </div>
-	                      <div class="form-group">
-	                          
-	                          <div class="col-xs-6">
-	                              <label for="password"><h4>Password</h4></label>
-	                              <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-	                          </div>
-	                      </div>
-	                      <div class="form-group">
-	                          
-	                          <div class="col-xs-6">
-	                            <label for="password2"><h4>Verify</h4></label>
-	                              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-	                          </div>
-	                      </div>
+
 	                      <div class="form-group">
 	                           <div class="col-xs-12">
 	                                <br>
-	                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-	                               	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+	                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Kaydet</button>
 	                            </div>
 	                      </div>
-	              	</form>
+	              	</form:form>
 	              
 	              <hr>
 	              
@@ -213,8 +193,14 @@
 	
 	        </div><!--/col-9-->
     </div><!--/row-->
+    
+    BU MAP TAB2 OLARAK UPDATE FORMUNA EKLENECEK
+	     <div id="map"></div>
     <!-- Footer -->
 		<%@ include file="footer.jsp" %> 
+		
+		
+    </body>
 		<script>
 // Initialize and add the map
 function initMap() {
