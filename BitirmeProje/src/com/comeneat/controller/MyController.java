@@ -189,8 +189,9 @@ public class MyController {
 		
 		List<String> citesList = new ArrayList<>();
 		citesList.add("Istanbul");
-		citesList.add("Sakarya");
-		citesList.add("Kocaeli");
+		citesList.add("Bursa");
+		citesList.add("Izmir");
+		citesList.add("Antalya");
 		
 		model.addAttribute("technologyList", techList);
 		model.addAttribute("citesList", citesList);

@@ -32,9 +32,15 @@ public class User {
 	
 	@NotEmpty
 	@Pattern(regexp="[^0-9]+")
-	@Size(min=1,max=40)
+	@Size(min=6,max=40)
 	@Column(name = "name")
 	private String name;
+	
+	
+	@NotEmpty
+	@Size(min=3)
+	@Column(name = "username")
+	private String username;
 	
 	@NotEmpty
 	@Email
@@ -53,6 +59,10 @@ public class User {
 	@NotNull
 	@Column(name = "address")
 	private String address;
+	
+	@NotEmpty
+	@Column(name = "gender")
+	private String gender;
 	
 	@NotNull
 	@Min(value = 1000000000)
@@ -81,6 +91,13 @@ public class User {
 		this.name = name;
 	}
 
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
 
 	public String getCity() {
@@ -122,7 +139,13 @@ public class User {
 		this.address = address;
 	}
 
+	public String getUsername() {
+		return username;
+	}
 
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 //	public List<Order> getOrders() {
 //		return orders;

@@ -50,13 +50,5 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getUserById(idUser);
 	}
 
-	@Override
-	@Transactional
-	public void updateUser(int theId, User user) {
-
-		userDAO.updateUser(theId, user);
-		
-	}
-
 	
 }

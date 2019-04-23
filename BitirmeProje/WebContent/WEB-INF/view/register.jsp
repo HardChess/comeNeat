@@ -52,6 +52,17 @@
 			</label>
 			
 			<label>
+				<p class="label-txt">ENTER YOUR USERNAME</p>
+				<form:input type="text" class="input" path="username" />
+				<form:errors path="username" cssClass="error"/>
+				<div class="line-box">
+      <div class="line"></div>
+    </div>
+		
+			
+			</label>
+
+			<label>
 				<p class="label-txt">ENTER YOUR PHONE</p>
 				<form:input type="text" class="input" path="phone" />
 				<form:errors path="phone" cssClass="error"/>
@@ -62,6 +73,13 @@
 			
 			</label>
 <table>
+			<tr>
+				<td>Gender:</td>
+				<td><form:radiobutton path="gender" value="Male" label="Male" /></td>
+					<td><form:radiobutton path="gender" value="Female" label="Female" /></td>
+				<td><form:errors path="gender" cssClass="error" /></td>
+
+			</tr>
 
 			<tr>
 				<td>Select Address:</td>
