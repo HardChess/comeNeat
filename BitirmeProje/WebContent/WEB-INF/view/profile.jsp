@@ -112,36 +112,47 @@
 	          
 	        </div><!--/col-3-->
 	    	<div class="col-sm-9">
+	    	
+	    	
 	            <ul class="nav nav-tabs">
-	                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+	                <li class="active"><a data-toggle="tab" href="#home">Kullanici Bilgileri</a></li>
 	                
 	              </ul>
 	
+	        
 	              
 	          <div class="tab-content">
 	            <div class="tab-pane active" id="home">
 	                <hr>
-	                  <form class="form" action="##" method="post" id="registrationForm">
+	                  <form:form action="updateUser" modelAttribute="user" method="POST">
+	                   <form:hidden path="idUser" value="${cookieID.idUser.value}"/>
 	                      <div class="form-group">
 	                          
 	                          <div class="col-xs-6">
-	                              <label for="first_name"><h4>First name</h4></label>
-	                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+	                              <label for="name"><h4>Isim</h4></label>
+	                              <form:input type="text" class="form-control" path="name"></form:input>
 	                          </div>
 	                      </div>
 	                      <div class="form-group">
 	                          
 	                          <div class="col-xs-6">
-	                            <label for="last_name"><h4>Last name</h4></label>
-	                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
+	                            <label for="phone"><h4>Telefon</h4></label>
+	                              <form:input type="text" class="form-control" path="phone"></form:input>
 	                          </div>
 	                      </div>
-	          
+	          	                     
+	          	          <div class="form-group">
+	                          
+	                          <div class="col-xs-6">
+	                            <label for="email"><h4>E-mail</h4></label>
+	                              <form:input type="text" class="form-control" path="email"></form:input>
+	                          </div>
+	                      </div>
 	                      <div class="form-group">
 	                          
 	                          <div class="col-xs-6">
-	                              <label for="phone"><h4>Phone</h4></label>
-	                              <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
+	                              <label for="phone"><h4>City</h4></label>
+	                              <form:input type="text" class="form-control" path="city"></form:input>
 	                          </div>
 	                      </div>
 	          
@@ -149,46 +160,26 @@
 	                      <div class="form-group">
 	                          
 	                          <div class="col-xs-6">
-	                              <label for="email"><h4>Email</h4></label>
-	                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+	                              <label for="address"><h4>Adres</h4></label>
+	                              <form:input type="text" class="form-control" path="address"></form:input>
 	                          </div>
 	                      </div>
+
 	                      <div class="form-group">
 	                          
 	                          <div class="col-xs-6">
-	                              <label for="email"><h4>City</h4></label>
-	                              <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
+	                              <label for="password"><h4>Sifre</h4></label>
+	                              <form:input type="text" class="form-control" path="password"></form:input>
 	                          </div>
 	                      </div>
-	                       <div class="form-group">
-	                          
-	                          <div class="col-xs-6">
-	                              <label for="email"><h4>Address</h4></label>
-	                              <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-	                          </div>
-	                      </div>
-	                      <div class="form-group">
-	                          
-	                          <div class="col-xs-6">
-	                              <label for="password"><h4>Password</h4></label>
-	                              <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-	                          </div>
-	                      </div>
-	                      <div class="form-group">
-	                          
-	                          <div class="col-xs-6">
-	                            <label for="password2"><h4>Verify</h4></label>
-	                              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-	                          </div>
-	                      </div>
+
 	                      <div class="form-group">
 	                           <div class="col-xs-12">
 	                                <br>
-	                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-	                               	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+	                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Kaydet</button>
 	                            </div>
 	                      </div>
-	              	</form>
+	              	</form:form>
 	              
 	              <hr>
 	              
