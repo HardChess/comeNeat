@@ -22,7 +22,7 @@ public class AdvertDAOImpl implements AdvertDAO {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Advert> theQuery = currentSession.createQuery("from Advert where idUser!=:userID and portion>0", Advert.class);
+		Query<Advert> theQuery = currentSession.createQuery("from Advert where idUser!=:userID and portion>0 order by idAdvert desc", Advert.class);
 		
 		theQuery.setParameter("userID", Integer.parseInt(idUser));
 		
@@ -89,5 +89,33 @@ public class AdvertDAOImpl implements AdvertDAO {
 		Advert theAdvert = currentSession.get(Advert.class, idAdvert);
 		
 		return theAdvert;
+	}
+	@Override
+	public List<Advert> getUserAdverts(String idUser) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query<Advert> theQuery = currentSession.createQuery("from Advert where idUser=:userID", Advert.class);
+		
+		theQuery.setParameter("userID", Integer.parseInt(idUser));
+		
+		List<Advert> adverts = theQuery.getResultList();
+		
+		return adverts;
+		
+	}
+	@Override
+	public List<Integer> getAdvertIds(String idUser) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query<Integer> theQuery = currentSession.createQuery("select a.idAdvert from Advert a where a.idUser=:userID");
+		
+		theQuery.setParameter("userID", Integer.parseInt(idUser));
+		
+		List<Integer> adverts = theQuery.getResultList();
+		
+		return adverts;
+		
 	}
 }

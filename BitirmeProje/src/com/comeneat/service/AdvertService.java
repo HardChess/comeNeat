@@ -12,4 +12,6 @@ public interface AdvertService {
 	public Advert getAdverts(int theId);
 	public void deleteAdvert(int theId);
 	public Advert getAdvertById(int idAdvert);
+	public List<Advert> getUserAdverts(String idUser);
+	public List<Integer> getAdvertIds(String idUser);
 }

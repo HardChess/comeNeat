@@ -13,4 +13,6 @@ public interface AdvertDAO {
 	Advert getAdvertsSell(int theId);
 	void deleteAdvert(int theId);
 	Advert getAdvertById(int idAdvert);
+	List<Advert> getUserAdverts(String idUser);
+	List<Integer> getAdvertIds(String idUser);
 }

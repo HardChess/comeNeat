@@ -122,18 +122,20 @@
 			<table class="table table-striped" id="myTable2">
 			
 				<tr>
-					<th>Advert Owner</th>
+					<th>Advert Owner (Grade)</th>
 					<th>Food Name</th>
 					<th>Cost</th>
+					<th>Distance</th>
 					<th>Available Portions</th>
 					<th>Choose Portions</th>
 				</tr>
 				<tbody id="myTableBody2">
-				<c:forEach var="tempAdvert" items="${adverts}">
+				<c:forEach var="tempAdvert" items="${adverts}" varStatus="status">
 					<tr>
-						<td>${tempAdvert.name}</td>
+						<td>${tempAdvert.name} ( ${avgPoints[status.index] })</td>
 						<td>${tempAdvert.foodName}</td>
 						<td>${tempAdvert.cost} TL</td>
+						<td>???</td>
 						<td>${tempAdvert.portion}</td>
 						
 						<form:form action="${pageContext.request.contextPath}/orderIt?idAdvert=${tempAdvert.idAdvert}&foodName=${tempAdvert.foodName}&advertOwner=${tempAdvert.name}&portion=${tempAdvert.portion}">
@@ -170,9 +172,8 @@
 				<tr>
 					<th>Advert Owner</th>
 					<th>Food Name</th>
-					<th>Point</th>
 					<th>Portions</th>
-					<th>Distance</th>
+					<th>Point</th>
 					<th>Select Points</th>
 					<th></th>
 				</tr>
@@ -181,9 +182,8 @@
 					<tr>
 						<td>${tempOrder.advertOwner}</td>
 						<td>${tempOrder.foodName}</td>
-						<td>${tempOrder.point}</td>
 						<td>${tempOrder.portion}</td>
-						<td>???</td>
+						<td>${tempOrder.point}</td>
 						<td><form:form action="${pageContext.request.contextPath}/pointIt?idOrder=${tempOrder.idOrder}&point=${tempOrder.point}">
 								
 							<select name="points">
@@ -226,6 +226,11 @@
 				</tr>
 				
 				<tr>
+					<th>Average Point</th>
+					<td>${user.avgPoint }</td>
+				</tr>
+				
+				<tr>
 					<th>Telephone</th>
 					<td>${user.phone }</td>
 				</tr>
@@ -239,6 +244,7 @@
 					<th>Address</th>
 					<td>${user.address }</td>
 				</tr>
+				
 			</table>
 			<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
    		</div>

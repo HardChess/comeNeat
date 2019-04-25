@@ -17,4 +17,6 @@ public interface OrderDAO {
 
 	Object setPoint(int selectedPoint, int idOrder);
 
+	List<Integer> getAdvertPoints(int idAdvert);
+
 }

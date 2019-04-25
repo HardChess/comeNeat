@@ -62,4 +62,12 @@ public class OrderServiceImpl implements OrderService {
 		
 	}
 
+
+	@Override
+	@Transactional
+	public List<Integer> getAdvertPoints(int idAdvert) {
+
+		return orderDAO.getAdvertPoints(idAdvert);
+	}
+
 }

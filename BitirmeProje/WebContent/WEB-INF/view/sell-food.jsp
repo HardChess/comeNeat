@@ -110,6 +110,42 @@
 	<br>			
 
    <div class="table-users">
+   
+    	   <div class="header">Sell Your Meal
+</div>
+
+<div>
+    <form:form action="saveAdvert" modelAttribute="advert" method="POST">
+    <form:hidden path="idUser" value="${cookieID.idUser.value}"/>
+    <form:hidden path="idAdvert"/>
+
+   <table class="table table-striped">
+   
+      <tr>
+         <th>Write a name for the meal</th>
+         <th>Available portions</th>
+         <th>Set Price</th>
+         <th></th>
+         
+      </tr>
+
+      <tr>
+       
+         
+         
+         <td><form:input path="foodName"/></td>
+         <td><form:input path="portion"/></td>
+        <td><form:input path="cost"/> ₺</td> 
+        
+         <td>
+         <input class="btn btn-warning" type="submit" value="Sell">
+         </td>	
+      </tr>
+ 
+   </table>
+</form:form>
+</div>
+   
 <div>
 <div class="header">Your Adverts
 </div>
@@ -123,7 +159,7 @@
  			</tr> 
  			
  			<!-- loop over and print adverts -->
- 			<tbody id="myTableBody2">
+ 			<tbody id="myTableBody">
  			<c:forEach var="tempAdvert" items="${adverts}">
  			  
  				<!-- construct a delete link -->
@@ -168,7 +204,7 @@
  			</tr> 
  			
  			<!-- loop over and print adverts -->
- 			<tbody id="myTableBody">
+ 			<tbody id="myTableBody2">
  			<c:forEach var="tempOrder" items="${orders}">
  				<tr>
    					<td>${tempOrder.orderOwner}</td>
@@ -184,40 +220,7 @@
  	<div class="col-md-12 text-center">
       <ul class="pagination pagination-lg pager" id="myPager"></ul>
       </div>
- 	   <div class="header">Sell Your Meal
-</div>
 
-<div>
-    <form:form action="saveAdvert" modelAttribute="advert" method="POST">
-    <form:hidden path="idUser" value="${cookieID.idUser.value}"/>
-    <form:hidden path="idAdvert"/>
-
-   <table class="table table-striped">
-   
-      <tr>
-         <th>Write a name for the meal</th>
-         <th>Available portions</th>
-         <th>Set Price</th>
-         <th></th>
-         
-      </tr>
-
-      <tr>
-       
-         
-         
-         <td><form:input path="foodName"/></td>
-         <td><form:input path="portion"/></td>
-        <td><form:input path="cost"/> ₺</td> 
-        
-         <td>
-         <input class="btn btn-warning" type="submit" value="Sell">
-         </td>	
-      </tr>
- 
-   </table>
-</form:form>
-</div>
  	</div>
 
  

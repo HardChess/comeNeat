@@ -59,6 +59,9 @@ public class User {
 	@Column(name = "phone")
 	private Long phone;
 	
+	@Column(name = "avgPoint")
+	private double avgPoint;
+	
 //	@OneToMany( mappedBy = "user")
 //	private List<Advert> adverts;
 //
@@ -120,6 +123,14 @@ public class User {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public double getAvgPoint() {
+		return avgPoint;
+	}
+
+	public void setAvgPoint(double avgPoint) {
+		this.avgPoint = avgPoint;
 	}
 
 

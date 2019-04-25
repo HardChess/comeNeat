@@ -58,5 +58,20 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+	@Override
+	@Transactional
+	public void setAvgPoint(double avgPoint, String idUser) {
+
+		userDAO.setAvgPoint(avgPoint, idUser);
+		
+	}
+
+	@Override
+	@Transactional
+	public double getAvgById(int integer) {
+
+		return userDAO.getAvgById(integer);
+	}
+
 	
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.comeneat.dao.UserDAO;
 import com.comeneat.model.Advert;
+import com.comeneat.model.Orders;
 import com.comeneat.model.User;
 
 @Repository("userDAO")
@@ -68,5 +69,33 @@ public class UserDAOImpl implements UserDAO {
 			
 		currentSession.update(user);
 		
+	}
+	@Override
+	public void setAvgPoint(double avgPoint, String idUser) {
+
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		int id = Integer.parseInt(idUser);
+		
+		Query theQuery = currentSession.createQuery("update from User u set u.avgPoint=:avgPoint where idUser=:id");
+		
+		theQuery.setParameter("avgPoint", avgPoint);
+		theQuery.setParameter("id", id);
+		
+		theQuery.executeUpdate();
+		
+	}
+	@Override
+	public double getAvgById(int integer) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		Query theQuery = currentSession.createQuery("select u.avgPoint from User u where u.idUser=:integer");
+		
+		theQuery.setParameter("integer", integer);
+		
+		double result = (double) theQuery.getResultList().get(0);
+		
+		return result;
 	}
 }

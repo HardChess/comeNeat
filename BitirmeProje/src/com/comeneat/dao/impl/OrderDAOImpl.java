@@ -102,6 +102,20 @@ public class OrderDAOImpl implements OrderDAO {
 		return null;
 	}
 
+	@Override
+	public List<Integer> getAdvertPoints(int idAdvert) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query<Integer> theQuery = currentSession.createQuery("select o.point from Orders o where o.idAdvert=:idAdvert and o.point>=0");
+		
+		theQuery.setParameter("idAdvert", idAdvert);
+		
+		List<Integer> points = theQuery.getResultList();
+		
+		return points;
+	}
+
 	
 	
 }

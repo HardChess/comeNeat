@@ -1,5 +1,6 @@
 package com.comeneat.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -37,10 +38,31 @@ public class EatController {
 	private UserService userService;
 	
 	@GetMapping("/choice")
-	public String showChoice(HttpServletRequest request, Model model) {	
+	public String showChoice(HttpServletRequest request, Model model, @CookieValue(value = "idUser") String idUser) {	
 		
 		if(isLogged(request)) {
 
+			//Calculating avgPoint
+			List<Integer> allPoints = new ArrayList<Integer>();
+			
+			List<Integer> advertIds = advertService.getAdvertIds(idUser);
+			int count = advertIds.size();
+
+			//Having all points about user
+			for(int i=0; i<count; i++) {
+				
+				int idAdvert = advertIds.get(i);
+				
+				List<Integer> points = orderService.getAdvertPoints(idAdvert);
+				
+				allPoints.addAll(points);
+			}
+			
+			//calculating and writing avgPoint to user table
+			double avgPoint = calculateAverage(allPoints);
+			userService.setAvgPoint(avgPoint, idUser);
+			
+			System.out.println("Calculated average point is : " + avgPoint);
 			
 			return "choice";
 		}else return "redirect:/login";
@@ -120,6 +142,41 @@ public class EatController {
 			
 			List<Advert> theAdvert = advertService.getAdverts1(idUser);
 			theModel.addAttribute("adverts", theAdvert);
+
+			List<Integer> userIds = new ArrayList<Integer>();
+			List<User> users = new ArrayList<User>();
+			List<Double> avgPoints = new ArrayList<Double>();
+			
+			//avgPoint icin ilanlarin userlari bulunuyor.
+			for(int i=0; i<theAdvert.size(); i++) {
+				
+				Advert a = theAdvert.get(i);
+				
+				userIds.add(a.getIdUser());
+				System.out.println(userIds);
+			}
+			
+			//sirali avg listesi(tekrarli=
+			for(int i=0; i<userIds.size(); i++) {
+				
+				avgPoints.add(userService.getAvgById(userIds.get(i)));
+				System.out.println(avgPoints);
+			}
+
+			theModel.addAttribute("avgPoints", avgPoints);
+			
+			//available meals için user list sýrasýyla set ediliyor.(tekrarlý liste)
+			for(int i=0; i<userIds.size(); i++) {
+
+				int id = userIds.get(i);
+				
+				users.add(userService.getUserById(id));
+			}
+			
+			
+			//theModel.addAttribute("users", users);
+			
+			
 			
 			List<Orders> theOrder = orderService.getUserOrders(idUser);
 			theModel.addAttribute("orders", theOrder);
@@ -214,6 +271,20 @@ public class EatController {
             }
         }
         return false;
+	}
+	
+	//calculate average poit function
+	private double calculateAverage(List <Integer> marks) {
+		  Integer sum = 0;
+		  if(!marks.isEmpty()) {
+		    for (Integer mark : marks) {
+		        sum += mark;
+		    }
+		    String strResult = String.format("%.2f",sum.doubleValue() / marks.size());   
+		    Double result = Double.parseDouble(strResult.replace(",","."));
+		    return result;
+		  }
+		  return sum;
 	}
 	
 }

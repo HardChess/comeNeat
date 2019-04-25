@@ -97,7 +97,7 @@
 	          
 	          <ul class="list-group">
 	            <li class="list-group-item text-muted">User Informations <i class="fa fa-dashboard fa-1x"></i></li>
-	            <li class="list-group-item text-right"><span class="pull-left"><strong>Grade</strong></span> 7.4</li>
+	            <li class="list-group-item text-right"><span class="pull-left"><strong>Grade</strong></span>${user.avgPoint }</li>
 	            <li class="list-group-item text-right"><span class="pull-left"><strong>Meals Sold</strong></span> 2</li>
 	            <li class="list-group-item text-right"><span class="pull-left"><strong>Meals Bought</strong></span> 30</li>
 	           
