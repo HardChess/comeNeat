@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.comeneat.model.User;
 import com.comeneat.service.UserService;
@@ -44,6 +45,20 @@ public class AccountController {
 		
 		return "redirect:/profile";
 	}
+	
+	
+	@PostMapping("/longSuccess")
+	public String pointIt(Model theModel, @ModelAttribute("user") User user,
+			@CookieValue(value="idUser")String idUser, HttpServletRequest request) {
+float longit = user.getLocationLang();
+float latit = user.getLocationLat();
+		userService.setLongitude(longit, idUser);
+		userService.setLatitude(latit, idUser);
+		return "redirect:/profile";
+	
+	}
+	
+	
 	
 	//Method created by Alperen 
 		private boolean isLogged(HttpServletRequest request) {

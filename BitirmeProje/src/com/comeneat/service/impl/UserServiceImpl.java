@@ -73,5 +73,19 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getAvgById(integer);
 	}
 
+	@Override
+	@Transactional
+	public void setLongitude(float longitt, String theId) {
+		userDAO.setLongitude(longitt, theId);
+		
+	}
+
+	@Override
+	@Transactional
+	public void setLatitude(float latit, String idUser) {
+		userDAO.setLatitude(latit,idUser);
+		
+	}
+
 	
 }

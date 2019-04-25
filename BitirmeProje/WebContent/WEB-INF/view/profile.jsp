@@ -80,7 +80,7 @@
 		</header>
 	<hr>
 	<div class="boot-container">
-	     <div id="map"></div>
+	     
 	    <div class="row">
 	   
 	  		<div class="col-sm-3"><!--left col-->
@@ -116,7 +116,7 @@
 	    	
 	            <ul class="nav nav-tabs">
 	                <li class="active"><a data-toggle="tab" href="#home">Kullanici Bilgileri</a></li>
-	                
+	                <li><a data-toggle="tab" href="#messages">Harita</a></li>
 	              </ul>
 	
 	        
@@ -185,12 +185,18 @@
 	              
 	             </div><!--/tab-pane-->
 	             <div class="tab-pane" id="messages">
-	               
-	               <h2></h2>
-	               
-	               <hr>
-	                 
-	               
+	              <form:form action="${pageContext.request.contextPath}/longSuccess" modelAttribute="user" method="POST">
+	                   <form:hidden path="idUser" value="${cookieID.idUser.value}"/>
+	               <input id="pac-input" class="controls" type="text" placeholder="Search Box">   
+	               <div id="map"></div>
+	               <div onload="longFunct()">
+	                 <h3>"the value for longitude is: " <span id="longitude"></span></h3>
+	                 <h3>"and the value for latitude is: " <span id="latitude"></span></h3>
+	                 <form:input type="text" id="myField1" class="input" path="locationLang" />
+	                 <form:input type="text" id="myField2" class="input" path="locationLat" />
+	                 <input type="submit" value="Register">
+	               </div>
+	               </form:form>
 	             </div><!--/tab-pane-->
 	             <div class="tab-pane" id="settings">
 	            		
@@ -207,24 +213,89 @@
     <!-- Footer -->
 		<%@ include file="footer.jsp" %> 
 		<script>
-// Initialize and add the map
-function initMap() {
-  // The location of Uluru
-  var uluru = {lat: -25.344, lng: 131.036};
-  // The map, centered at Uluru
-  var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 4, center: uluru});
-  // The marker, positioned at Uluru
-  var marker = new google.maps.Marker({position: uluru, map: map});
-}
+		// Initialize and add the map
+		function initAutocomplete() {
+		        var map = new google.maps.Map(document.getElementById('map'), {
+		          center: {lat: -33.8688, lng: 151.2195},
+		          zoom: 13,
+		          mapTypeId: 'roadmap'
+		        });
+		        google.maps.event.addListener(map, 'click', function(event) {
+		        	var latit = event.latLng.lat();
+		        	var longit = event.latLng.lng();
+		        	document.getElementById("longitude").innerHTML = longit;
+		        	document.getElementById("latitude").innerHTML = latit;
+		        	document.getElementById('myField1').value = longit;
+		        	document.getElementById('myField2').value = latit;
+		        	alert(event.latLng.lat() + ", " + event.latLng.lng());
+		        	});
+		        
+		     // Create the search box and link it to the UI element.
+		        var input = document.getElementById('pac-input');
+		        var searchBox = new google.maps.places.SearchBox(input);
+		        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+		        // Bias the SearchBox results towards current map's viewport.
+		        map.addListener('bounds_changed', function() {
+		          searchBox.setBounds(map.getBounds());
+		        });
+		        
+		        var markers = [];
+		        // Listen for the event fired when the user selects a prediction and retrieve
+		        // more details for that place.
+		        searchBox.addListener('places_changed', function() {
+		          var places = searchBox.getPlaces();
+
+		          if (places.length == 0) {
+		            return;
+		          }
+
+		          // Clear out the old markers.
+		          markers.forEach(function(marker) {
+		            marker.setMap(null);
+		          });
+		          markers = [];
+
+		          // For each place, get the icon, name and location.
+		          var bounds = new google.maps.LatLngBounds();
+		          places.forEach(function(place) {
+		            if (!place.geometry) {
+		              console.log("Returned place contains no geometry");
+		              return;
+		            }
+		            var icon = {
+		              url: place.icon,
+		              size: new google.maps.Size(71, 71),
+		              origin: new google.maps.Point(0, 0),
+		              anchor: new google.maps.Point(17, 34),
+		              scaledSize: new google.maps.Size(25, 25)
+		            };
+
+		         // Create a marker for each place.
+		            markers.push(new google.maps.Marker({
+		              map: map,
+		              icon: icon,
+		              title: place.name,
+		              position: place.geometry.location
+		            }));
+
+		            if (place.geometry.viewport) {
+		              // Only geocodes have viewport.
+		              bounds.union(place.geometry.viewport);
+		            } else {
+		              bounds.extend(place.geometry.location);
+		            }
+		          });
+		          map.fitBounds(bounds);
+		        });
+		      }
     </script>
     <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads
     * The key parameter will contain your own API key (which is not needed for this tutorial)
     * The callback parameter executes the initMap() function
     -->
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFnXezkTyKrlPDWHjOkJGRa99u6WVPq64&callback=initMap">
-    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLIoj5VIC8BXewXjwM2mtfrjMWcFm-ZEY&libraries=places&callback=initAutocomplete"
+         async defer></script>
 	</body>         
 </html>

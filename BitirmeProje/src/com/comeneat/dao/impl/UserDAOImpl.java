@@ -98,4 +98,25 @@ public class UserDAOImpl implements UserDAO {
 		
 		return result;
 	}
+	@Override
+	public void setLongitude(float longitt, String idUser) {
+		Session currentSession = sessionFactory.getCurrentSession(); 
+		int id = Integer.parseInt(idUser);
+		Query theQuery = currentSession.createQuery("update from User u set u.locationLang=:long where idUser=:id");
+		theQuery.setParameter("long", longitt);
+		theQuery.setParameter("id", id);
+		
+		theQuery.executeUpdate();
+	}
+	@Override
+	public void setLatitude(float latit, String idUser) {
+		Session currentSession = sessionFactory.getCurrentSession(); 
+		int id = Integer.parseInt(idUser);
+		Query theQuery = currentSession.createQuery("update from User u set u.locationLat=:lat where idUser=:id");
+		theQuery.setParameter("lat", latit);
+		theQuery.setParameter("id", id);
+		
+		theQuery.executeUpdate();
+		
+	}
 }

@@ -62,11 +62,32 @@ public class User {
 	@Column(name = "avgPoint")
 	private double avgPoint;
 	
+	@Column(name = "locationLang")
+	private float locationLang;
+	
+	@Column(name = "locationLat")
+	private float locationLat;
 //	@OneToMany( mappedBy = "user")
 //	private List<Advert> adverts;
 //
 //	@OneToMany( mappedBy = "user")
 //	private List<Order> orders;
+
+	public float getLocationLat() {
+		return locationLat;
+	}
+
+	public void setLocationLat(float locationLat) {
+		this.locationLat = locationLat;
+	}
+
+	public float getLocationLang() {
+		return locationLang;
+	}
+
+	public void setLocationLang(float locationLang) {
+		this.locationLang = locationLang;
+	}
 
 	public int getIdUser() {
 		return idUser;
