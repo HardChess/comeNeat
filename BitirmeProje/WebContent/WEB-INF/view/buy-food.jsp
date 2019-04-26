@@ -135,7 +135,7 @@
 						<td>${tempAdvert.name} ( ${avgPoints[status.index] })</td>
 						<td>${tempAdvert.foodName}</td>
 						<td>${tempAdvert.cost} TL</td>
-						<td>???</td>
+						<td>${distances[status.index]} Metre</td>
 						<td>${tempAdvert.portion}</td>
 						
 						<form:form action="${pageContext.request.contextPath}/orderIt?idAdvert=${tempAdvert.idAdvert}&foodName=${tempAdvert.foodName}&advertOwner=${tempAdvert.name}&portion=${tempAdvert.portion}">

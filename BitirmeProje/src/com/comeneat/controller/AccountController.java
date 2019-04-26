@@ -50,8 +50,8 @@ public class AccountController {
 	@PostMapping("/longSuccess")
 	public String pointIt(Model theModel, @ModelAttribute("user") User user,
 			@CookieValue(value="idUser")String idUser, HttpServletRequest request) {
-float longit = user.getLocationLang();
-float latit = user.getLocationLat();
+		float longit = user.getLocationLang();
+		float latit = user.getLocationLat();
 		userService.setLongitude(longit, idUser);
 		userService.setLatitude(latit, idUser);
 		return "redirect:/profile";
@@ -72,5 +72,7 @@ float latit = user.getLocationLat();
 	        }
 	        return false;
 		}
+		
+
 
 }

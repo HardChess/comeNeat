@@ -139,15 +139,22 @@ public class EatController {
 		if(isLogged(request)) {
 			
 
-			
+			//Advertler listeleniyor
 			List<Advert> theAdvert = advertService.getAdverts1(idUser);
 			theModel.addAttribute("adverts", theAdvert);
 
+			//Gerekli listelerin tanýmlanmasý
 			List<Integer> userIds = new ArrayList<Integer>();
 			List<User> users = new ArrayList<User>();
 			List<Double> avgPoints = new ArrayList<Double>();
+			List<Integer> distances = new ArrayList<Integer>();
 			
-			//avgPoint icin ilanlarin userlari bulunuyor.
+			//Login olmus userin konum bilgileri
+			User myUser = userService.getUserById(Integer.parseInt(idUser));
+			double myLat = myUser.getLocationLat();
+			double myLong = myUser.getLocationLang();
+			
+			//Tum ilanlarin sirasiyla userlari bulunuyor.
 			for(int i=0; i<theAdvert.size(); i++) {
 				
 				Advert a = theAdvert.get(i);
@@ -156,7 +163,9 @@ public class EatController {
 				System.out.println(userIds);
 			}
 			
-			//sirali avg listesi(tekrarli=
+			
+			
+			//sirali avg listesi(tekrarli)
 			for(int i=0; i<userIds.size(); i++) {
 				
 				avgPoints.add(userService.getAvgById(userIds.get(i)));
@@ -173,11 +182,27 @@ public class EatController {
 				users.add(userService.getUserById(id));
 			}
 			
+			//Distance hesaplama
+			//Sirayla konumlar aliniyor. Mesafe hesaplanýp listeye yazýlýyor.(tekrarlý)
+			for(int i=0; i<userIds.size(); i++) {
+				
+				int id = userIds.get(i);
+				
+				User tempUser = userService.getUserById(id);
+				
+				double tempLat = tempUser.getLocationLat();
+				double tempLong = tempUser.getLocationLang();
+				
+				int distance = getDistanceFromLatLonInKm(myLat, myLong, tempLat, tempLong);
+				
+				distances.add(distance);
+				
+			}
 			
-			//theModel.addAttribute("users", users);
+			//distance modeli olusturuldu
+			theModel.addAttribute("distances", distances);
 			
-			
-			
+			//Orderlar listeleniyor
 			List<Orders> theOrder = orderService.getUserOrders(idUser);
 			theModel.addAttribute("orders", theOrder);
  			
@@ -285,6 +310,28 @@ public class EatController {
 		    return result;
 		  }
 		  return sum;
+	}
+	
+	private int getDistanceFromLatLonInKm(double e,double f,double g, double h) {
+		
+		int R = 6371; // Radius of the earth in km
+		float dLat = deg2rad(g-e);  // deg2rad below
+		float dLon = deg2rad(h-f); 
+		
+		float a = (float) (Math.sin(dLat/2) * Math.sin(dLat/2) +
+					Math.cos(deg2rad(e)) * Math.cos(deg2rad(g)) * 
+					Math.sin(dLon/2) * Math.sin(dLon/2)); 
+		
+		float  c = (float) (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))); 
+		double km = 1000*(R * c); // Distance in km
+		int m = (int) km;
+		return m;
+		
+	}
+	
+	private float deg2rad(double d) {
+		
+		return (float) (d*(Math.PI/180));
 	}
 	
 }

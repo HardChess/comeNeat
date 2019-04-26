@@ -3,9 +3,6 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <head>
@@ -17,6 +14,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- Custom stlylesheet -->
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css"/>
+		
+		
 </head>
 
 <body>
@@ -41,6 +40,7 @@
 				
 				<!-- social links -->
 				<ul class="social-nav">
+				<li><a onclick = "location.href='${pageContext.request.contextPath}/profile'"><i class="fa fa-user"></i></a></li>
 				<li>Hello ${cookie.name.value},</li>
 				<a onclick = "location.href='${pageContext.request.contextPath}/logout'">Logout</a>
 				<!-- login form -->
@@ -68,6 +68,7 @@
 					<ul class="contact-nav nav navbar-nav">
 						<li><a href="#"><i class="fa fa-phone"></i> +905373541125</a></li>
 						<li><a href="#"><i class="fa fa-map-marker"></i> pestalozzistraße 39.</a></li>
+
 					</ul>
 					<!-- contact nav -->
 
@@ -78,17 +79,16 @@
 
 
 		</header>
-	<hr>
-	<div class="boot-container">
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="table-users3">
 	     
 	    <div class="row">
 	   
 	  		<div class="col-sm-3"><!--left col-->
-	              
-			
-	      
-	
-	               
+	  		
 	          <div class="panel panel-default">
 	            <div class="panel-heading">Full Name <i class="fa fa-link fa-1x"></i></div>
 	            <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
@@ -123,7 +123,6 @@
 	              
 	          <div class="tab-content">
 	            <div class="tab-pane active" id="home">
-	                <hr>
 	                  <form:form action="updateUser" modelAttribute="user" method="POST">
 	                   <form:hidden path="idUser" value="${cookieID.idUser.value}"/>
 	                      <div class="form-group">
@@ -181,7 +180,6 @@
 	                      </div>
 	              	</form:form>
 	              
-	              <hr>
 	              
 	             </div><!--/tab-pane-->
 	             <div class="tab-pane" id="messages">
@@ -190,19 +188,34 @@
 	               <input id="pac-input" class="controls" type="text" placeholder="Search Box">   
 	               <div id="map"></div>
 	               <div onload="longFunct()">
-	                 <h3>"the value for longitude is: " <span id="longitude"></span></h3>
-	                 <h3>"and the value for latitude is: " <span id="latitude"></span></h3>
-	                 <form:input type="text" id="myField1" class="input" path="locationLang" />
-	                 <form:input type="text" id="myField2" class="input" path="locationLat" />
-	                 <input type="submit" value="Register">
+	               <div class="form-group">
+	                          
+	                          <div class="col-xs-6">
+	                              <label for="name"><h4>Enlem: <span id="latitude"></h4></label>
+	                              <form:input id="myField2" type="text" class="form-control" path="locationLat"></form:input>
+	                          </div>
+	                      </div>
+	                      
+	                      <div class="form-group">
+	                          
+	                          <div class="col-xs-6">
+	                            <label for="phone"><h4>Boylam: <span id="longitude"></span></h4></label>
+	                              <form:input id="myField1" type="text" class="form-control" path="locationLang"></form:input>
+	                          </div>
+	                      </div>
+
+	                 <div class="form-group">
+	                           <div class="col-xs-12">
+	                                <br>
+	                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Kaydet</button>
+	                            </div>
+	                      </div>
 	               </div>
 	               </form:form>
 	             </div><!--/tab-pane-->
 	             <div class="tab-pane" id="settings">
 	            		
 	               	
-	                  <hr>
-	                 
 	              </div>
 	               
 	              </div><!--/tab-pane-->
@@ -210,13 +223,15 @@
 	
 	        </div><!--/col-9-->
     </div><!--/row-->
+    
+    <hr>
     <!-- Footer -->
 		<%@ include file="footer.jsp" %> 
 		<script>
 		// Initialize and add the map
 		function initAutocomplete() {
 		        var map = new google.maps.Map(document.getElementById('map'), {
-		          center: {lat: -33.8688, lng: 151.2195},
+		          center: {lat: 40.773075, lng: 30.394817},
 		          zoom: 13,
 		          mapTypeId: 'roadmap'
 		        });
@@ -227,7 +242,7 @@
 		        	document.getElementById("latitude").innerHTML = latit;
 		        	document.getElementById('myField1').value = longit;
 		        	document.getElementById('myField2').value = latit;
-		        	alert(event.latLng.lat() + ", " + event.latLng.lng());
+		        	alert("Konum isaretlendi. Lutfen kaydet butonuna basin.");
 		        	});
 		        
 		     // Create the search box and link it to the UI element.
