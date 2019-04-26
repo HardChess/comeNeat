@@ -41,7 +41,7 @@
 				<!-- social links -->
 				<ul class="social-nav">
 				<li><a onclick = "location.href='${pageContext.request.contextPath}/profile'"><i class="fa fa-user"></i></a></li>
-				<li>Hello ${cookie.name.value},</li>
+				<li>Hello ${user.name},</li>
 				<a onclick = "location.href='${pageContext.request.contextPath}/logout'">Logout</a>
 				<!-- login form -->
 				
@@ -147,11 +147,12 @@
 	                              <form:input type="text" class="form-control" path="email"></form:input>
 	                          </div>
 	                      </div>
-	                      <div class="form-group">
+	                      
+	      				 <div class="form-group">
 	                          
 	                          <div class="col-xs-6">
-	                              <label for="phone"><h4>City</h4></label>
-	                              <form:input type="text" class="form-control" path="city"></form:input>
+	                              <label for="password"><h4>Sifre</h4></label>
+	                              <form:input type="text" class="form-control" path="password"></form:input>
 	                          </div>
 	                      </div>
 	          
@@ -164,14 +165,16 @@
 	                          </div>
 	                      </div>
 
-	                      <div class="form-group">
-	                          
-	                          <div class="col-xs-6">
-	                              <label for="password"><h4>Sifre</h4></label>
-	                              <form:input type="text" class="form-control" path="password"></form:input>
-	                          </div>
-	                      </div>
-
+	                      
+	                     <div class="form-group">
+	                    	 <div class="col-xs-6">
+	                    	 		<label for="city"><h4>Şehir</h4></label>
+									<form:select class="form-control" path="city">
+										<form:options items="${citesList}" />
+									</form:select>
+							</div>
+						</div>
+						
 	                      <div class="form-group">
 	                           <div class="col-xs-12">
 	                                <br>

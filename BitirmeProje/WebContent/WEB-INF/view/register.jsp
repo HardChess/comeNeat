@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 
@@ -43,6 +43,7 @@
 			<label>
 				<p class="label-txt">ENTER YOUR FULL NAME</p>
 				<form:input type="text" class="input" path="name" />
+				<td><form:errors path="name" cssClass="error"/></td>
 				<div class="line-box">
       <div class="line"></div>
     </div>
@@ -60,16 +61,18 @@
 		
 			
 			</label>
+			
+			<label>
+				<p class="label-txt">Adres</p>
+				<form:input type="text" class="input" path="address" />
+				<form:errors path="address" cssClass="error"/>
+				<div class="line-box">
+      <div class="line"></div>
+    </div>
+		
+			
+			</label>
 <table>
-
-			<tr>
-				<td>Select Address:</td>
-				<td><form:select path="address">
-						<form:options items="${technologyList}" />
-					</form:select></td>
-				<td><form:errors path="address" cssClass="error" /></td>
-
-			</tr>
 
 			<tr>
 				<td>Select city:</td>
@@ -83,7 +86,6 @@
 				<td><input type="submit" value="Register"></td>
 			</tr>
 			<tr>
-				<td><form:errors path="name" cssClass="error"/></td>
 			</tr>
 			
 		</table>

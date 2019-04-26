@@ -31,7 +31,7 @@ public class User {
 	private int idUser;
 	
 	@NotEmpty
-	@Pattern(regexp="[^0-9]+")
+	@Pattern(regexp="[^0-9]+", message="sayý olamaz.")
 	@Size(min=1,max=40)
 	@Column(name = "name")
 	private String name;

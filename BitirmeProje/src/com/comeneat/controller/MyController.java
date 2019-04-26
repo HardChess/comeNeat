@@ -89,7 +89,7 @@ public class MyController {
 	@RequestMapping(value ="/loginSuccess" ,method=RequestMethod.POST)
 	public ModelAndView loginSuccess(@Valid @ModelAttribute("userCredential") UserCredential userCredential,
 			BindingResult bindingResult,
-			@CookieValue(value = "name", defaultValue = "anonymous") String name,
+
 			@CookieValue(value = "idUser", defaultValue = "id") String idUser,
 			HttpServletResponse response){
 		
@@ -98,7 +98,7 @@ public class MyController {
 		}
 
 		//Adding cookie 
-		Cookie cookie = new Cookie("name", name);
+
 		Cookie cookieID = new Cookie("idUser", idUser);
 
 		
@@ -109,20 +109,14 @@ public class MyController {
 			modelAndView.addObject("user", user);
 			
 			//Setting cookie value and maxage
-			cookie.setPath("/BitirmeProje");
-			cookie.setValue(user.getName());
-			cookie.setMaxAge(60 * 60 * 24 * 30);
-
 			cookieID.setPath("/BitirmeProje");
 			cookieID.setValue(Integer.toString(user.getIdUser()));
 			cookieID.setMaxAge(60 * 60 * 24 * 30);
 
-			response.addCookie(cookie);
 			response.addCookie(cookieID);
 			
 			
 			System.out.println("login id:" + cookieID.getValue());
-			System.out.println("login name:" + cookie.getValue());
 			
 			return modelAndView;
 		}else{
@@ -152,7 +146,7 @@ public class MyController {
 
 		Cookie[] cookies = request.getCookies();
         for(int i = 0; i< cookies.length ; ++i){
-            if(cookies[i].getName().equals("name")){
+            if(cookies[i].getName().equals("idUser")){
             	
         		return true;
             }
@@ -180,20 +174,96 @@ public class MyController {
 	public void headerMessage(Model model){
 		model.addAttribute("headerMessage", "Welcome to ComeNeat");
 		
-		List<String> techList = new ArrayList<>();
-		techList.add("Kemalpasa Mah");
-		techList.add("Istiklal Caddesi");
-		techList.add("Kocovali Mah");
-		techList.add("Uskudar");
-		techList.add("Fatih");
+//		List<String> techList = new ArrayList<>();
+//		techList.add("Kemalpasa Mah");
+//		techList.add("Istiklal Caddesi");
+//		techList.add("Kocovali Mah");
+//		techList.add("Uskudar");
+//		techList.add("Fatih");
 		
 		List<String> citesList = new ArrayList<>();
-		citesList.add("Istanbul");
-		citesList.add("Bursa");
-		citesList.add("Izmir");
+		citesList.add("Adana");
+		citesList.add("Adýyaman");
+		citesList.add("Afyonkarahisar");
+		citesList.add("Aðrý");
+		citesList.add("Amasya");
+		citesList.add("Ankara");
 		citesList.add("Antalya");
+		citesList.add("Artvin");
+		citesList.add("Aydýn");
+		citesList.add("Balýkesir");
+		citesList.add("Bilecik");
+		citesList.add("Bingöl");
+		citesList.add("Bitlis");
+		citesList.add("Bolu");
+		citesList.add("Burdur");
+		citesList.add("Bursa");
+		citesList.add("Çanakkale");
+		citesList.add("Çankýrý");
+		citesList.add("Çorum");
+		citesList.add("Denizli");
+		citesList.add("Diyarbakýr");
+		citesList.add("Edirne");
+		citesList.add("Elazýð");
+		citesList.add("Erzincan");
+		citesList.add("Erzurum");
+		citesList.add("Eskiþehir");
+		citesList.add("Gaziantep");
+		citesList.add("Giresun");
+		citesList.add("Gümüþhane");
+		citesList.add("Hakkari");
+		citesList.add("Isparta");
+		citesList.add("Mersin");
+		citesList.add("Ýstanbul");
+		citesList.add("Ýzmir");
+		citesList.add("Kars");
+		citesList.add("Kastamonu");
+		citesList.add("Kayseri");
+		citesList.add("Kýrklareli");
+		citesList.add("Kýrþehir");
+		citesList.add("Kocaeli");
+		citesList.add("Konya");
+		citesList.add("Kütahya");
+		citesList.add("Malatya");
+		citesList.add("Manisa");
+		citesList.add("Kahramanmaraþ");
+		citesList.add("Mardin");
+		citesList.add("Muðla");
+		citesList.add("Muþ");
+		citesList.add("Nevþehir");
+		citesList.add("Niðde");
+		citesList.add("Ordu");
+		citesList.add("Rize");
+		citesList.add("Sakarya");
+		citesList.add("Samsun");
+		citesList.add("Siirt");
+		citesList.add("Sinop");
+		citesList.add("Sivas");
+		citesList.add("Tekirdað");
+		citesList.add("Tokat");
+		citesList.add("Trabzon");
+		citesList.add("Tunceli");
+		citesList.add("Þanlýurfa");
+		citesList.add("Uþak");
+		citesList.add("Van");
+		citesList.add("Yozgat");
+		citesList.add("Zonguldak");
+		citesList.add("Aksaray");
+		citesList.add("Bayburt");
+		citesList.add("Karaman");
+		citesList.add("Kýrýkkale");
+		citesList.add("Batman");
+		citesList.add("Þýrnak");
+		citesList.add("Bartýn");
+		citesList.add("Ardahan");
+		citesList.add("Iðdýr");
+		citesList.add("Yalova");
+		citesList.add("Karabük");
+		citesList.add("Kilis");
+		citesList.add("Osmaniye");
+		citesList.add("Düzce");
 		
-		model.addAttribute("technologyList", techList);
+//		model.addAttribute("technologyList", techList);
 		model.addAttribute("citesList", citesList);
 	}
 

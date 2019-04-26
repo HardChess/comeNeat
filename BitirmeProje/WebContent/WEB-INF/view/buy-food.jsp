@@ -69,7 +69,7 @@
 				<!-- social links -->
 				<ul class="social-nav">
 				<li><a onclick = "location.href='${pageContext.request.contextPath}/profile'"><i class="fa fa-user"></i></a></li>
-				<li>Merhaba ${cookie.name.value}</li>
+				<li>Merhaba ${user.name}</li>
 				<a onclick = "location.href='${pageContext.request.contextPath}/logout'">Logout</a>
 				<!-- login form -->
 				

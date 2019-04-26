@@ -1,5 +1,8 @@
 package com.comeneat.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,6 +32,89 @@ public class AccountController {
 			User theUser = userService.getUserById(IDuser);
 			theModel.addAttribute("user", theUser);
 			
+			List<String> citesList = new ArrayList<>();
+			citesList.add("Adana");
+			citesList.add("Adıyaman");
+			citesList.add("Afyonkarahisar");
+			citesList.add("Ağrı");
+			citesList.add("Amasya");
+			citesList.add("Ankara");
+			citesList.add("Antalya");
+			citesList.add("Artvin");
+			citesList.add("Aydın");
+			citesList.add("Balıkesir");
+			citesList.add("Bilecik");
+			citesList.add("Bingöl");
+			citesList.add("Bitlis");
+			citesList.add("Bolu");
+			citesList.add("Burdur");
+			citesList.add("Bursa");
+			citesList.add("Çanakkale");
+			citesList.add("Çankırı");
+			citesList.add("Çorum");
+			citesList.add("Denizli");
+			citesList.add("Diyarbakır");
+			citesList.add("Edirne");
+			citesList.add("Elazığ");
+			citesList.add("Erzincan");
+			citesList.add("Erzurum");
+			citesList.add("Eskişehir");
+			citesList.add("Gaziantep");
+			citesList.add("Giresun");
+			citesList.add("Gümüşhane");
+			citesList.add("Hakkari");
+			citesList.add("Isparta");
+			citesList.add("Mersin");
+			citesList.add("İstanbul");
+			citesList.add("İzmir");
+			citesList.add("Kars");
+			citesList.add("Kastamonu");
+			citesList.add("Kayseri");
+			citesList.add("Kırklareli");
+			citesList.add("Kırşehir");
+			citesList.add("Kocaeli");
+			citesList.add("Konya");
+			citesList.add("Kütahya");
+			citesList.add("Malatya");
+			citesList.add("Manisa");
+			citesList.add("Kahramanmaraş");
+			citesList.add("Mardin");
+			citesList.add("Muğla");
+			citesList.add("Muş");
+			citesList.add("Nevşehir");
+			citesList.add("Niğde");
+			citesList.add("Ordu");
+			citesList.add("Rize");
+			citesList.add("Sakarya");
+			citesList.add("Samsun");
+			citesList.add("Siirt");
+			citesList.add("Sinop");
+			citesList.add("Sivas");
+			citesList.add("Tekirdağ");
+			citesList.add("Tokat");
+			citesList.add("Trabzon");
+			citesList.add("Tunceli");
+			citesList.add("Şanlıurfa");
+			citesList.add("Uşak");
+			citesList.add("Van");
+			citesList.add("Yozgat");
+			citesList.add("Zonguldak");
+			citesList.add("Aksaray");
+			citesList.add("Bayburt");
+			citesList.add("Karaman");
+			citesList.add("Kırıkkale");
+			citesList.add("Batman");
+			citesList.add("Şırnak");
+			citesList.add("Bartın");
+			citesList.add("Ardahan");
+			citesList.add("Iğdır");
+			citesList.add("Yalova");
+			citesList.add("Karabük");
+			citesList.add("Kilis");
+			citesList.add("Osmaniye");
+			citesList.add("Düzce");
+
+			theModel.addAttribute("citesList", citesList);
 			
 			return "profile";
 			
@@ -65,7 +151,7 @@ public class AccountController {
 
 			Cookie[] cookies = request.getCookies();
 	        for(int i = 0; i< cookies.length ; ++i){
-	            if(cookies[i].getName().equals("name")){
+	            if(cookies[i].getName().equals("idUser")){
 	            	
 	        		return true;
 	            }

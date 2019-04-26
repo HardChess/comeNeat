@@ -42,6 +42,10 @@ public class EatController {
 		
 		if(isLogged(request)) {
 
+			User theUser = userService.getUserById(Integer.parseInt(idUser));
+			
+			model.addAttribute("user", theUser);
+			
 			//Calculating avgPoint
 			List<Integer> allPoints = new ArrayList<Integer>();
 			
@@ -76,6 +80,11 @@ public class EatController {
 			@CookieValue(value = "idUser") String idUser) {
 		
 		if(isLogged(request)) {
+			
+			User theUser = userService.getUserById(Integer.parseInt(idUser));
+			
+			theModel.addAttribute("user", theUser);
+			
 			//get adverts from the dao
 			List<Advert> theAdverts = advertService.getAdverts2(idUser);
 			Advert advert = new Advert();
@@ -89,10 +98,11 @@ public class EatController {
 	}
 	
 	@PostMapping("/saveAdvert")
-	public String saveAdvert(@ModelAttribute("advert") Advert theAdvert,@CookieValue(value = "idUser") String idUser,
-			@CookieValue(value = "name") String name) {
+	public String saveAdvert(@ModelAttribute("advert") Advert theAdvert,@CookieValue(value = "idUser") String idUser) {
 		//save the customer using our service 
-		advertService.saveAdvert(theAdvert, idUser ,name);
+		User u = userService.getUserById(Integer.parseInt(idUser));
+		
+		advertService.saveAdvert(theAdvert, idUser ,u.getName());
 		return "redirect:/sellFood";
 	}
 	
@@ -150,7 +160,9 @@ public class EatController {
 			List<Integer> distances = new ArrayList<Integer>();
 			
 			//Login olmus userin konum bilgileri
-			User myUser = userService.getUserById(Integer.parseInt(idUser));
+			User myUser = userService.getUserById(Integer.parseInt(idUser));			
+			theModel.addAttribute("user", myUser);
+			
 			double myLat = myUser.getLocationLat();
 			double myLong = myUser.getLocationLang();
 			
@@ -215,16 +227,17 @@ public class EatController {
 	
 	@PostMapping("/orderIt")
 	public String orderIt(@RequestParam("idAdvert") int idAdvert, @ModelAttribute("order") Orders theOrder,
-			@CookieValue(value = "idUser") String idUser, @RequestParam("foodName") String foodName,
-			@CookieValue(value = "name") String orderOwner, @RequestParam("advertOwner") String advertOwner,
+			@CookieValue(value = "idUser") String idUser, @RequestParam("foodName") String foodName, @RequestParam("advertOwner") String advertOwner,
 			@RequestParam("portion") int portion, HttpServletRequest request) {
+
+		User tempUser = userService.getUserById(Integer.parseInt(idUser));
 		
 		String number=request.getParameter("number");
 		int n = Integer.parseInt(number);
 		
 		if(portion>=n) {
 			
-			orderService.setNewOrder(idAdvert, theOrder, idUser, foodName, orderOwner, advertOwner, n);
+			orderService.setNewOrder(idAdvert, theOrder, idUser, foodName, tempUser.getName(), advertOwner, n);
 			
 		}
 		
@@ -290,7 +303,7 @@ public class EatController {
 
 		Cookie[] cookies = request.getCookies();
         for(int i = 0; i< cookies.length ; ++i){
-            if(cookies[i].getName().equals("name")){
+            if(cookies[i].getName().equals("idUser")){
             	
         		return true;
             }
