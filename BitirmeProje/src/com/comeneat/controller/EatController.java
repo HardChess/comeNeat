@@ -195,9 +195,9 @@ public class EatController {
 			double myLong = myUser.getLocationLang();
 			
 			//Tum ilanlarin sirasiyla userlari bulunuyor.
-			for(int i=0; i<theAdvert.size(); i++) {
+			for(int i=0; i<theAdvertOrderByCity.size(); i++) {
 				
-				Advert a = theAdvert.get(i);
+				Advert a = theAdvertOrderByCity.get(i);
 				
 				userIds.add(a.getIdUser());
 				System.out.println(userIds);
@@ -349,9 +349,9 @@ public class EatController {
 		List<Integer> distances = new ArrayList<Integer>();
 		
 		//Tum ilanlarin sirasiyla userlari bulunuyor.
-		for(int i=0; i<theAdverts.size(); i++) {
+		for(int i=0; i<theAdvertOrderByCity.size(); i++) {
 			
-			Advert a = theAdverts.get(i);
+			Advert a = theAdvertOrderByCity.get(i);
 			
 			userIds.add(a.getIdUser());
 			System.out.println(userIds);
