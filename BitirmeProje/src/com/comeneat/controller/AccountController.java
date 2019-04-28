@@ -15,13 +15,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.comeneat.model.Advert;
+import com.comeneat.model.Orders;
 import com.comeneat.model.User;
+import com.comeneat.service.AdvertService;
+import com.comeneat.service.OrderService;
 import com.comeneat.service.UserService;
 
 @Controller
 public class AccountController {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AdvertService advertService;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	
 	@GetMapping("/profile")
@@ -115,6 +125,18 @@ public class AccountController {
 			citesList.add("Düzce");
 
 			theModel.addAttribute("citesList", citesList);
+			
+			//Calculate meals bought
+			List<Advert> userAdverts = advertService.getUserAdverts(idUser);
+			int boughtCount = userAdverts.size();
+			theModel.addAttribute("boughtCount", boughtCount);
+			System.out.println("bought count=" + boughtCount);
+			
+			//Calculate meals sold
+			List<Orders> userOrders = orderService.getUserOrders(idUser);
+			int soldCount = userOrders.size();
+			theModel.addAttribute("soldCount", soldCount);
+			System.out.println("sold count=" + soldCount);
 			
 			return "profile";
 			
