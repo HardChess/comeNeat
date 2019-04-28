@@ -9,26 +9,26 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Registration Page</title>
+<title>Giriş Sayfas</title>
 </head>
 <body style="background-image:url(${pageContext.request.contextPath}/resources/img/login.jpg); background-size:cover">
-<h3 align="center">${headerMessage}</h3>
+<h3 align="center">comeNeat'e Hoşgeldin!</h3>
 	<form:form action="/BitirmeProje/loginSuccess" method="post" modelAttribute="userCredential">
 
 		<table>
 			<tr>
-				<td>Enter Email:</td>
+				<td>E-MAİL:</td>
 				<td><form:input path="email" /></td>
 				<td><form:errors path="email" cssClass="error"/></td>
 			</tr>
 			<tr>
-				<td>Enter Password:</td>
+				<td>ŞİFRE:</td>
 				<td><form:password path="password"/></td>
 				<td><form:errors path="password" cssClass="error"/></td>
 			</tr>
 
 			<tr>
-				<td><input type="submit" value="Login"></td>
+				<td><input type="submit" value="Giriş"></td>
 			</tr>
 		</table>
 	</form:form>

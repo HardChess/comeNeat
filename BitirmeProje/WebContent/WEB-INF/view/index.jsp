@@ -63,7 +63,7 @@
 				
 				<!-- social links -->
 				<ul class="social-nav">
-				<a href = "${pageContext.request.contextPath}/login"class="a-l">Login to Your Account</a> 
+				<a href = "${pageContext.request.contextPath}/login"class="a-l">Hesabıma Giriş Yap</a> 
 				
 				<!-- After logging Popup -->
 
@@ -98,9 +98,9 @@
 
 				<div class="col-md-10 col-md-offset-1 text-center">
 					<div class="home-content">
-						<h1 class="white-text">Welcome To ComeNeat</h1>
-						<h4 class="white-text lead">The ultimate way to order home made food online</h4>
-						<button onclick = "location.href='${pageContext.request.contextPath}/register'"class="main-button" id="showpopup">Sign up now!</button>
+						<h1 class="white-text">comeNeat'e Hoşgeldiniz	</h1>
+						<h4 class="white-text lead">Yemek sipariş etmenin en pratik yolu</h4>
+						<button onclick = "location.href='${pageContext.request.contextPath}/register'"class="main-button" id="showpopup">Hemen Kayıt Ol!</button>
 					
 					</div>
 				</div>
@@ -108,45 +108,7 @@
 			</div>
 
 		</div>
-			<div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-  <form class="modal-content" action="/action_page.php">
-   
-      <h1>Sign Up</h1>
-      <p>Please fill in this form to create an account.</p>
-      
-      <label for="name"><b>Name</b></label>
-      <input type="text" placeholder="Enter Complete Name" name="name" required>
-      
-      <label for="email"><b>username</b></label>
-      <input type="text" placeholder="Enter Username" name="username" required>
-     
-      
-      <label for="address"><b>Address</b></label>
-      <input type="text" placeholder="Enter Address" name="address" required>
-      
-      <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required>
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-
-      <label for="psw-repeat"><b>Repeat Password</b></label>
-      <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-      
-      <label>
-        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-      </label>
-
-      <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
-
-      <div class="clearfix">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-        <button type="submit" class="signupbtn">Sign Up</button>
-      </div>
-    
-  </form>
-</div>
 		<!-- /Home -->
 
 		<!-- About -->
@@ -161,17 +123,17 @@
 					<!-- section header -->
 					<div class="section-header text-center">
 					
-						<h4 style="color:black">Hungry for more? Like us on Facebook. <a href="#" class="fa fa-facebook"></a></h4>
+						<h4 style="color:black">Acıktın mı? Bizi Facebook'ta beğenebilirsin. <a href="#" class="fa fa-facebook"></a></h4>
 						
 						
-						<h2 class="title">318 people like this. Be the first of your friends.</h2>
+						<h2 class="title">318 kişi sayfayı beğendi. Arkadaşların arasında ilk beğenen ol.</h2>
 					</div>
 					<!-- /section header -->
 
 					<!-- about content -->
 					<div class="easy text-center">
-						<h3 class="lead">How it works</h3>
-						<h4>Easy as that!</h4>
+						<h3 class="lead">comeNeat Nasıl Çalışır?</h3>
+						<h4>Bu kadar basit!</h4>
 					</div>
 					<!-- /about content -->
 
@@ -181,12 +143,12 @@
 					<img class = "line" src="${pageContext.request.contextPath}/resources/img/img2.png">
 					<img class = "line" src="${pageContext.request.contextPath}/resources/img/step3.jpg">
 					
-					<h4 class="line2">Enter your location</h4>
-					<h4 class="line2">Choose your meal</h4>
-					<h4 class="line2">Go get it!</h4>
-					<p class="line3">When connecting using your location a list of ready meals will show up in your map</p>
-					<p class="line3">What do you fancy? Browse through countless menus and reviews.</p>
-					<p class="line3">No time to waste, go get your meal, maybe it is even prepared by your neighbor!</p>
+					<h4 class="line2">Kayıt ol ve konumunu seç</h4>
+					<h4 class="line2">Yemeğini seç</h4>
+					<h4 class="line2">Git ve al</h4>
+					<p class="line3">Kayıt olduktan sonra profilinize haritadan konumunuzu seçersiniz. Ve sizin için en yakın ilanları listeleriz.</p>
+					<p class="line3">Almak istediğin yemeği ve porsiyonu seçersiniz ve onaylarsınız. Veya satmak istediğiniz yemeği ilan verirsiniz.</p>
+					<p class="line3">Sipariş verildikten sonra iletişim bilgilerine ulaşır ve yemeğinizi alırsınız. Belki de yemeğin sahibi sizin komşunuzdur. :)</p>
 					</div>
 					<!-- /about content -->
 
@@ -206,8 +168,8 @@
 		<!-- Menu -->
 		<div class="android">
 			<center><img src="${pageContext.request.contextPath}/resources/img/phone.png" class="w3-round" alt="Norway"></center>
-			<div class="top-left">Download the app</div>
-			<div class="top-left2">Click, sit back and enjoy!</div>
+			<div class="top-left">Mobil uygulamayı indir</div>
+			<div class="top-left2">Tıkla, arkana yaslan ve keyfini çıkar!</div>
 			
 		</div>
 		
@@ -225,10 +187,9 @@
 
 					<!-- section header -->
 					<div class="section-header text-center">
-						<h4 class="sub-title">Want more?
-Check out exciting news about food and lifestyle on our blog.
+						<h4 class="sub-title">Daha fazlası için blogumuzda yemek ve yaşam ile ilgili heyecan verici haberlere göz atın.
 						</h4>
-						<a class = "blog" href="http://www.google.com"">>Visit the blog</a>
+						<a class = "blog" href="http://www.google.com">Blog'u ziyaret et</a>
 					</div>
 					<!-- /section header -->
 
@@ -249,16 +210,13 @@ Check out exciting news about food and lifestyle on our blog.
 				<div class="row">
 
 					
-						<div class="section-header text-center">
-							<h4 class="sub-title">Contact Us</h4>
-							<h2 class="title">Get In Touch</h2>
-						</div>
+						
 						<div class="contact-content text-center">
-							<p>You can contact us when something unusual happens while making the meal order, see here for more information</p>
-							<h3>Tel: <a href="#">045-548-14-97</a></h3>
-							<p>Email: <a href="#">ComeNeat@gmail.com</a></p>
+							<p>Yemek siparişi verirken olağandışı bir şey olduğunda bizimle iletişime geçebilirsiniz, daha fazla bilgi için buraya bakın</p>
+							<h3>Tel: <a href="#">0539 562 21 71</a></h3>
+							<p>Email: <a href="#">comeneat@gmail.com</a></p>
 							<ul class="list-inline">
-								<li><p>Follow Us:</p></li>
+								<li><p>Bizi Takip Et:</p></li>
 								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -289,7 +247,7 @@ Check out exciting news about food and lifestyle on our blog.
 					<!-- copyright -->
 					<div class="col-md-6">
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						<span class="copyright">ComeNeat @2019 All rights reserved</span>
+						<span class="copyright">ComeNeat @2019 Tüm hakları saklıdır.</span>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</div>
 					<!-- /copyright -->
@@ -297,13 +255,11 @@ Check out exciting news about food and lifestyle on our blog.
 					<!-- footer nav -->
 					<div class="col-md-6">
 						<nav class="footer-nav">
-							<a href="#">Home</a>
-							<a href="#">About</a>
-							<a href="#">Menu</a>
-							<a href="#">Reservation</a>
-							<a href="#">Galery</a>
-							<a href="#">Events</a>
-							<a href="#">Contact</a>
+							<a href="#">Anasayfa</a>
+							<a href="#">Hakkımızda</a>
+							<a href="#">Galeri</a>
+							<a href="#">Haberler</a>
+							<a href="#">İletişim</a>
 						</nav>
 					</div>
 					<!-- /footer nav -->

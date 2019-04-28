@@ -130,6 +130,21 @@ public class EatController {
 	public String showAdvertOrders(@RequestParam("idAdvert") int idAdvert, Model model, @CookieValue(value = "idUser") String idUser) {
 		
 		List<Orders> orders = orderService.getAdvertOrders(idAdvert);	
+		//Calculate cost
+		List<Double> costs = new ArrayList<Double>();
+		for(int i=0; i<orders.size();i++) {
+			
+			Orders o = orders.get(i);
+			double portion = o.getPortion();
+
+			int adId = o.getIdAdvert();
+			Advert a = advertService.getAdvertById(adId);
+			double cost = a.getCost();
+			
+			double result = cost * portion;
+			costs.add(result);
+		}
+		model.addAttribute("costs", costs);
 		model.addAttribute("orders", orders);
 		
 		List<Advert> theAdverts = advertService.getAdverts2(idUser);
@@ -147,11 +162,27 @@ public class EatController {
 			@CookieValue(value = "idUser") String idUser) {
 	
 		if(isLogged(request)) {
-			
 
-			//Advertler listeleniyor
+			User myUser = userService.getUserById(Integer.parseInt(idUser));			
+			theModel.addAttribute("myUser", myUser);
+
+			//Advertler listeleniyor (sehre göre)
+			String myCity = myUser.getCity();
 			List<Advert> theAdvert = advertService.getAdverts1(idUser);
-			theModel.addAttribute("adverts", theAdvert);
+			List<Advert> theAdvertOrderByCity = new ArrayList<Advert>();
+			
+			for(int i=0; i<theAdvert.size(); i++) {
+				
+				Advert tempAd = theAdvert.get(i);
+				int tempId = tempAd.getIdUser();
+				User tempUs = userService.getUserById(tempId);
+				
+				if(tempUs.getCity().equals(myUser.getCity())) {
+					theAdvertOrderByCity.add(tempAd);
+				}
+				
+			}
+			theModel.addAttribute("adverts", theAdvertOrderByCity);
 
 			//Gerekli listelerin tanýmlanmasý
 			List<Integer> userIds = new ArrayList<Integer>();
@@ -160,9 +191,6 @@ public class EatController {
 			List<Integer> distances = new ArrayList<Integer>();
 			
 			//Login olmus userin konum bilgileri
-			User myUser = userService.getUserById(Integer.parseInt(idUser));			
-			theModel.addAttribute("user", myUser);
-			
 			double myLat = myUser.getLocationLat();
 			double myLong = myUser.getLocationLang();
 			
@@ -216,8 +244,22 @@ public class EatController {
 			
 			//Orderlar listeleniyor
 			List<Orders> theOrder = orderService.getUserOrders(idUser);
+			//Calculate cost
+			List<Double> costs = new ArrayList<Double>();
+			for(int i=0; i<theOrder.size();i++) {
+				
+				Orders o = theOrder.get(i);
+				double portion = o.getPortion();
+
+				int adId = o.getIdAdvert();
+				Advert a = advertService.getAdvertById(adId);
+				double cost = a.getCost();
+				
+				double result = cost * portion;
+				costs.add(result);
+			}
+			theModel.addAttribute("costs", costs);
 			theModel.addAttribute("orders", theOrder);
- 			
 			
 			return "buy-food";
 			
@@ -253,6 +295,106 @@ public class EatController {
 	@GetMapping("/contact")
 	public String contactBuyFood(@RequestParam("idOrder") int idOrder, Model theModel,
 			@CookieValue(value = "idUser") String idUser) {
+
+		User myUser = userService.getUserById(Integer.parseInt(idUser));			
+		theModel.addAttribute("myUser", myUser);
+		
+		
+		//advertler orderlar listeeleniyor.
+		String myCity = myUser.getCity();
+		List<Advert> theAdverts = advertService.getAdverts1(idUser);
+
+		List<Advert> theAdvertOrderByCity = new ArrayList<Advert>();
+		
+		for(int i=0; i<theAdverts.size(); i++) {
+			
+			Advert tempAd = theAdverts.get(i);
+			int tempId = tempAd.getIdUser();
+			User tempUs = userService.getUserById(tempId);
+			
+			if(tempUs.getCity().equals(myUser.getCity())) {
+				theAdvertOrderByCity.add(tempAd);
+			}
+			
+		}
+		theModel.addAttribute("adverts", theAdvertOrderByCity);
+		
+		List<Orders> theOrders = orderService.getUserOrders(idUser);
+		//Calculate cost
+		List<Double> costs = new ArrayList<Double>();
+		for(int i=0; i<theOrders.size();i++) {
+			
+			Orders o = theOrders.get(i);
+			double portion = o.getPortion();
+
+			int adId = o.getIdAdvert();
+			Advert a = advertService.getAdvertById(adId);
+			double cost = a.getCost();
+			
+			double result = cost * portion;
+			costs.add(result);
+		}
+		
+		theModel.addAttribute("costs", costs);
+		theModel.addAttribute("orders", theOrders);
+		
+
+		double myLat = myUser.getLocationLat();
+		double myLong = myUser.getLocationLang();
+		
+		//Gerekli listelerin tanýmlanmasý
+		List<Integer> userIds = new ArrayList<Integer>();
+		List<User> users = new ArrayList<User>();
+		List<Double> avgPoints = new ArrayList<Double>();
+		List<Integer> distances = new ArrayList<Integer>();
+		
+		//Tum ilanlarin sirasiyla userlari bulunuyor.
+		for(int i=0; i<theAdverts.size(); i++) {
+			
+			Advert a = theAdverts.get(i);
+			
+			userIds.add(a.getIdUser());
+			System.out.println(userIds);
+		}
+		
+		
+		
+		//sirali avg listesi(tekrarli)
+		for(int i=0; i<userIds.size(); i++) {
+			
+			avgPoints.add(userService.getAvgById(userIds.get(i)));
+			System.out.println(avgPoints);
+		}
+
+		theModel.addAttribute("avgPoints", avgPoints);
+		
+		//available meals için user list sýrasýyla set ediliyor.(tekrarlý liste)
+		for(int i=0; i<userIds.size(); i++) {
+
+			int id = userIds.get(i);
+			
+			users.add(userService.getUserById(id));
+		}
+		
+		//Distance hesaplama
+		//Sirayla konumlar aliniyor. Mesafe hesaplanýp listeye yazýlýyor.(tekrarlý)
+		for(int i=0; i<userIds.size(); i++) {
+			
+			int id = userIds.get(i);
+			
+			User tempUser = userService.getUserById(id);
+			
+			double tempLat = tempUser.getLocationLat();
+			double tempLong = tempUser.getLocationLang();
+			
+			int distance = getDistanceFromLatLonInKm(myLat, myLong, tempLat, tempLong);
+			
+			distances.add(distance);
+			
+		}
+		
+		//distance modeli olusturuldu
+		theModel.addAttribute("distances", distances);
 		
 		//We get advert from idOrder and get user from idAdvert
 		
@@ -265,12 +407,7 @@ public class EatController {
 		User theUser = userService.getUserById(idUser1);
 		theModel.addAttribute("user", theUser);
 		
-		
-		List<Advert> theAdverts = advertService.getAdverts1(idUser);
-		theModel.addAttribute("adverts", theAdverts);
-		
-		List<Orders> theOrders = orderService.getUserOrders(idUser);
-		theModel.addAttribute("orders", theOrders);
+
 			
 		return "buy-food";
 	}

@@ -11,16 +11,16 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Registration Page</title>
+<title>Kayıt Sayfası</title>
 </head>
 <body style="background-image:url(${pageContext.request.contextPath}/resources/img/register.jpeg); background-size:cover">
-	<h3 align="center">${headerMessage}</h3>
+	<h3 align="center">comeNeat'e Hoşgeldin!</h3>
 	<form:form action="/BitirmeProje/registerSuccess"
 		method="post" modelAttribute="user">
 		
-		<caption align="top">User registration form</caption>
+		<caption align="top">Kayıt Formu</caption>
 		<label>
-				<p class="label-txt">ENTER YOUR EMAIL</p>
+				<p class="label-txt">MAİL ADRESİNİZ</p>
 				<form:input type="text" class="input" path="email" />
 				<form:errors path="email" cssClass="error"/>
 				<div class="line-box">
@@ -30,7 +30,7 @@
 			
 			</label>
 			<label>
-				<p class="label-txt">ENTER YOUR PASSWORD</p>
+				<p class="label-txt">ŞİFRENİZ</p>
 				<form:input type="text" class="input" path="password" />
 				<form:errors path="password" cssClass="error"/>
 				<div class="line-box">
@@ -41,7 +41,7 @@
 			</label>
 
 			<label>
-				<p class="label-txt">ENTER YOUR FULL NAME</p>
+				<p class="label-txt">TAM ADINIZ</p>
 				<form:input type="text" class="input" path="name" />
 				<td><form:errors path="name" cssClass="error"/></td>
 				<div class="line-box">
@@ -52,7 +52,7 @@
 			</label>
 			
 			<label>
-				<p class="label-txt">ENTER YOUR PHONE</p>
+				<p class="label-txt">TELEFON NUMARANIZ</p>
 				<form:input type="text" class="input" path="phone" />
 				<form:errors path="phone" cssClass="error"/>
 				<div class="line-box">
@@ -63,7 +63,7 @@
 			</label>
 			
 			<label>
-				<p class="label-txt">Adres</p>
+				<p class="label-txt">ADRESİNİZ</p>
 				<form:input type="text" class="input" path="address" />
 				<form:errors path="address" cssClass="error"/>
 				<div class="line-box">
@@ -75,7 +75,7 @@
 <table>
 
 			<tr>
-				<td>Select city:</td>
+				<td>ŞEHRİNİZ:</td>
 				<td><form:select path="city">
 						<form:options items="${citesList}" />
 					</form:select></td>
@@ -83,7 +83,7 @@
 			</tr>
 
 			<tr>
-				<td><input type="submit" value="Register"></td>
+				<td><input type="submit" value="Kayıt Ol"></td>
 			</tr>
 			<tr>
 			</tr>

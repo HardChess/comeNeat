@@ -30,7 +30,7 @@
 					<!-- copyright -->
 					<div class="col-md-6">
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						<span class="copyright">ComeNeat @2019 All rights reserved |</span>
+						<span class="copyright">ComeNeat @2019 Tüm hakları saklıdır</span>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</div>
 					<!-- /copyright -->
@@ -38,13 +38,11 @@
 					<!-- footer nav -->
 					<div class="col-md-6">
 						<nav class="footer-nav">
-							<a href="#">Home</a>
-							<a href="#">About</a>
-							<a href="#">Menu</a>
-							<a href="#">Reservation</a>
-							<a href="#">Galery</a>
-							<a href="#">Events</a>
-							<a href="#">Contact</a>
+							<a href="${pageContext.request.contextPath}/">Anasayfa</a>
+							<a href="#">Hakkımızda</a>
+							<a href="#">Galeri</a>
+							<a href="#">Haberler</a>
+							<a href="#">İletişim</a>
 						</nav>
 					</div>
 					<!-- /footer nav -->

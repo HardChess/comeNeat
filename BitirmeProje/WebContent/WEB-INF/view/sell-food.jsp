@@ -63,7 +63,7 @@
 				<ul class="social-nav">
 				<li><a onclick = "location.href='${pageContext.request.contextPath}/profile'"><i class="fa fa-user"></i></a></li>
 				<li>Merhaba ${user.name}</li>
-				<a onclick = "location.href='${pageContext.request.contextPath}/logout'">Logout</a>
+				<a onclick = "location.href='${pageContext.request.contextPath}/logout'">Çıkış Yap</a>
 				<!-- login form -->
 				
 <!-- end login form -->
@@ -88,8 +88,8 @@
 					
 					<!-- contact nav -->
 					<ul class="contact-nav nav navbar-nav">
-						<li><a href="#"><i class="fa fa-phone"></i> +905373541125</a></li>
-						<li><a href="#"><i class="fa fa-map-marker"></i>Pestalozzistrasse 39.</a></li>
+						<li><a href="#"><i class="fa fa-phone"></i>05395622171</a></li>
+						<li><a href="#"><i class="fa fa-map-marker"></i>comeNeat Danışma Ofisi</a></li>
 					</ul>
 					<!-- contact nav -->
 
@@ -111,7 +111,7 @@
 
    <div class="table-users">
    
-    	   <div class="header">Sell Your Meal
+    	   <div class="header">YEMEK SAT
 </div>
 
 <div>
@@ -122,9 +122,9 @@
    <table class="table table-striped">
    
       <tr>
-         <th>Write a name for the meal</th>
-         <th>Available portions</th>
-         <th>Set Price</th>
+         <th>Yemeğin Adı</th>
+         <th>Porsiyon Adeti</th>
+         <th>Fiyatı Belirle</th>
          <th></th>
          
       </tr>
@@ -138,7 +138,7 @@
         <td><form:input path="cost"/> ₺</td> 
         
          <td>
-         <input class="btn btn-warning" type="submit" value="Sell">
+         <input class="btn btn-warning" type="submit" value="Onayla">
          </td>	
       </tr>
  
@@ -147,15 +147,15 @@
 </div>
    
 <div>
-<div class="header">Your Adverts
+<div class="header">İLANLARINIZ
 </div>
  		<table class="table table-striped" id="myTable2">
  			<tr>
- 			<th>Food Name</th>
- 			<th>Cost</th>
- 			<th>Portion</th>
- 			<th>Orders</th>
- 			<th>Action</th>
+ 			<th>Yemek Adı</th>
+ 			<th>Fiyat</th>
+ 			<th>Kalan Porsiyon</th>
+ 			<th>Siparişler</th>
+ 			<th>Güncelle / Kaldır</th>
  			</tr> 
  			
  			<!-- loop over and print adverts -->
@@ -173,14 +173,14 @@
  					
  					<td>
  					<!-- display the update link -->
- 					<a class="btn btn-info" href="${pageContext.request.contextPath}/showAdvertOrders?idAdvert=${tempAdvert.idAdvert}">Show</a>
+ 					<a class="btn btn-info" href="${pageContext.request.contextPath}/showAdvertOrders?idAdvert=${tempAdvert.idAdvert}">Görüntüle</a>
  					
  					</td>
  					<td>
- 					<a class="btn btn-warning" href="${pageContext.request.contextPath}/showFormForUpdate?idAdvert=${tempAdvert.idAdvert}">Update</a>
+ 					<a class="btn btn-warning" href="${pageContext.request.contextPath}/showFormForUpdate?idAdvert=${tempAdvert.idAdvert}">Güncelle</a>
  					
  					<a class="btn btn-danger" href="${deleteLink}"
- 					onclick="if(!(confirm('Are you sure you want to delete this advert ?'))) return false">Delete</a>
+ 					onclick="if(!(confirm('Are you sure you want to delete this advert ?'))) return false">Kaldır</a>
  					</td>
  				</tr>
  			</c:forEach>
@@ -191,25 +191,27 @@
       </div>
  	</div>
  	
- 		<div class="header">Your Advert's Orders
+ 		<div class="header">GELEN SİPARİŞLER
 </div>
  	
  	<div>
  		<table class="table table-striped" id="myTable">
  			<tr>
- 			<th>Order Owner</th>
- 			<th>Food Name</th>
- 			<th>Portion</th>
- 			<th>Point</th>
+ 			<th>Sipariş Sahibi</th>
+ 			<th>Yemek Adı</th>
+ 			<th>Porsiyon</th>
+ 			<th>Ücret</th>
+ 			<th>Puan</th>
  			</tr> 
  			
  			<!-- loop over and print adverts -->
  			<tbody id="myTableBody2">
- 			<c:forEach var="tempOrder" items="${orders}">
+ 			<c:forEach var="tempOrder" items="${orders}" varStatus="status">
  				<tr>
    					<td>${tempOrder.orderOwner}</td>
  					<td>${tempOrder.foodName}</td>
  					<td>${tempOrder.portion}</td>
+ 					<td>${costs[status.index]} ₺</td>
  					<td>${tempOrder.point}</td>
  				</tr>
  				

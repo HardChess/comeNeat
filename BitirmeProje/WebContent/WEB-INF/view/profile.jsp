@@ -6,7 +6,7 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <head>
-  <title>Profile Page</title>
+  <title>Profil Sayfası</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -41,8 +41,8 @@
 				<!-- social links -->
 				<ul class="social-nav">
 				<li><a onclick = "location.href='${pageContext.request.contextPath}/profile'"><i class="fa fa-user"></i></a></li>
-				<li>Hello ${user.name},</li>
-				<a onclick = "location.href='${pageContext.request.contextPath}/logout'">Logout</a>
+				<li>Merhaba ${user.name},</li>
+				<a onclick = "location.href='${pageContext.request.contextPath}/logout'">Çıkış Yap</a>
 				<!-- login form -->
 				
 <!-- end login form -->
@@ -61,13 +61,13 @@
 				<div class="container">
 				<nav id="nav">
 
-					<h4>Contact the admin for any questions</h4>
+					<h4>Senin Profil Sayfan</h4>
 
 					
 					<!-- contact nav -->
 					<ul class="contact-nav nav navbar-nav">
-						<li><a href="#"><i class="fa fa-phone"></i> +905373541125</a></li>
-						<li><a href="#"><i class="fa fa-map-marker"></i> pestalozzistraße 39.</a></li>
+						<li><a href="#"><i class="fa fa-phone"></i>05395622171</a></li>
+						<li><a href="#"><i class="fa fa-map-marker"></i>comeNeat Danışma Ofisi</a></li>
 
 					</ul>
 					<!-- contact nav -->
@@ -90,21 +90,22 @@
 	  		<div class="col-sm-3"><!--left col-->
 	  		
 	          <div class="panel panel-default">
-	            <div class="panel-heading">Full Name <i class="fa fa-link fa-1x"></i></div>
-	            <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
+	            <div class="panel-heading">Sayın ${user.name }<i class="fa fa-link fa-1x"></i></div>
+	            <div class="panel-body"><p><b>Konum servislerini etkili kullanabilmemiz ve doğru mesafe sonucu üretebilmemiz için
+	            lütfen harita sekmesinden konumunuzu işaretleyip kaydet butonuna tıklamayı unutmayın.</b></p></div>
 	          </div>
 	          
 	          
 	          <ul class="list-group">
-	            <li class="list-group-item text-muted">User Informations <i class="fa fa-dashboard fa-1x"></i></li>
-	            <li class="list-group-item text-right"><span class="pull-left"><strong>Grade</strong></span>${user.avgPoint }</li>
-	            <li class="list-group-item text-right"><span class="pull-left"><strong>Meals Sold</strong></span>${soldCount }</li>
-	            <li class="list-group-item text-right"><span class="pull-left"><strong>Meals Bought</strong></span>${boughtCount }</li>
+	            <li class="list-group-item text-muted"><b>Kullanıcı İstatistikleri </b><i class="fa fa-dashboard fa-1x"></i></li>
+	            <li class="list-group-item text-right"><span class="pull-left"><strong>Ortalama Puan</strong></span>${user.avgPoint }</li>
+	            <li class="list-group-item text-right"><span class="pull-left"><strong>Satılan Yemek</strong></span>${soldCount }</li>
+	            <li class="list-group-item text-right"><span class="pull-left"><strong>Alınan Yemek</strong></span>${boughtCount }</li>
 	           
 	          </ul> 
 	               
 	          <div class="panel panel-default">
-	            <div class="panel-heading">Social Media</div>
+	            <div class="panel-heading">Sosyal Medya</div>
 	            <div class="panel-body">
 	            	<i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
 	            </div>

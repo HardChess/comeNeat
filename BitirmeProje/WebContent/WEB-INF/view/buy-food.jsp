@@ -69,8 +69,8 @@
 				<!-- social links -->
 				<ul class="social-nav">
 				<li><a onclick = "location.href='${pageContext.request.contextPath}/profile'"><i class="fa fa-user"></i></a></li>
-				<li>Merhaba ${user.name}</li>
-				<a onclick = "location.href='${pageContext.request.contextPath}/logout'">Logout</a>
+				<li>Merhaba ${myUser.name}</li>
+				<a onclick = "location.href='${pageContext.request.contextPath}/logout'">Çıkış Yap</a>
 				<!-- login form -->
 				
 <!-- end login form -->
@@ -94,8 +94,8 @@
 					
 					<!-- contact nav -->
 					<ul class="contact-nav nav navbar-nav">
-						<li><a href="#"><i class="fa fa-phone"></i> +905373541125</a></li>
-						<li><a href="#"><i class="fa fa-map-marker"></i> pestalozzistraße 39.</a></li>
+						<li><a href="#"><i class="fa fa-phone"></i> 05395622171</a></li>
+						<li><a href="#"><i class="fa fa-map-marker"></i> comeNeat Danışma Ofisi</a></li>
 					</ul>
 					<!-- contact nav -->
 
@@ -116,25 +116,25 @@
 
 <div class="table-users">
 
-<div class="header">Available meals
+<div class="header">${myUser.city } ŞEHRİ İÇİN MEVCUT YEMEKLER
   	 </div>
   	
 			<table class="table table-striped" id="myTable2">
 			
 				<tr>
-					<th>Advert Owner (Grade)</th>
-					<th>Food Name</th>
-					<th>Cost</th>
-					<th>Distance</th>
-					<th>Available Portions</th>
-					<th>Choose Portions</th>
+					<th>İlan Sahibi (Derece)</th>
+					<th>Yemek Adı</th>
+					<th>Fiyat</th>
+					<th>Mesafe</th>
+					<th>Kalan Porsiyon</th>
+					<th>Porsiyon Seç</th>
 				</tr>
 				<tbody id="myTableBody2">
 				<c:forEach var="tempAdvert" items="${adverts}" varStatus="status">
 					<tr>
 						<td>${tempAdvert.name} ( ${avgPoints[status.index] })</td>
 						<td>${tempAdvert.foodName}</td>
-						<td>${tempAdvert.cost} TL</td>
+						<td>${tempAdvert.cost} ₺</td>
 						<td>${distances[status.index]} Metre</td>
 						<td>${tempAdvert.portion}</td>
 						
@@ -165,24 +165,26 @@
       <ul class="pagination pagination-lg pager" id="myPager2"></ul>
       </div>
    <div>
-    <div class="header">Your Orders
+    <div class="header">SİZİN SİPARİŞLERİNİZ
    </div>
    
 			<table class="table table-striped" id="myTable">
 				<tr>
-					<th>Advert Owner</th>
-					<th>Food Name</th>
-					<th>Portions</th>
-					<th>Point</th>
-					<th>Select Points</th>
+					<th>İlan Sahibi</th>
+					<th>Yemek Adı</th>
+					<th>Porsiyon</th>
+					<th>Ücret</th>
+					<th>Puan</th>
+					<th>Puan Ver</th>
 					<th></th>
 				</tr>
 				<tbody id="myTableBody">
-				<c:forEach var="tempOrder" items="${orders}">
+				<c:forEach var="tempOrder" items="${orders}" varStatus="status">
 					<tr>
 						<td>${tempOrder.advertOwner}</td>
 						<td>${tempOrder.foodName}</td>
 						<td>${tempOrder.portion}</td>
+ 						<td>${costs[status.index]} ₺</td>
 						<td>${tempOrder.point}</td>
 						<td><form:form action="${pageContext.request.contextPath}/pointIt?idOrder=${tempOrder.idOrder}&point=${tempOrder.point}">
 								
@@ -217,36 +219,36 @@
       </div>
 		   
    	<div class="form-popup" id="myForm">
-   		<div class="header">Contact Information
+   		<div class="header">İLETİŞİM BİLGİLERİ
    		</div>
    		<table class="table table-striped" >
 				<tr>
-					<th>Advert Owner</th>
+					<th>İlan Sahibi</th>
 					<td>${user.name}</td>
 				</tr>
 				
 				<tr>
-					<th>Average Point</th>
+					<th>Ortalama Puan</th>
 					<td>${user.avgPoint }</td>
 				</tr>
 				
 				<tr>
-					<th>Telephone</th>
+					<th>Telefon</th>
 					<td>${user.phone }</td>
 				</tr>
 				
 				<tr>
-					<th>City</th>
+					<th>Şehir</th>
 					<td>${user.city }</td>
 				</tr>
 				
 				<tr>
-					<th>Address</th>
+					<th>Adres</th>
 					<td>${user.address }</td>
 				</tr>
 				
 			</table>
-			<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+			<button type="button" class="btn cancel" onclick="closeForm()">Gizle</button>
    		</div>
 			
 		

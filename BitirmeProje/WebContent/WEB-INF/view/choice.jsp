@@ -62,7 +62,7 @@
 				<ul class="social-nav">
 				<li><a onclick = "location.href='${pageContext.request.contextPath}/profile'"><i class="fa fa-user"></i></a></li>
 				<li>Merhaba ${user.name}</li>
-				<a onclick = "location.href='${pageContext.request.contextPath}/logout'">Logout</a>
+				<a onclick = "location.href='${pageContext.request.contextPath}/logout'">Çıkış Yap</a>
 				
 				<!-- login form -->
 				
@@ -100,9 +100,9 @@
 
 				<div class="col-md-10 col-md-offset-1 text-center">
 					<div class="home-content">
-						<h1 class="white-text">Are you going to buy a meal, or sell it ? make your choice!</h1>
-						<button onclick = "location.href='${pageContext.request.contextPath}/buyFood'" class = "button_line">Buy a meal</button>
-						<button onclick = "location.href='${pageContext.request.contextPath}/sellFood'" class = "button_line">Sell a meal</button>
+						<h1 class="white-text">Yemek mi almak istiyorsun, yemek mi satmak istiyorsun? Seçimini yap!</h1>
+						<button onclick = "location.href='${pageContext.request.contextPath}/buyFood'" class = "button_line">Yemek Al</button>
+						<button onclick = "location.href='${pageContext.request.contextPath}/sellFood'" class = "button_line">Yemek Sat</button>
 					
 					</div>
 				</div>
@@ -120,43 +120,7 @@
 		
 
 		<!-- Footer -->
-		<footer id="footer">
-
-			<!-- container -->
-			<div class="container">
-
-				<!-- row -->
-				<div class="row">
-
-					<!-- copyright -->
-					<div class="col-md-6">
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						<span class="copyright">ComeNeat @2019 All rights reserved |</span>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</div>
-					<!-- /copyright -->
-
-					<!-- footer nav -->
-					<div class="col-md-6">
-						<nav class="footer-nav">
-							<a href="#">Home</a>
-							<a href="#">About</a>
-							<a href="#">Menu</a>
-							<a href="#">Reservation</a>
-							<a href="#">Galery</a>
-							<a href="#">Events</a>
-							<a href="#">Contact</a>
-						</nav>
-					</div>
-					<!-- /footer nav -->
-
-				</div>
-				<!-- /row -->
-
-			</div>
-			<!-- /container -->
-
-		</footer>
+		<%@ include file="footer.jsp" %>
 		<!-- /Footer -->
 
 		<!-- Preloader -->
